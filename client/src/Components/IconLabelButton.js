@@ -1,7 +1,7 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 
-class Button extends React.Component {
+class IconLabelButton extends React.Component {
   render() {
     return (
       <div
@@ -11,7 +11,7 @@ class Button extends React.Component {
           alignItems: 'center'
         }}
       >
-        <Link to={this.props.linkTo}>
+        <Link to={this.props.link}>
           <button className="home-page-btn">
             <img src={this.props.img} alt={this.props.alt} />
             <p>{this.props.label}</p>
@@ -21,4 +21,4 @@ class Button extends React.Component {
     )
   }
 }
-export default Button
+export default IconLabelButton
