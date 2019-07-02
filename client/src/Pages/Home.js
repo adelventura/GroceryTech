@@ -9,7 +9,7 @@ class Home extends React.Component {
   render() {
     return (
       <React.Fragment>
-        <p>
+        <p className="pageHeader">
           Homepage <br />
         </p>
 

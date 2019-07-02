@@ -37,6 +37,40 @@ a {
     text-decoration: none;
 }
 
+.pageHeader {
+    text-align: left;
+    margin: 10px;
+    font-weight: bold;
+
+}
+
+.inputItem {
+    display: flex;
+    width: 200px;
+    margin: 10px;
+    border-color: #4d87fa;
+    border-width: .5px;
+    border-radius: 3px;
+    padding: 5px;
+}
+
+.input-item-label {
+
+}
+
+.submit-btn {
+    display: flex;
+    width: 100px;
+    padding: 5px;
+    margin: 10px;
+    border-radius: 3px;
+    border-style: none;
+    background-color: #4d87fa;
+    color: #FFFFFF;
+    text-align: center;
+
+}
+
 .home-page-btn {
     width: 55;
     height: 100;
