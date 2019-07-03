@@ -44,7 +44,7 @@ a {
 
 }
 
-.inputItem {
+.input-item {
     display: flex;
     width: 200px;
     margin: 10px;
@@ -52,10 +52,6 @@ a {
     border-width: .5px;
     border-radius: 3px;
     padding: 5px;
-}
-
-.input-item-label {
-
 }
 
 .submit-btn {

@@ -1,18 +1,30 @@
 import React from 'react'
 
-var CART = {
-    items: [
-        {
-        name: "",
-        id: "",
-        type: "",
-        price: "",
-        quantity: "",
-        }
-    ]
-}
+// {
+//    id:
+//    item_id:
+//    quantity:
+// }
 
-<CartProvider content={(cart, update) => {
+//
+//
+//
+
+var CART = [
+  {
+    id: '',
+    quantity: 10,
+    item: {
+      type: '',
+      name: '',
+      description: '',
+      price: ''
+    },
+    in_stock: true
+  }
+]
+
+/* <CartProvider content={(cart, update) => {
     cart.items.map((item) => {
         <li>
             {item.name}
@@ -23,7 +35,7 @@ var CART = {
             </Button>
         </li>
     })
-}}/>
+}}/> */
 
 class CartProvider extends React.Component {
   constructor(props) {
@@ -44,12 +56,12 @@ class CartProvider extends React.Component {
     const { cart } = this.state
 
     if (cart) {
-      return this.props.content(cart, (change) => {
-          // apply change to cart
-          // {type: "delete", item: "id"}
-          if type == delete{
-              setState
-          }
+      return this.props.content(cart, change => {
+        // apply change to cart
+        // {type: "delete", item: "id"}
+        if (type == 'delete') {
+          setState
+        }
       })
     } else {
       return this.props.placeholder()
