@@ -34,34 +34,38 @@ const STORES = [
     name: 'Whole Foods',
     address: '650 Ponce de Leon Ave NE, Atlanta, GA, 30308',
     hours: '9-8',
-    phone: '404-853-1681'
+    phone: '404-853-1681',
+    inventory: []
   }
 ]
 
-class FetchStores extends React.Component {
+class FetchStore extends React.Component {
   constructor(props) {
     super(props)
 
     this.state = {
-      stores: undefined
+      store: undefined
     }
   }
 
   componentDidMount() {
     setTimeout(() => {
-      this.setState({ stores: STORES })
+      const store = STORES.find(store => {
+        return store.id == this.props.id
+      })
+      this.setState({ store: store })
     }, 2000)
   }
 
   render() {
-    const { stores } = this.state
+    const { store } = this.state
 
-    if (stores) {
-      return this.props.content(stores)
+    if (store) {
+      return this.props.content(store)
     } else {
       return this.props.placeholder()
     }
   }
 }
 
-export default FetchStores
+export default FetchStore

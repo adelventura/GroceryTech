@@ -28,7 +28,7 @@ class Home extends React.Component {
             }}
           >
             <IconLabelButton
-              link="new_order"
+              link="order"
               img={cart}
               alt="Shopping Cart"
               label="New Order"

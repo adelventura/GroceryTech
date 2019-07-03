@@ -11,7 +11,14 @@ function IconLabelButton(props) {
       }}
     >
       <Link to={props.link}>
-        <button className="home-page-btn">
+        <button
+          className="home-page-btn"
+          style={{
+            display: 'flex',
+            flexDirection: 'row',
+            alignItems: 'center'
+          }}
+        >
           <img src={props.img} alt={props.alt} />
           <p>{props.label}</p>
         </button>
