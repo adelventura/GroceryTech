@@ -34,8 +34,9 @@ class Form extends React.Component {
   render() {
     return (
       <React.Fragment>
+        <h3 className="form-input-label">Fisrt Name</h3>
         <input
-          className="inputItem"
+          className="form-input"
           name="firstName"
           type="text"
           placeholder="First Name"
@@ -43,8 +44,9 @@ class Form extends React.Component {
           onChange={this.handleChange}
         />
         <br />
+        <h3 className="form-input-label">Last Name</h3>
         <input
-          className="inputItem"
+          className="form-input"
           name="lastName"
           type="text"
           placeholder="Last Name"
@@ -52,8 +54,9 @@ class Form extends React.Component {
           onChange={this.handleChange}
         />
         <br />
+        <h3 className="form-input-label">Username</h3>
         <input
-          className="inputItem"
+          className="form-input"
           name="username"
           type="text"
           placeholder="Username"
@@ -61,8 +64,9 @@ class Form extends React.Component {
           onChange={this.handleChange}
         />
         <br />
+        <h3 className="form-input-label">Email</h3>
         <input
-          className="inputItem"
+          className="form-input"
           name="email"
           type="text"
           placeholder="Email"
@@ -70,8 +74,9 @@ class Form extends React.Component {
           onChange={this.handleChange}
         />
         <br />
+        <h3 className="form-input-label">Password</h3>
         <input
-          className="inputItem"
+          className="form-input"
           name="password"
           type="password"
           placeholder="Password"
@@ -79,8 +84,9 @@ class Form extends React.Component {
           onChange={this.handleChange}
         />
         <br />
+        <h3 className="form-input-label">Address</h3>
         <input
-          className="inputItem"
+          className="form-input"
           name="address"
           type="text"
           placeholder="Address"
@@ -88,8 +94,9 @@ class Form extends React.Component {
           onChange={this.handleChange}
         />
         <br />
+        <h3 className="form-input-label">City</h3>
         <input
-          className="inputItem"
+          className="form-input"
           name="city"
           type="text"
           placeholder="City"
@@ -97,8 +104,9 @@ class Form extends React.Component {
           onChange={this.handleChange}
         />
         <br />
+        <h3 className="form-input-label">State</h3>
         <input
-          className="inputItem"
+          className="form-input"
           name="state"
           type="text"
           placeholder="State"
@@ -106,8 +114,9 @@ class Form extends React.Component {
           onChange={this.handleChange}
         />
         <br />
+        <h3 className="form-input-label">Zipcode</h3>
         <input
-          className="inputItem"
+          className="form-input"
           name="zipcode"
           type="text"
           placeholder="Zipcode"
@@ -115,16 +124,17 @@ class Form extends React.Component {
           onChange={this.handleChange}
         />
         <br />
+        <h3 className="form-input-label">Phone Number</h3>
         <input
-          className="inputItem"
+          className="form-input"
           name="phoneNumber"
           type="text"
-          placeholder="Phone"
+          placeholder="Phone number"
           value={this.state.phoneNumber}
           onChange={this.handleChange}
         />
-
-        <button className="submit-btn" onClick={this.handleSubmit}>
+        <br />
+        <button className="btn-small" onClick={this.handleSubmit}>
           Create Account
         </button>
       </React.Fragment>

@@ -2,7 +2,7 @@ import React from 'react'
 
 class Stores extends React.Component {
   render() {
-    <FetchStores
+    ;<FetchStores
       placeholder={() => {
         return <div>Loading</div>
       }}

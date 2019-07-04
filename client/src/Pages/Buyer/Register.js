@@ -1,11 +1,13 @@
 import React from 'react'
-import Form from '../Components/Form.js'
+import Form from '../../Components/Form.js'
 
 class Register extends React.Component {
   render() {
     return (
       <React.Fragment>
-        <Form />
+        <div className="register-card">
+          <Form />
+        </div>
       </React.Fragment>
     )
   }

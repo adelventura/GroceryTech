@@ -4,35 +4,30 @@ class ViewCartPage extends React.Component {
   render() {
     return (
       <React.Fragment>
-        <span>List of Stores</span>
+        <span>Your Cart</span>
+
         <FetchStores
           placeholder={() => {
             return <div>LOADING</div>
           }}
-          content={stores => {
+          content={(cart, update) => {
             return (
               <table style={{ width: '100%' }}>
                 <tr>
-                  <th>Store Name</th>
-                  <th>Address</th>
-                  <th>Phone</th>
-                  <th>Hours today</th>
+                  <th>Item Name</th>
+                  <th>Description</th>
+                  <th>Quantity</th>
+                  <th>Price</th>
+                  <th>In Stock</th>
                 </tr>
-                {stores.map(store => {
+                {cart.map(cart => {
                   return (
                     <tr>
-                      <td>
-                        <IconLabelButton
-                          link={`store/${store.id}`}
-                          img={cart}
-                          alt="Shopping Cart"
-                          label="New Order"
-                        />
-                        {store.name}
-                      </td>
-                      <td>{store.address}</td>
-                      <td>{store.phone}</td>
-                      <td>{store.hours}</td>
+                      <td>{cart.name}</td>
+                      <td>{cart.description}</td>
+                      <td>{cart.quantity}</td>
+                      <td>{cart.price}</td>
+                      <td>{cart.inStock}</td>
                     </tr>
                   )
                 })}

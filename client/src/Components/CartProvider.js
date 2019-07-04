@@ -1,14 +1,62 @@
 import React from 'react'
 
-// {
-//    id:
-//    item_id:
-//    quantity:
-// }
-
-//
-//
-//
+;[
+  {
+    id: '011',
+    quantity: 10,
+    item: {
+      type: 'beverage',
+      name: 'Dasani Water',
+      description: '1.5L bottled water',
+      price: '4.69'
+    },
+    in_stock: true
+  },
+  {
+    id: '012',
+    quantity: 10,
+    item: {
+      type: 'beverage',
+      name: 'Sprite',
+      description: 'Lemon lime soft drinks, 12 fl oz, 12 pack',
+      price: '3.99'
+    },
+    in_stock: true
+  },
+  {
+    id: '013',
+    quantity: 10,
+    item: {
+      type: 'beverage',
+      name: 'Coke',
+      description: 'Coca Cola cherry coke, 12 oz, 12 pack',
+      price: '3.98'
+    },
+    in_stock: true
+  },
+  {
+    id: '014',
+    quantity: 10,
+    item: {
+      type: 'beverage',
+      name: 'Pepsi',
+      description: 'Pepsi, bottles 16.9 fl oz, 6 pack',
+      price: '3.48'
+    },
+    in_stock: true
+  },
+  {
+    id: '015',
+    quantity: 10,
+    item: {
+      type: 'beverage',
+      name: 'Lipton Tea',
+      description: 'Diet Lipton Green Tea, citrus, 12 count, 16.9 fl oz',
+      price: '4.98'
+    },
+    in_stock: true
+  }
+]
 
 var CART = [
   {

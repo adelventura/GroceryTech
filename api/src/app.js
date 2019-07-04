@@ -16,9 +16,6 @@ app.use(express.static(path.join(__dirname, 'public')))
 
 app.use('/users', usersRouter)
 
-app.listen(3001, () => {
-  console.log('Server running on port 3001')
-})
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
   next(createError(404))

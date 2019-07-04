@@ -1,7 +1,7 @@
 import React from 'react'
-import FetchStores from '../Components/FetchStores'
-import cart from '../Images/shopping-cart.svg'
-import IconLabelButton from '../Components/IconLabelButton'
+import FetchStores from '../../Components/FetchStores'
+import cart from '../../Images/shopping-cart.svg'
+import IconLabelButton from '../../Components/IconLabelButton'
 
 class NewOrder extends React.Component {
   render() {
