@@ -107,29 +107,103 @@ ul {
     padding: 5px;
     margin-left: 0px;
     margin-right: 10px;
-    margin-top: 10px;
     font-size: 14px;
 }
 
 .btn {
-    background: #5d13e7;
+    background: #705772;
     border-radius: 5px;
     border-style: none;
     padding: 5px;
     color: white;
-    font-size: 15px;
+    font-size: 18px;
     font-family: 'Dosis', sans-serif;
+    height:30px;
+    width:75px;
+    margin-left: 60%;
 }
 
 /* Home Nav */
+.grid {
+    width: 55%;
+    height: 60%;
+    background-color: transparent;
+    border-radius:  5px;
+    display: flex;
+    justify-content: center;
+    flex-direction: row;
+    position: absolute;
+    z-index: 15;
+    top: 15%;
+    left: 20%;
+}
+
+.grid-column-left {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-content: center;
+    width: 50%;
+    height: 100%;
+    color: #727272;
+}
+
+.grid-column-right {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-content: center;
+    width: 50%;
+    height: 100%;
+    color: #727272;
+}
+
+
+.grid-container-small {
+    width: 200px;
+    height: 70px;
+    margin: 30px;
+    background-color: #FFFFFF;
+    border-radius:  5px;
+    display: flex;
+    flex-direction: row;
+    box-shadow: 2px 1px 8px grey;
+}
+
 .grid-container {
     width: 250px;
     height: 250px;
     margin: 30px;
-    background-color: #EFEFEF;
+    background-color: #FFFFFF;
     border-radius:  5px;
     display: block;
     box-shadow: 2px 1px 8px grey;
+}
+
+.grid-left {
+    width: 40%;
+    display: flex;
+    justify-content: center;
+}
+.grid-right {
+    border-left-color: #D6D6D6;
+    border-left-style: solid;
+    border-left-width: 1px;
+    padding-left: 8%;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-content: center;
+    width: 60%;
+    color: #727272;
+}
+
+.grid-header-small {
+    color: #727272;
+    background-color: transparent;
+    display: flex;
+    flex-direction: row;
+    text-align: center;
 }
 
 .grid-container-row {
@@ -157,6 +231,9 @@ ul {
     background-color: #FFFFFF;
     border-bottom-right-radius: 5px;
     border-bottom-left-radius: 5px;
+    border-top-color: #D6D6D6;
+    border-top-style: solid;
+    border-top-width: 1px;
     display: flex;
     justify-content: center;
     height: 25%;

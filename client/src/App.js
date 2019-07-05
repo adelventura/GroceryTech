@@ -3,10 +3,12 @@ import './App.css'
 import Login from './Pages/Login'
 import Register from './Pages/Buyer/Register'
 import Home from './Pages/Buyer/Home'
+import StoreHomepage from './Pages/Buyer/StoreHomepage'
 import Landing from './Pages/Landing'
 import OrderHistory from './Pages/Buyer/OrderHistory'
 import Order from './Pages/Buyer/Order'
 import PaymentMethods from './Pages/Buyer/PaymentMethods'
+import FindItemPage from './Pages/Buyer/FindItemPage'
 import AccountInfo from './Pages/Buyer/AccountInfo'
 import Navigation from './Components/Navigation'
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
@@ -34,10 +36,12 @@ class App extends Component {
             <Route path="/register" component={Register} />
             <Route path="/login" component={Login} />
             <Route path="/home" component={Home} />
+            <Route path="/store_home" component={StoreHomepage} />
             <Route path="/account" component={AccountInfo} />
             <Route path="/order" component={Order} />
             <Route path="/store/:id" component={StorePage} />
             <Route path="/store/:id/search" component={AccountInfo} />
+            <Route path="/find_item" component={FindItemPage} />
             <Route path="/order_history" component={OrderHistory} />
             <Route path="/payment_methods" component={PaymentMethods} />
           </Switch>
