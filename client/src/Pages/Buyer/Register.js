@@ -5,9 +5,7 @@ class Register extends React.Component {
   render() {
     return (
       <React.Fragment>
-        <div className="register-card">
-          <Form />
-        </div>
+        <Form />
       </React.Fragment>
     )
   }

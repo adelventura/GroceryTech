@@ -1,8 +1,4 @@
 import React from 'react'
-import IconLabelButton from '../Components/IconLabelButton'
-import login from '../Images/log-in.svg'
-import register from '../Images/edit.svg'
-import { FiLogIn, FiEdit } from 'react-icons/fi'
 import { Link } from 'react-router-dom'
 
 class Landing extends React.Component {
@@ -59,10 +55,14 @@ class Landing extends React.Component {
             <div>
               <br />
               <Link to="/home">
-                <span className="btn-small">Login</span>
+                <div className="btn" style={{ float: 'left' }}>
+                  Login
+                </div>
               </Link>
               <Link to="/register">
-                <span className="btn-small">Register</span>
+                <div className="btn" style={{ float: 'right' }}>
+                  Register
+                </div>
               </Link>
             </div>
           </div>

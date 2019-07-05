@@ -1,8 +1,13 @@
 import React from 'react'
 import backArrows from '../Images/chevrons-left.svg'
+import { FiShoppingCart } from 'react-icons/fi'
 
 function Navigation(props) {
-  const navItems = ['<<', 'GroceryTech']
+  const navItems = [
+    '<<',
+    'GroceryTech',
+    <FiShoppingCart color={'#727272'} size={26} />
+  ]
 
   return (
     <ul className="nav-bar">

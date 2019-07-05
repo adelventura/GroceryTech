@@ -45,11 +45,24 @@ ul {
     color: inherit;
 }
 
+.btn {
+    background-color: #705772;
+    color: #FFFFFF;
+    display:inline-block;
+    border-radius: 5px;
+    box-shadow: 0 0 5px -1px rgba(0,0,0,0.2);
+    cursor:pointer;
+    vertical-align:middle;
+    max-width: 100px;
+    padding: 5px;
+    text-align: center;
+}
+
 /* landing page */
 .form-input {
-    width: 300px;
+    width: 250px;
     height: 30px;
-    border-color: #7ad9f5;
+    border-color: #f38181;
     border-style: solid;
     border-top-style: none;
     border-left-style: none;
@@ -84,10 +97,22 @@ ul {
 .register-card {
     box-shadow: 2px 2px 7px silver;
     display: block;
-    padding: 20px;
+    width: 65%;
+    max-width: 600px;
+    padding: 30px;
     margin-top: 50px;
     margin-left: auto;
     margin-right: auto;
+}
+.card-header {
+    float: left;
+    color: #705772;
+    font-size: 18px;
+    font-weight: bolder;
+}
+.form-row {
+    width: 100%;
+    display: block;
 }
 
 .inner-card {
@@ -108,19 +133,6 @@ ul {
     margin-left: 0px;
     margin-right: 10px;
     font-size: 14px;
-}
-
-.btn {
-    background: #705772;
-    border-radius: 5px;
-    border-style: none;
-    padding: 5px;
-    color: white;
-    font-size: 18px;
-    font-family: 'Dosis', sans-serif;
-    height:30px;
-    width:75px;
-    margin-left: 60%;
 }
 
 /* Home Nav */
