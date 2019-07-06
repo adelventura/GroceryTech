@@ -1,9 +1,9 @@
 import React, { Component } from 'react'
 import './App.css'
-import Login from './Pages/Login'
 import Register from './Pages/Buyer/Register'
 import Home from './Pages/Buyer/Home'
 import StoreHomepage from './Pages/Buyer/StoreHomepage'
+import ItemListingPage from './Pages/Buyer/ItemListingPage'
 import Landing from './Pages/Landing'
 import OrderHistory from './Pages/Buyer/OrderHistoryPage'
 import Order from './Pages/Buyer/Order'
@@ -35,11 +35,11 @@ class App extends Component {
             <Route exact path="/" component={Landing} />
             <Route path="/register_buyer" component={Register} />
             <Route path="/register" component={RegistrationNavPage} />
-            <Route path="/login" component={Login} />
             <Route path="/home" component={Home} />
             <Route path="/store/:id" component={StoreHomepage} />
             <Route path="/account" component={AccountInfo} />
             <Route path="/order" component={Order} />
+            <Route path="/inventory/:id" component={ItemListingPage} />
             <Route path="/store/:id/search" component={AccountInfo} />
             <Route path="/find_item" component={FindItemPage} />
             <Route path="/order_history" component={OrderHistory} />

@@ -1,19 +1,22 @@
 import React from 'react'
-import FetchStores from '../../Components/FetchStores'
+import FetchStore from '../../Components/FetchStore'
+import Loading from '../../Components/Loading'
 
-class NewOrder extends React.Component {
+class ItemListingPage extends React.Component {
   render() {
+    const { id } = this.props.match.params
     return (
       <React.Fragment>
-        <FetchStores
+        <FetchStore
+          id={id}
           placeholder={() => {
-            return <div>LOADING</div>
+            return <Loading />
           }}
-          content={stores => {
+          content={inventory => {
             return (
               <div>
                 <br />
-                <span className="pageHeader">List of Stores</span>
+                <span className="pageHeader">Inventory</span>
                 <div
                   style={{
                     display: 'block',
@@ -26,7 +29,7 @@ class NewOrder extends React.Component {
                     paddingLeft: '20px',
                     paddingRight: '20px',
                     paddingBottom: '15px',
-                    width: '86%',
+                    width: '80%',
                     boxShadow: '0 0 5px -1px rgba(0,0,0,0.2)'
                   }}
                 >
@@ -41,32 +44,22 @@ class NewOrder extends React.Component {
                   >
                     <thead>
                       <tr className="table-header">
-                        <th scope="col">Store Name</th>
-                        <th scope="col">Address</th>
-                        <th scope="col">Phone</th>
-                        <th scope="col">Hours today</th>
+                        <th scope="col">Item Name</th>
+                        <th scope="col">Description</th>
+                        <th scope="col">Expiration Date</th>
+                        <th scope="col">Price</th>
+                        <th scope="col">In Stock</th>
                       </tr>
                     </thead>
-                    {stores.map(store => {
-                      return (
-                        <tbody>
-                          <tr>
-                            <th scope="row">
-                              <input
-                                type="radio"
-                                name="store"
-                                value={store.name}
-                                style={{ marginRight: '10px' }}
-                              />
-                              {store.name}
-                            </th>
-                            <td>{store.address}</td>
-                            <td>{store.phone}</td>
-                            <td>{store.hours}</td>
-                          </tr>
-                        </tbody>
-                      )
-                    })}
+                    <tbody>
+                      <tr>
+                        <td>{inventory.name}</td>
+                        <td>{inventory.description}</td>
+                        <td>{inventory.expiration}</td>
+                        <td>{inventory.price}</td>
+                        <td>{inventory.in_stock}</td>
+                      </tr>
+                    </tbody>
                   </table>
                   <br />
                   <div
@@ -125,4 +118,4 @@ class NewOrder extends React.Component {
   }
 }
 
-export default NewOrder
+export default ItemListingPage
