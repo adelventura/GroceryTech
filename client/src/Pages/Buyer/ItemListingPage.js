@@ -1,5 +1,5 @@
 import React from 'react'
-import FetchStore from '../../Components/FetchStore'
+import FetchInventory from '../../Components/FetchInventory'
 import Loading from '../../Components/Loading'
 
 class ItemListingPage extends React.Component {
@@ -7,8 +7,7 @@ class ItemListingPage extends React.Component {
     const { id } = this.props.match.params
     return (
       <React.Fragment>
-        <FetchStore
-          id={id}
+        <FetchInventory
           placeholder={() => {
             return <Loading />
           }}
@@ -16,7 +15,7 @@ class ItemListingPage extends React.Component {
             return (
               <div>
                 <br />
-                <span className="pageHeader">Inventory</span>
+                <span className="pageHeader">{inventory.type} Inventory</span>
                 <div
                   style={{
                     display: 'block',
@@ -51,15 +50,19 @@ class ItemListingPage extends React.Component {
                         <th scope="col">In Stock</th>
                       </tr>
                     </thead>
-                    <tbody>
-                      <tr>
-                        <td>{inventory.name}</td>
-                        <td>{inventory.description}</td>
-                        <td>{inventory.expiration}</td>
-                        <td>{inventory.price}</td>
-                        <td>{inventory.in_stock}</td>
-                      </tr>
-                    </tbody>
+                    {inventory.map(inventory => {
+                      return (
+                        <tbody>
+                          <tr>
+                            <td>{inventory.name}</td>
+                            <td>{inventory.description}</td>
+                            <td>{inventory.expiration}</td>
+                            <td>{inventory.price}</td>
+                            <td>{inventory.in_stock}</td>
+                          </tr>
+                        </tbody>
+                      )
+                    })}
                   </table>
                   <br />
                   <div

@@ -39,7 +39,7 @@ class App extends Component {
             <Route path="/store/:id" component={StoreHomepage} />
             <Route path="/account" component={AccountInfo} />
             <Route path="/order" component={Order} />
-            <Route path="/inventory/:id" component={ItemListingPage} />
+            <Route path="/inventory" component={ItemListingPage} />
             <Route path="/store/:id/search" component={AccountInfo} />
             <Route path="/find_item" component={FindItemPage} />
             <Route path="/order_history" component={OrderHistory} />
