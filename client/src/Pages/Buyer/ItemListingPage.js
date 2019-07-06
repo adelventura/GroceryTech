@@ -2,6 +2,11 @@ import React from 'react'
 import FetchInventory from '../../Components/FetchInventory'
 import Loading from '../../Components/Loading'
 
+let purple = '#705772'
+let coral = '#f38181'
+let yellow = '#fad284'
+let green = '#a9eec2'
+
 class ItemListingPage extends React.Component {
   render() {
     const { id } = this.props.match.params
@@ -15,7 +20,7 @@ class ItemListingPage extends React.Component {
             return (
               <div>
                 <br />
-                <span className="pageHeader">{inventory.type} Inventory</span>
+                <span className="pageHeader">Inventory</span>
                 <div
                   style={{
                     display: 'block',
@@ -54,7 +59,23 @@ class ItemListingPage extends React.Component {
                       return (
                         <tbody>
                           <tr>
-                            <td>{inventory.name}</td>
+                            <td>
+                              <input
+                                type="number"
+                                id="quatity"
+                                name="quantity"
+                                min="0"
+                                max="100"
+                                placeholder="0"
+                                style={{
+                                  marginRight: '8px',
+                                  borderColor: 'coral',
+                                  borderWidth: '.5px',
+                                  outline: 'none'
+                                }}
+                              />
+                              {inventory.name}
+                            </td>
                             <td>{inventory.description}</td>
                             <td>{inventory.expiration}</td>
                             <td>{inventory.price}</td>
@@ -78,9 +99,7 @@ class ItemListingPage extends React.Component {
                         display: 'inline-flex',
                         width: '15%'
                       }}
-                    >
-                      <button className="btn">Back</button>
-                    </div>
+                    />
                     <div
                       style={{
                         display: 'inline-flex',
@@ -107,7 +126,7 @@ class ItemListingPage extends React.Component {
                           marginRight: '0'
                         }}
                       >
-                        Choose
+                        Add to cart
                       </button>
                     </div>
                   </div>

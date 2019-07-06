@@ -159,20 +159,14 @@ ul {
 }
 
 .grid-column-left {
-    display: flex;
-    justify-content: center;
-    flex-direction: column;
-    align-content: center;
+    float: left;
     width: 50%;
     height: 100%;
     color: #727272;
 }
 
 .grid-column-right {
-    display: flex;
-    justify-content: center;
-    flex-direction: column;
-    align-content: center;
+    float: right;
     width: 50%;
     height: 100%;
     color: #727272;
@@ -182,7 +176,7 @@ ul {
 .grid-container-small {
     width: 200px;
     height: 70px;
-    margin: 30px;
+    margin: 60px 0px;
     background-color: #FFFFFF;
     border-radius:  5px;
     display: flex;
@@ -270,23 +264,23 @@ ul {
 }
 
 thead th:nth-child(1) {
-    width: 25%;
+    width: 30%;
   }
 
   thead th:nth-child(2) {
-    width: 45%;
+    width: 44%;
   }
 
   thead th:nth-child(3) {
-    width: 15%;
+    width: 12%;
   }
 
   thead th:nth-child(4) {
-    width: 15%;
+    width: 12%;
     text-align: center;
   }
 
-  tbody td:nth-child(4) {
+  tbody td:nth-child(5) {
     text-align: center;
   }
 
