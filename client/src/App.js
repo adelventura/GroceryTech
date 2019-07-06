@@ -9,6 +9,7 @@ import OrderHistory from './Pages/Buyer/OrderHistory'
 import Order from './Pages/Buyer/Order'
 import PaymentMethods from './Pages/Buyer/PaymentMethods'
 import FindItemPage from './Pages/Buyer/FindItemPage'
+import RegistrationNavPage from './Pages/Buyer/RegistrationNavPage'
 import AccountInfo from './Pages/Buyer/AccountInfo'
 import Navigation from './Components/Navigation'
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
@@ -33,7 +34,8 @@ class App extends Component {
           <Navigation />
           <Switch>
             <Route exact path="/" component={Landing} />
-            <Route path="/register" component={Register} />
+            <Route path="/register_buyer" component={Register} />
+            <Route path="/register" component={RegistrationNavPage} />
             <Route path="/login" component={Login} />
             <Route path="/home" component={Home} />
             <Route path="/store_home" component={StoreHomepage} />

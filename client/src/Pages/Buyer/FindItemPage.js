@@ -5,8 +5,6 @@ import {
   FaCarrot,
   FaGlassWhiskey,
   FaBirthdayCake,
-  FaTimesCircle,
-  FaHotdog,
   FaDrumstickBite,
   FaTooth,
   FaPastafarianism,
@@ -15,6 +13,11 @@ import {
   FaShoppingBasket
 } from 'react-icons/fa'
 import { Link } from 'react-router-dom'
+
+let purple = '#705772'
+let coral = '#f38181'
+let yellow = '#fad284'
+let green = '#a9eec2'
 
 class FindItemPage extends React.Component {
   render() {
@@ -27,33 +30,29 @@ class FindItemPage extends React.Component {
           <div className="grid-column-left">
             <SmallNavCard
               link="/account"
-              icon={
-                <FaGlassWhiskey color="#f38181" size={50} className="icon" />
-              }
+              icon={<FaGlassWhiskey color={coral} size={50} className="icon" />}
               label="Beverages"
             />
             <SmallNavCard
               link="/account"
-              icon={
-                <FaBirthdayCake color="#a9eec2" size={50} className="icon" />
-              }
+              icon={<FaBirthdayCake color={green} size={50} className="icon" />}
               label="Baking Goods"
             />
             <SmallNavCard
               link="/account"
               icon={
-                <FaShoppingBasket color="#fad284" size={50} className="icon" />
+                <FaShoppingBasket color={yellow} size={50} className="icon" />
               }
               label="Canned Goods"
             />
             <SmallNavCard
               link="/account"
-              icon={<FaBroom color="#705772" size={50} className="icon" />}
+              icon={<FaBroom color={purple} size={50} className="icon" />}
               label="Cleaning Products"
             />
             <SmallNavCard
               link="/account"
-              icon={<FaCheese color="#f38181" size={50} className="icon" />}
+              icon={<FaCheese color={coral} size={50} className="icon" />}
               label="Dairy"
             />
           </div>
@@ -61,30 +60,30 @@ class FindItemPage extends React.Component {
           <div className="grid-column-right">
             <SmallNavCard
               link="/account"
-              icon={<FaSnowflake color="#705772" size={50} className="icon" />}
+              icon={<FaSnowflake color={purple} size={50} className="icon" />}
               label="Frozen Foods"
             />
             <SmallNavCard
               link="/account"
               icon={
-                <FaDrumstickBite color="#f38181" size={50} className="icon" />
+                <FaDrumstickBite color={coral} size={50} className="icon" />
               }
               label="Meat"
             />
             <SmallNavCard
               link="/account"
-              icon={<FaTooth color="#a9eec2" size={50} className="icon" />}
+              icon={<FaTooth color={green} size={50} className="icon" />}
               label="Personal Care"
             />
             <SmallNavCard
               link="/account"
-              icon={<FaCarrot color="#fad284" size={50} className="icon" />}
+              icon={<FaCarrot color={yellow} size={50} className="icon" />}
               label="Produce"
             />
             <SmallNavCard
               link="/account"
               icon={
-                <FaPastafarianism color="#705772" size={50} className="icon" />
+                <FaPastafarianism color={purple} size={50} className="icon" />
               }
               label="Others"
             />
