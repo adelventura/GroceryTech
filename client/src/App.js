@@ -5,15 +5,14 @@ import Register from './Pages/Buyer/Register'
 import Home from './Pages/Buyer/Home'
 import StoreHomepage from './Pages/Buyer/StoreHomepage'
 import Landing from './Pages/Landing'
-import OrderHistory from './Pages/Buyer/OrderHistory'
+import OrderHistory from './Pages/Buyer/OrderHistoryPage'
 import Order from './Pages/Buyer/Order'
-import PaymentMethods from './Pages/Buyer/PaymentMethods'
+import PaymentMethods from './Pages/Buyer/PaymentMethodsPage'
 import FindItemPage from './Pages/Buyer/FindItemPage'
 import RegistrationNavPage from './Pages/Buyer/RegistrationNavPage'
-import AccountInfo from './Pages/Buyer/AccountInfo'
+import AccountInfo from './Pages/Buyer/AccountInfoPage'
 import Navigation from './Components/Navigation'
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
-import StorePage from './Pages/StorePage'
 
 class App extends Component {
   render() {
@@ -38,10 +37,9 @@ class App extends Component {
             <Route path="/register" component={RegistrationNavPage} />
             <Route path="/login" component={Login} />
             <Route path="/home" component={Home} />
-            <Route path="/store_home" component={StoreHomepage} />
+            <Route path="/store/:id" component={StoreHomepage} />
             <Route path="/account" component={AccountInfo} />
             <Route path="/order" component={Order} />
-            <Route path="/store/:id" component={StorePage} />
             <Route path="/store/:id/search" component={AccountInfo} />
             <Route path="/find_item" component={FindItemPage} />
             <Route path="/order_history" component={OrderHistory} />

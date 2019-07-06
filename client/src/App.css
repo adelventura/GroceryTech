@@ -28,6 +28,7 @@ ul {
     text-align: left;
     margin-left: 5%;
     margin-bottom: 10px;
+    margin-top: 20px;
     font-size: 30px;
     font-weight: bold;
 
@@ -45,17 +46,23 @@ ul {
     color: inherit;
 }
 
+
 .btn {
     background-color: #705772;
     color: #FFFFFF;
     display:inline-block;
     border-radius: 5px;
+    border-style: none;
     box-shadow: 0 0 5px -1px rgba(0,0,0,0.2);
     cursor:pointer;
     vertical-align:middle;
     max-width: 100px;
+    min-width: 50px;
     padding: 5px;
     text-align: center;
+    font-family: 'Dosis', sans-serif;
+    font-size: 14px;
+
 }
 
 /* landing page */
@@ -74,9 +81,9 @@ ul {
 .form-input-label {
     color: #705772;
     text-transform: uppercase;
+    font-family: 'Dosis', sans-serif;
     font-size: 14px;
     margin-bottom: 5px;
-    font-family: 'Dosis', sans-serif;
 
 }
 
@@ -109,6 +116,7 @@ ul {
     color: #705772;
     font-size: 18px;
     font-weight: bolder;
+    display: flex;
 }
 .form-row {
     width: 100%;
@@ -261,4 +269,42 @@ ul {
     margin-right: auto;
 }
 
+thead th:nth-child(1) {
+    width: 25%;
+  }
 
+  thead th:nth-child(2) {
+    width: 45%;
+  }
+
+  thead th:nth-child(3) {
+    width: 15%;
+  }
+
+  thead th:nth-child(4) {
+    width: 15%;
+    text-align: center;
+  }
+
+  tbody td:nth-child(4) {
+    text-align: center;
+  }
+
+  th, td {
+    padding: 12px;
+    border-bottom: 1px solid #c6c6c6;
+  }
+
+  th {
+    text-align: left;
+  }
+
+.table-header {
+    text-transform: uppercase;
+    color: #705772;
+    letter-spacing: 1px;
+  }
+
+  td {
+    text-align: left;
+  }
