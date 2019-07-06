@@ -1,13 +1,39 @@
 import React from 'react'
 import FetchStores from '../../Components/FetchStores'
+import Loading from '../../Components/Loading'
+import { Redirect } from 'react-router-dom'
 
 class NewOrder extends React.Component {
+  constructor(props) {
+    super(props)
+
+    this.state = {
+      selected: ''
+    }
+
+    this.handleChoose = this.handleChoose.bind(this)
+    this.handleChange = this.handleChange.bind(this)
+  }
+  handleChoose(event) {
+    if (this.state.selected === '') {
+      alert('Must select store to continue')
+    } else {
+      this.props.history.push('/find_item')
+    }
+  }
+
+  handleChange(event) {
+    this.setState({
+      selected: event.target.value
+    })
+  }
+
   render() {
     return (
       <React.Fragment>
         <FetchStores
           placeholder={() => {
-            return <div>LOADING</div>
+            return <Loading />
           }}
           content={stores => {
             return (
@@ -56,6 +82,7 @@ class NewOrder extends React.Component {
                                 type="radio"
                                 name="store"
                                 value={store.name}
+                                onClick={this.handleChange}
                                 style={{ marginRight: '10px' }}
                               />
                               {store.name}
@@ -82,9 +109,7 @@ class NewOrder extends React.Component {
                         display: 'inline-flex',
                         width: '15%'
                       }}
-                    >
-                      <button className="btn">Back</button>
-                    </div>
+                    />
                     <div
                       style={{
                         display: 'inline-flex',
@@ -105,6 +130,7 @@ class NewOrder extends React.Component {
                     >
                       <button
                         className="btn"
+                        onClick={this.handleChoose}
                         style={{
                           display: 'inline-block',
                           marginLeft: 'auto',

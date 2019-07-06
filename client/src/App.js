@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import './App.css'
-import Register from './Pages/Buyer/Register'
+import RegisterBuyerPage from './Pages/Buyer/RegisterBuyerPage'
 import Home from './Pages/Buyer/Home'
 import StoreHomepage from './Pages/Buyer/StoreHomepage'
 import ItemListingPage from './Pages/Buyer/ItemListingPage'
@@ -33,7 +33,7 @@ class App extends Component {
           <Navigation />
           <Switch>
             <Route exact path="/" component={Landing} />
-            <Route path="/register_buyer" component={Register} />
+            <Route path="/register_buyer" component={RegisterBuyerPage} />
             <Route path="/register" component={RegistrationNavPage} />
             <Route path="/home" component={Home} />
             <Route path="/store/:id" component={StoreHomepage} />

@@ -1,6 +1,7 @@
 import React from 'react'
+import { History } from 'react-router-dom'
 
-class Form extends React.Component {
+class RegisterBuyerPage extends React.Component {
   constructor(props) {
     super(props)
 
@@ -22,7 +23,7 @@ class Form extends React.Component {
   }
 
   handleSubmit() {
-    alert('Name is: ' + this.state.firstName + ' ' + this.state.lastName)
+    return this.props.history.push('/home')
   }
 
   handleChange(event) {
@@ -184,4 +185,4 @@ class Form extends React.Component {
   }
 }
 
-export default Form
+export default RegisterBuyerPage

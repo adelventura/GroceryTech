@@ -1,7 +1,18 @@
 import React from 'react'
 
 function Loading(props) {
-  return <div>LOADING</div>
+  return (
+    <div
+      style={{
+        display: 'block',
+        margin: 'auto',
+        color: '#f38181',
+        fontSize: '30px'
+      }}
+    >
+      LOADING...
+    </div>
+  )
 }
 
 export default Loading
