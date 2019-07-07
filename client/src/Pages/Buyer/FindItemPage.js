@@ -20,7 +20,28 @@ let yellow = '#fad284'
 let green = '#a9eec2'
 
 class FindItemPage extends React.Component {
+  constructor(props) {
+    super(props)
+
+    this.state = {
+      id: undefined,
+      category: undefined
+    }
+  }
+
+  selectCategory = label => {
+    this.selectID(this.props.match.params)
+    this.setState({ category: label }, () => {
+      this.props.history.push(`/store/${this.id}/search/${label}`)
+    })
+  }
+  selectID = id => {
+    this.setState({ id: id })
+  }
+
   render() {
+    const { id } = this.props.match.params
+
     return (
       <React.Fragment>
         <p className="pageHeader">
@@ -29,29 +50,25 @@ class FindItemPage extends React.Component {
         <div className="grid">
           <div className="grid-column-left">
             <SmallNavCard
-              link="/inventory"
+              onClick={this.selectCategory}
               icon={<FaGlassWhiskey color={coral} size={50} className="icon" />}
               label="Beverages"
             />
             <SmallNavCard
-              link="/inventory"
               icon={<FaBirthdayCake color={green} size={50} className="icon" />}
               label="Baking Goods"
             />
             <SmallNavCard
-              link="/inventory"
               icon={
                 <FaShoppingBasket color={yellow} size={50} className="icon" />
               }
               label="Canned Goods"
             />
             <SmallNavCard
-              link="/inventory"
               icon={<FaBroom color={purple} size={50} className="icon" />}
               label="Cleaning Products"
             />
             <SmallNavCard
-              link="/inventory"
               icon={<FaCheese color={coral} size={50} className="icon" />}
               label="Dairy"
             />
@@ -59,29 +76,24 @@ class FindItemPage extends React.Component {
 
           <div className="grid-column-right">
             <SmallNavCard
-              link="/inventory"
               icon={<FaSnowflake color={purple} size={50} className="icon" />}
               label="Frozen Foods"
             />
             <SmallNavCard
-              link="/inventory"
               icon={
                 <FaDrumstickBite color={coral} size={50} className="icon" />
               }
               label="Meat"
             />
             <SmallNavCard
-              link="/inventory"
               icon={<FaTooth color={green} size={50} className="icon" />}
               label="Personal Care"
             />
             <SmallNavCard
-              link="/inventory"
               icon={<FaCarrot color={yellow} size={50} className="icon" />}
               label="Produce"
             />
             <SmallNavCard
-              link="/inventory"
               icon={
                 <FaPastafarianism color={purple} size={50} className="icon" />
               }

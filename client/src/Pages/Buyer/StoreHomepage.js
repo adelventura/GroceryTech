@@ -3,9 +3,18 @@ import { Link } from 'react-router-dom'
 import { FaShoppingCart, FaCarrot, FaTimesCircle } from 'react-icons/fa'
 import NavCard from '../../Components/NavCard.js'
 import SmallNavCard from '../../Components/SmallNavCard.js'
-import FetchStore from '../../Components/FetchStore'
+import FetchStore from '../../Components/FetchStore.js'
+import Loading from '../../Components/Loading.js'
 
 class StoreHomepage extends React.Component {
+  constructor(props) {
+    super(props)
+
+    this.state = {
+      id: ''
+    }
+  }
+
   render() {
     const { id } = this.props.match.params
 
@@ -14,18 +23,18 @@ class StoreHomepage extends React.Component {
         <FetchStore
           id={id}
           placeholder={() => {
-            return <div>LOADING STORE</div>
+            return <Loading />
           }}
           content={store => {
             return (
               <div>
                 <p className="pageHeader">
-                  Welcome to {store.name} <br />
+                  Welcome to {store.name} {store.id} {id} <br />
                 </p>
 
                 <div className="grid-container-row">
                   <NavCard
-                    link="/order"
+                    link={`/store/${id}/search`}
                     icon={
                       <FaCarrot color="#a9eec2" size={140} className="icon" />
                     }

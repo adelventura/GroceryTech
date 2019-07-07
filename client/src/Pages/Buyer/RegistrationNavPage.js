@@ -44,7 +44,7 @@ class RegistrationNavPage extends React.Component {
             <br />
             <br />
             <Link
-              to="/register"
+              to="/register_deliverer"
               style={{
                 display: 'flex',
                 flexDirection: 'row',
@@ -65,7 +65,7 @@ class RegistrationNavPage extends React.Component {
             <br />
             <br />
             <Link
-              to="/register"
+              to="/register_manager"
               style={{
                 display: 'flex',
                 flexDirection: 'row',

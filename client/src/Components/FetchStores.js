@@ -50,7 +50,7 @@ class FetchStores extends React.Component {
   componentDidMount() {
     setTimeout(() => {
       this.setState({ stores: STORES })
-    }, 2000)
+    }, 100)
   }
 
   render() {

@@ -8,27 +8,32 @@ class NewOrder extends React.Component {
     super(props)
 
     this.state = {
-      selected: ''
+      selected: '',
+      selectedId: ''
     }
-
-    this.handleChoose = this.handleChoose.bind(this)
-    this.handleChange = this.handleChange.bind(this)
   }
-  handleChoose(event) {
-    if (this.state.selected === '') {
+
+  selectHandler = id => {
+    return event => {
+      this.setState({
+        selected: event.target.value,
+        selectedId: id
+      })
+    }
+  }
+
+  handleChoose = event => {
+    if (this.state.selected == '') {
       alert('Must select store to continue')
     } else {
-      this.props.history.push('/find_item')
+      const { selectedId } = this.state
+      this.props.history.push(`store/${selectedId}`)
     }
-  }
-
-  handleChange(event) {
-    this.setState({
-      selected: event.target.value
-    })
   }
 
   render() {
+    const selectedId = this.state.selectedId
+
     return (
       <React.Fragment>
         <FetchStores
@@ -75,16 +80,24 @@ class NewOrder extends React.Component {
                     </thead>
                     {stores.map(store => {
                       return (
-                        <tbody>
+                        <tbody key={store.id}>
                           <tr>
                             <th scope="row">
-                              <input
-                                type="radio"
-                                name="store"
-                                value={store.name}
-                                onClick={this.handleChange}
-                                style={{ marginRight: '10px' }}
-                              />
+                              <form
+                                style={{
+                                  display: 'inline'
+                                }}
+                              >
+                                <input
+                                  type="radio"
+                                  name="store"
+                                  value={store.name}
+                                  checked={selectedId == store.id}
+                                  onChange={this.selectHandler(store.id)}
+                                  onClick={this.selectHandler(store.id)}
+                                  style={{ marginRight: '10px' }}
+                                />
+                              </form>
                               {store.name}
                             </th>
                             <td>{store.address}</td>

@@ -1,5 +1,5 @@
 import React from 'react'
-import FetchInventory from '../../Components/FetchInventory'
+import FetchStore from '../../Components/FetchStore'
 import Loading from '../../Components/Loading'
 
 let purple = '#705772'
@@ -12,11 +12,14 @@ class ItemListingPage extends React.Component {
     const { id } = this.props.match.params
     return (
       <React.Fragment>
-        <FetchInventory
+        <FetchStore
+          id={id}
           placeholder={() => {
             return <Loading />
           }}
-          content={inventory => {
+          content={store => {
+            const { inventory } = store
+
             return (
               <div>
                 <br />
@@ -55,7 +58,7 @@ class ItemListingPage extends React.Component {
                         <th scope="col">In Stock</th>
                       </tr>
                     </thead>
-                    {inventory.map(inventory => {
+                    {inventory.map(stock => {
                       return (
                         <tbody>
                           <tr>
@@ -74,12 +77,12 @@ class ItemListingPage extends React.Component {
                                   outline: 'none'
                                 }}
                               />
-                              {inventory.name}
+                              {stock.item.name}
                             </td>
-                            <td>{inventory.description}</td>
-                            <td>{inventory.expiration}</td>
-                            <td>{inventory.price}</td>
-                            <td>{inventory.in_stock}</td>
+                            <td>{stock.item.description}</td>
+                            <td>{stock.item.expiration}</td>
+                            <td>{stock.item.price}</td>
+                            <td>{stock.quantity > 0 ? 'Yes' : 'NO!'}</td>
                           </tr>
                         </tbody>
                       )

@@ -23,7 +23,7 @@ class AccountInfoPage extends React.Component {
       firstName: 'Fezzik',
       lastName: 'DelVentura',
       username: 'fez_rulez',
-      email: 'tyler_doolz@gmail.com',
+      email: 'tyler_droolz@gmail.com',
       password: 'password',
       address: '123 North St',
       city: 'Atlanta',
@@ -70,7 +70,7 @@ class AccountInfoPage extends React.Component {
                   placeholder="First Name"
                   value={this.state.firstName}
                   onChange={this.handleChange}
-                  disabled="true"
+                  disabled
                 />
               </span>
               <span style={{ float: 'right' }}>

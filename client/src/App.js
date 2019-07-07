@@ -1,6 +1,8 @@
 import React, { Component } from 'react'
 import './App.css'
 import RegisterBuyerPage from './Pages/Buyer/RegisterBuyerPage'
+import RegisterDelivererPage from './Pages/Deliverer/RegisterDelivererPage'
+import RegisterManagerPage from './Pages/Manager/RegisterManagerPage'
 import Home from './Pages/Buyer/Home'
 import StoreHomepage from './Pages/Buyer/StoreHomepage'
 import ItemListingPage from './Pages/Buyer/ItemListingPage'
@@ -34,16 +36,26 @@ class App extends Component {
           <Switch>
             <Route exact path="/" component={Landing} />
             <Route path="/register_buyer" component={RegisterBuyerPage} />
+            <Route
+              path="/register_deliverer"
+              component={RegisterDelivererPage}
+            />
+            <Route path="/register_manager" component={RegisterManagerPage} />
             <Route path="/register" component={RegistrationNavPage} />
             <Route path="/home" component={Home} />
-            <Route path="/store/:id" component={StoreHomepage} />
             <Route path="/account" component={AccountInfo} />
-            <Route path="/order" component={Order} />
-            <Route path="/inventory" component={ItemListingPage} />
-            <Route path="/store/:id/search" component={AccountInfo} />
-            <Route path="/find_item" component={FindItemPage} />
             <Route path="/order_history" component={OrderHistory} />
             <Route path="/payment_methods" component={PaymentMethods} />
+
+            {/* Store */}
+            <Route exact path="/store" component={Order} />
+            <Route exact path="/store/:id/search" component={FindItemPage} />
+            <Route exact path="/store/:id" component={StoreHomepage} />
+            <Route
+              exact
+              path="/store/:id/search/:category"
+              component={ItemListingPage}
+            />
           </Switch>
         </div>
       </Router>
