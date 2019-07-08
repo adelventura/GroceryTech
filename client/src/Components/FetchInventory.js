@@ -53,7 +53,7 @@ const INVENTORY = [
   }
 ]
 
-class FetchInventory extends React.Component {
+export default class FetchInventory extends React.Component {
   constructor(props) {
     super(props)
 
@@ -78,5 +78,3 @@ class FetchInventory extends React.Component {
     }
   }
 }
-
-export default FetchInventory

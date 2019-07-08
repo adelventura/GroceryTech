@@ -19,7 +19,7 @@ let coral = '#f38181'
 let yellow = '#fad284'
 let green = '#a9eec2'
 
-class FindItemPage extends React.Component {
+export default class FindItemPage extends React.Component {
   handleCategory = category => {
     return () => {
       const { id } = this.props.match.params
@@ -74,5 +74,3 @@ class FindItemPage extends React.Component {
     )
   }
 }
-
-export default FindItemPage

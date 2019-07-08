@@ -14,6 +14,7 @@ import FindItemPage from './Pages/Buyer/FindItemPage'
 import RegistrationNavPage from './Pages/Buyer/RegistrationNavPage'
 import AccountInfo from './Pages/Buyer/AccountInfoPage'
 import Navigation from './Components/Navigation'
+import ErrorPage from './Pages/ErrorPage.js'
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
 
 class App extends Component {
@@ -56,6 +57,7 @@ class App extends Component {
               path="/store/:id/search/:category"
               component={ItemListingPage}
             />
+            <Route component={ErrorPage} />
           </Switch>
         </div>
       </Router>
