@@ -45,31 +45,8 @@ class NewOrder extends React.Component {
               <div>
                 <br />
                 <span className="pageHeader">List of Stores</span>
-                <div
-                  style={{
-                    display: 'block',
-                    marginLeft: 'auto',
-                    marginRight: 'auto',
-                    marginTop: '30px',
-                    borderStyle: 'solid',
-                    borderWidth: '.5px',
-                    borderColor: '#D6D6D6',
-                    paddingLeft: '20px',
-                    paddingRight: '20px',
-                    paddingBottom: '15px',
-                    width: '86%',
-                    boxShadow: '0 0 5px -1px rgba(0,0,0,0.2)'
-                  }}
-                >
-                  <table
-                    style={{
-                      tableLayout: 'fixed',
-                      borderCollapse: 'collapse',
-                      display: 'block',
-                      marginLeft: 'auto',
-                      marginRight: 'auto'
-                    }}
-                  >
+                <div className="tbl-card">
+                  <table className="tbl">
                     <thead>
                       <tr className="table-header">
                         <th scope="col">Store Name</th>

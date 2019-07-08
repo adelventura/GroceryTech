@@ -5,7 +5,7 @@ const INVENTORY = [
     quantity: 10,
     item: {
       id: '001',
-      type: 'beverage',
+      type: 'beverages',
       name: 'Dasani Water',
       description: '1.5L bottled water',
       price: '4.69',
@@ -16,7 +16,7 @@ const INVENTORY = [
     quantity: 10,
     item: {
       id: '012',
-      type: 'beverage',
+      type: 'beverages',
       name: 'Sprite',
       description: 'Lemon lime soft drinks, 12 fl oz, 12 pack',
       price: '3.99',
@@ -27,7 +27,7 @@ const INVENTORY = [
     quantity: 10,
     item: {
       id: '013',
-      type: 'beverage',
+      type: 'beverages',
       name: 'Coke',
       description: 'Coca Cola cherry coke, 12 oz, 12 pack',
       price: '3.98',
@@ -165,13 +165,12 @@ const INVENTORY = [
       name: 'White Lily All-Purpose Flour',
       description: 'Diet Lipton Green Tea, citrus, 12 count, 16.9 fl oz',
       price: '5.51',
-      expiration: 'Dec-2020',
-      in_stock: true
+      expiration: 'Dec-2020'
     }
   }
 ]
 
-const STORES = [
+export const STORES = [
   {
     id: '001',
     name: 'Publix',
@@ -214,7 +213,7 @@ const STORES = [
   }
 ]
 
-class FetchStore extends React.Component {
+export default class FetchStore extends React.Component {
   constructor(props) {
     super(props)
 
@@ -242,5 +241,3 @@ class FetchStore extends React.Component {
     }
   }
 }
-
-export default FetchStore

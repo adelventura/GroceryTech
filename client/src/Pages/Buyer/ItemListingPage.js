@@ -1,5 +1,6 @@
 import React from 'react'
 import FetchStore from '../../Components/FetchStore'
+import FetchItems from '../../Components/FetchItems'
 import Loading from '../../Components/Loading'
 
 let purple = '#705772'
@@ -12,14 +13,13 @@ class ItemListingPage extends React.Component {
     const { id, category } = this.props.match.params
     return (
       <React.Fragment>
-        <FetchStore
+        <FetchItems
           id={id}
+          category={category}
           placeholder={() => {
             return <Loading />
           }}
-          content={store => {
-            const { inventory } = store
-
+          content={items => {
             return (
               <div>
                 <br />
@@ -59,7 +59,7 @@ class ItemListingPage extends React.Component {
                         <th scope="col">In Stock</th>
                       </tr>
                     </thead>
-                    {inventory.map(stock => {
+                    {items.map(stock => {
                       return (
                         <tbody>
                           <tr>
