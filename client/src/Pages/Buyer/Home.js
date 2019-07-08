@@ -16,7 +16,7 @@ class Home extends React.Component {
         </p>
         <div className="grid-container-row">
           <NavCard
-            link="/order"
+            link="/store"
             icon={
               <FaShoppingCart color="#a9eec2" size={140} className="icon" />
             }

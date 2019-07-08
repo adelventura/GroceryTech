@@ -20,28 +20,24 @@ let yellow = '#fad284'
 let green = '#a9eec2'
 
 class FindItemPage extends React.Component {
-  constructor(props) {
-    super(props)
-
-    this.state = {
-      id: undefined,
-      category: undefined
+  handleCategory = category => {
+    return () => {
+      const { id } = this.props.match.params
+      this.props.history.push(`/store/${id}/search/${category}`)
     }
   }
 
-  selectCategory = label => {
-    this.selectID(this.props.match.params)
-    this.setState({ category: label }, () => {
-      this.props.history.push(`/store/${this.id}/search/${label}`)
-    })
-  }
-  selectID = id => {
-    this.setState({ id: id })
+  button = (label, iconComponent, iconColor) => {
+    return (
+      <SmallNavCard
+        onClick={this.handleCategory(label)}
+        icon={iconComponent({ color: iconColor, size: 50, className: 'icon' })}
+        label={label}
+      />
+    )
   }
 
   render() {
-    const { id } = this.props.match.params
-
     return (
       <React.Fragment>
         <p className="pageHeader">
@@ -49,58 +45,23 @@ class FindItemPage extends React.Component {
         </p>
         <div className="grid">
           <div className="grid-column-left">
-            <SmallNavCard
-              onClick={this.selectCategory}
-              icon={<FaGlassWhiskey color={coral} size={50} className="icon" />}
-              label="Beverages"
-            />
-            <SmallNavCard
-              icon={<FaBirthdayCake color={green} size={50} className="icon" />}
-              label="Baking Goods"
-            />
-            <SmallNavCard
-              icon={
-                <FaShoppingBasket color={yellow} size={50} className="icon" />
-              }
-              label="Canned Goods"
-            />
-            <SmallNavCard
-              icon={<FaBroom color={purple} size={50} className="icon" />}
-              label="Cleaning Products"
-            />
-            <SmallNavCard
-              icon={<FaCheese color={coral} size={50} className="icon" />}
-              label="Dairy"
+            {this.button('Beverages', FaGlassWhiskey, coral)}
+            {this.button('Baking Goods', FaBirthdayCake, yellow)}
+            {this.button('Canned Goods', FaShoppingBasket, purple)}
+            {this.button('Cleaning Products', FaBroom, green)}
+            {this.button('Dairy', FaCheese, coral)}
             />
           </div>
 
           <div className="grid-column-right">
-            <SmallNavCard
-              icon={<FaSnowflake color={purple} size={50} className="icon" />}
-              label="Frozen Foods"
-            />
-            <SmallNavCard
-              icon={
-                <FaDrumstickBite color={coral} size={50} className="icon" />
-              }
-              label="Meat"
-            />
-            <SmallNavCard
-              icon={<FaTooth color={green} size={50} className="icon" />}
-              label="Personal Care"
-            />
-            <SmallNavCard
-              icon={<FaCarrot color={yellow} size={50} className="icon" />}
-              label="Produce"
-            />
-            <SmallNavCard
-              icon={
-                <FaPastafarianism color={purple} size={50} className="icon" />
-              }
-              label="Others"
-            />
+            {this.button('Frozen Foods', FaSnowflake, purple)}
+            {this.button('Meat', FaDrumstickBite, coral)}
+            {this.button('Personal Care', FaTooth, green)}
+            {this.button('Produce', FaCarrot, yellow)}
+            {this.button('Other', FaPastafarianism, purple)}
           </div>
         </div>
+
         <Link to="/home">
           <div
             className="btn"

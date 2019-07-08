@@ -9,7 +9,7 @@ let green = '#a9eec2'
 
 class ItemListingPage extends React.Component {
   render() {
-    const { id } = this.props.match.params
+    const { id, category } = this.props.match.params
     return (
       <React.Fragment>
         <FetchStore
@@ -23,7 +23,8 @@ class ItemListingPage extends React.Component {
             return (
               <div>
                 <br />
-                <span className="pageHeader">Inventory</span>
+                <span className="pageHeader">Inventory > </span>
+                {category}
                 <div
                   style={{
                     display: 'block',
