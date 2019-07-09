@@ -57,7 +57,6 @@ ul {
     box-shadow: 0 0 5px -1px rgba(0,0,0,0.2);
     cursor:pointer;
     vertical-align:middle;
-    max-width: 200px;
     min-width: 50px;
     padding: 5px;
     text-align: center;
