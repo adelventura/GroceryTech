@@ -1,7 +1,7 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 
-class Landing extends React.Component {
+export default class LandingPage extends React.Component {
   constructor(props) {
     super(props)
 
@@ -71,5 +71,3 @@ class Landing extends React.Component {
     )
   }
 }
-
-export default Landing

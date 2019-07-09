@@ -7,7 +7,7 @@ import {
 } from 'react-icons/fa'
 import NavCard from '../../Components/NavCard.js'
 
-class Home extends React.Component {
+export default class BuyerHomePage extends React.Component {
   render() {
     return (
       <React.Fragment>
@@ -45,5 +45,3 @@ class Home extends React.Component {
     )
   }
 }
-
-export default Home

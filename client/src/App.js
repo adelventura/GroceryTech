@@ -3,16 +3,19 @@ import './App.css'
 import RegisterBuyerPage from './Pages/Buyer/RegisterBuyerPage'
 import RegisterDelivererPage from './Pages/Deliverer/RegisterDelivererPage'
 import RegisterManagerPage from './Pages/Manager/RegisterManagerPage'
-import Home from './Pages/Buyer/Home'
-import StoreHomepage from './Pages/Buyer/StoreHomepage'
+import BuyerHomePage from './Pages/Buyer/BuyerHomePage'
+import StoreHomePage from './Pages/Buyer/StoreHomePage'
 import ItemListingPage from './Pages/Buyer/ItemListingPage'
-import Landing from './Pages/Landing'
-import OrderHistory from './Pages/Buyer/OrderHistoryPage'
-import Order from './Pages/Buyer/Order'
-import PaymentMethods from './Pages/Buyer/PaymentMethodsPage'
-import FindItemPage from './Pages/Buyer/FindItemPage'
+import LandingPage from './Pages/LandingPage'
+import OrderHistoryPage from './Pages/Buyer/OrderHistoryPage'
+import StartNewOrderPage from './Pages/Buyer/StartNewOrderPage'
+import PaymentMethodsPage from './Pages/Buyer/PaymentMethodsPage'
+import NewPaymentMethodPage from './Pages/Buyer/NewPaymentMethodPage'
+import ItemCategoriesPage from './Pages/Buyer/ItemCategoriesPage'
 import RegistrationNavPage from './Pages/Buyer/RegistrationNavPage'
-import AccountInfo from './Pages/Buyer/AccountInfoPage'
+import AccountInfoPage from './Pages/Buyer/AccountInfoPage'
+import ViewCartPage from './Pages/Buyer/ViewCartPage'
+import CheckoutPage from './Pages/Buyer/CheckoutPage'
 import Navigation from './Components/Navigation'
 import ErrorPage from './Pages/ErrorPage.js'
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
@@ -35,7 +38,7 @@ class App extends Component {
         >
           <Navigation />
           <Switch>
-            <Route exact path="/" component={Landing} />
+            <Route exact path="/" component={LandingPage} />
             <Route path="/register_buyer" component={RegisterBuyerPage} />
             <Route
               path="/register_deliverer"
@@ -43,15 +46,31 @@ class App extends Component {
             />
             <Route path="/register_manager" component={RegisterManagerPage} />
             <Route path="/register" component={RegistrationNavPage} />
-            <Route path="/home" component={Home} />
-            <Route path="/account" component={AccountInfo} />
-            <Route path="/order_history" component={OrderHistory} />
-            <Route path="/payment_methods" component={PaymentMethods} />
+            <Route path="/home" component={BuyerHomePage} />
+            <Route path="/account" component={AccountInfoPage} />
+            <Route path="/order_history" component={OrderHistoryPage} />
+            <Route exact path="/cart" component={ViewCartPage} />
+            <Route exact path="/checkout" component={CheckoutPage} />
+
+            <Route
+              exact
+              path="/payment_methods"
+              component={PaymentMethodsPage}
+            />
+            <Route
+              exact
+              path="/payment_methods/new"
+              component={NewPaymentMethodPage}
+            />
 
             {/* Store */}
-            <Route exact path="/store" component={Order} />
-            <Route exact path="/store/:id/search" component={FindItemPage} />
-            <Route exact path="/store/:id" component={StoreHomepage} />
+            <Route exact path="/store" component={StartNewOrderPage} />
+            <Route
+              exact
+              path="/store/:id/search"
+              component={ItemCategoriesPage}
+            />
+            <Route exact path="/store/:id" component={StoreHomePage} />
             <Route
               exact
               path="/store/:id/search/:category"

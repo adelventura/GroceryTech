@@ -3,7 +3,7 @@ import FetchStores from '../../Components/FetchStores'
 import Loading from '../../Components/Loading'
 import { Redirect } from 'react-router-dom'
 
-class NewOrder extends React.Component {
+export default class StartNewOrderPage extends React.Component {
   constructor(props) {
     super(props)
 
@@ -140,5 +140,3 @@ class NewOrder extends React.Component {
     )
   }
 }
-
-export default NewOrder

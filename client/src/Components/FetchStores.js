@@ -38,7 +38,7 @@ const STORES = [
   }
 ]
 
-class FetchStores extends React.Component {
+export default class FetchStores extends React.Component {
   constructor(props) {
     super(props)
 
@@ -63,5 +63,3 @@ class FetchStores extends React.Component {
     }
   }
 }
-
-export default FetchStores

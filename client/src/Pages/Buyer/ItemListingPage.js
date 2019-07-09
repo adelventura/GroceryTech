@@ -8,7 +8,7 @@ let coral = '#f38181'
 let yellow = '#fad284'
 let green = '#a9eec2'
 
-class ItemListingPage extends React.Component {
+export default class ItemListingPage extends React.Component {
   render() {
     const { id, category } = this.props.match.params
     return (
@@ -25,31 +25,8 @@ class ItemListingPage extends React.Component {
                 <br />
                 <span className="pageHeader">Inventory > </span>
                 {category}
-                <div
-                  style={{
-                    display: 'block',
-                    marginLeft: 'auto',
-                    marginRight: 'auto',
-                    marginTop: '30px',
-                    borderStyle: 'solid',
-                    borderWidth: '.5px',
-                    borderColor: '#D6D6D6',
-                    paddingLeft: '20px',
-                    paddingRight: '20px',
-                    paddingBottom: '15px',
-                    width: '80%',
-                    boxShadow: '0 0 5px -1px rgba(0,0,0,0.2)'
-                  }}
-                >
-                  <table
-                    style={{
-                      tableLayout: 'fixed',
-                      borderCollapse: 'collapse',
-                      display: 'block',
-                      marginLeft: 'auto',
-                      marginRight: 'auto'
-                    }}
-                  >
+                <div className="tbl-card">
+                  <table className="tbl">
                     <thead>
                       <tr className="table-header">
                         <th scope="col">Item Name</th>
@@ -143,5 +120,3 @@ class ItemListingPage extends React.Component {
     )
   }
 }
-
-export default ItemListingPage

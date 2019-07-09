@@ -6,7 +6,7 @@ let coral = '#f38181'
 let yellow = '#fad284'
 let green = '#a9eec2'
 
-class RegistrationNavPage extends React.Component {
+export default class RegistrationNavPage extends React.Component {
   render() {
     return (
       <div className="container">
@@ -90,5 +90,3 @@ class RegistrationNavPage extends React.Component {
     )
   }
 }
-
-export default RegistrationNavPage

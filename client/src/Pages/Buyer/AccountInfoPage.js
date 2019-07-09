@@ -15,7 +15,7 @@ function enableEdits(inputs) {
   }
 }
 
-class AccountInfoPage extends React.Component {
+export default class AccountInfoPage extends React.Component {
   constructor(props) {
     super(props)
 
@@ -224,5 +224,3 @@ class AccountInfoPage extends React.Component {
     )
   }
 }
-
-export default AccountInfoPage

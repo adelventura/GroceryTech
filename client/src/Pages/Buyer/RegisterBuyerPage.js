@@ -1,7 +1,7 @@
 import React from 'react'
 import { History } from 'react-router-dom'
 
-class RegisterBuyerPage extends React.Component {
+export default class RegisterBuyerPage extends React.Component {
   constructor(props) {
     super(props)
 
@@ -184,5 +184,3 @@ class RegisterBuyerPage extends React.Component {
     )
   }
 }
-
-export default RegisterBuyerPage

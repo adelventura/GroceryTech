@@ -6,7 +6,7 @@ import SmallNavCard from '../../Components/SmallNavCard.js'
 import FetchStore from '../../Components/FetchStore.js'
 import Loading from '../../Components/Loading.js'
 
-class StoreHomepage extends React.Component {
+export default class StoreHomePage extends React.Component {
   constructor(props) {
     super(props)
 
@@ -74,5 +74,3 @@ class StoreHomepage extends React.Component {
     )
   }
 }
-
-export default StoreHomepage
