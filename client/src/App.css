@@ -31,6 +31,7 @@ ul {
     margin-top: 20px;
     font-size: 24px;
     font-weight: bold;
+    color: #565656;
 
 }
 
@@ -56,12 +57,12 @@ ul {
     box-shadow: 0 0 5px -1px rgba(0,0,0,0.2);
     cursor:pointer;
     vertical-align:middle;
-    max-width: 150px;
+    max-width: 200px;
     min-width: 50px;
     padding: 5px;
     text-align: center;
     font-family: 'Dosis', sans-serif;
-    font-size: 14px;
+    font-size: 17px;
 
 }
 
@@ -83,7 +84,7 @@ ul {
     color: #705772;
     text-transform: uppercase;
     font-family: 'Dosis', sans-serif;
-    font-size: 14px;
+    font-size: 16px;
     margin-bottom: 5px;
     min-width: 100px;
 
@@ -377,7 +378,7 @@ thead th:nth-child(1) {
     padding-right: 30px;
     padding-bottom: 25px;
     padding-top: 25px;
-    width: 35%;
+    width: 50%;
     box-shadow: 0 0 5px -1px rgba(0,0,0,0.2);
     overflow: auto;
   }
