@@ -312,6 +312,7 @@ ul {
     display: block;
     outline: none;
     color: #444;
+    background-color: #FFFFFF;
 	line-height: 1.3;
 	padding: .6em 1.4em .5em .8em;
 	width: 100%;
@@ -363,4 +364,55 @@ thead th:nth-child(1) {
 
   td {
     text-align: left;
+  }
+
+  .checkout-card {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    border-style: solid;
+    border-width: .5px;
+    border-color: #D6D6D6;
+    padding-left: 30px;
+    padding-right: 30px;
+    padding-bottom: 25px;
+    padding-top: 25px;
+    width: 35%;
+    box-shadow: 0 0 5px -1px rgba(0,0,0,0.2);
+    overflow: auto;
+  }
+
+  .flex-col-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+
+  .delivery-instruc {
+      height: 75px;
+      width: 100%;
+      margin-bottom: 20px;
+      border-style: solid;
+      border-radius: 5px;
+      border-width: .5px;
+      border-color: #767676;
+      outline: none;
+  }
+
+  .total-price {
+    border-radius: 5px;
+    border-color: #f38181;
+    border-width: .5px;
+    border-style: solid;
+    padding: 5px;
+    width: 75px;
+    outline: none;
+    background-color: #F6F6F6
+  }
+
+  .block-centered {
+    width: 100%;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
   }

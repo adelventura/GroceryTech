@@ -4,7 +4,8 @@ export default class ViewCartPage extends React.Component {
   render() {
     return (
       <React.Fragment>
-        <span>Your Cart</span>
+        <h3 className="pageHeader">Your Cart</h3>
+        <div className="tbl-card">hello</div>
       </React.Fragment>
     )
   }
