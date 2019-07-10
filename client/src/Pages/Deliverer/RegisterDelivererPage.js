@@ -135,7 +135,7 @@ export default class RegisterDelivererPage extends React.Component {
             </span>
           </div>
           <button
-            className="btn-small"
+            className="btn"
             onClick={this.handleSubmit}
             style={{ float: 'right' }}
           >

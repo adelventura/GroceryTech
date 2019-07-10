@@ -70,6 +70,13 @@ export default class ReceiptPage extends React.Component {
               disabled
             />
           </div>
+          <button
+            className="btn"
+            //onClick={this.handleUpdate}
+            style={{ float: 'right' }}
+          >
+            Home
+          </button>
         </div>
       </React.Fragment>
     )

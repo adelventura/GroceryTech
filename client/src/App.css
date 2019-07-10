@@ -19,10 +19,7 @@ ul {
     border-bottom-width: 1px;
     border-bottom-color: #D6D6D6;
     color: #705772;
-    font-family: 'Dosis', sans-serif;
-
 }
-
 
 .pageHeader {
     text-align: left;
@@ -32,7 +29,6 @@ ul {
     font-size: 24px;
     font-weight: bold;
     color: #565656;
-
 }
 
 /*navigation bar */
@@ -60,9 +56,7 @@ ul {
     min-width: 50px;
     padding: 5px;
     text-align: center;
-    font-family: 'Dosis', sans-serif;
     font-size: 17px;
-
 }
 
 /* landing page */
@@ -82,7 +76,6 @@ ul {
 .form-input-label {
     color: #705772;
     text-transform: uppercase;
-    font-family: 'Dosis', sans-serif;
     font-size: 16px;
     margin-bottom: 5px;
     min-width: 100px;
@@ -133,18 +126,6 @@ ul {
     margin-right: auto;
     margin-top: auto;
     margin-bottom: auto;
-}
-
-.btn-small {
-    background-color: #705772;
-    border-radius: 5px;
-    border-style: none;
-    color: #FFFFFF;
-    width: 115px;
-    padding: 5px;
-    margin-left: 0px;
-    margin-right: 10px;
-    font-size: 14px;
 }
 
 /* Home Nav */
@@ -382,12 +363,6 @@ thead th:nth-child(1) {
     overflow: auto;
   }
 
-  .flex-col-container {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-  }
-
   .delivery-instruc {
       height: 75px;
       width: 100%;
@@ -410,9 +385,30 @@ thead th:nth-child(1) {
     background-color: #F6F6F6
   }
 
+  .no-border {
+      border-style: none;
+      border-radius: 5px;
+      box-shadow: 0 0 5px -1px rgba(0,0,0,0.2);
+  }
+
+  /* CONTAINER LAYOUT */
   .block-centered {
     width: 100%;
     display: block;
     margin-left: auto;
     margin-right: auto;
+  }
+
+  .flex-col {
+    display: flex;
+    justify-content: left;
+    align-items: center;
+    flex-direction: column;
+  }
+
+  .flex-row {
+    display: flex;
+    justify-content: left;
+    align-items: center;
+    flex-direction: row;
   }

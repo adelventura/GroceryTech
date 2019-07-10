@@ -52,7 +52,7 @@ class App extends Component {
             <Route path="/order_history" component={OrderHistoryPage} />
             <Route exact path="/cart" component={ViewCartPage} />
             <Route exact path="/checkout" component={CheckoutPage} />
-            <Route exact path="/checkout/review" component={ReceiptPage} />
+            <Route exact path="/checkout/receipt" component={ReceiptPage} />
 
             <Route
               exact

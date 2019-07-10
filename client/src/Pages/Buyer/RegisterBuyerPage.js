@@ -173,7 +173,7 @@ export default class RegisterBuyerPage extends React.Component {
             />
           </div>
           <button
-            className="btn-small"
+            className="btn"
             onClick={this.handleSubmit}
             style={{ float: 'right' }}
           >

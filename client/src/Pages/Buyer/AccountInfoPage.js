@@ -206,14 +206,14 @@ export default class AccountInfoPage extends React.Component {
             </div>
           </form>
           <button
-            className="btn-small"
+            className="btn"
             onClick={this.handleDelete}
             style={{ float: 'right' }}
           >
             Delete Account
           </button>
           <button
-            className="btn-small"
+            className="btn"
             onClick={this.handleUpdate}
             style={{ float: 'right' }}
           >
