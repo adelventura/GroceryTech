@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom'
 
 function NavCard(props) {
   return (
-    <Link to={props.link}>
+    <Link to={props.link} onClick={props.onClick}>
       <div className="grid-container">
         <div className="grid-upper">{props.icon}</div>
         <div className="grid-lower">

@@ -43,6 +43,11 @@ ul {
     color: inherit;
 }
 
+.card {
+    border-radius: 5px;
+    box-shadow: 2px 2px 7px silver;
+}
+
 .login-card {
     height: 250px;
     width: 400px;

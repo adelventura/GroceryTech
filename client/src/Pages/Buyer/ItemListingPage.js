@@ -1,5 +1,5 @@
 import React from 'react'
-import FetchItems from '../../Components/FetchItems'
+import FetchItems from '../../Model/FetchItems'
 import Loading from '../../Components/Loading'
 
 export default class ItemListingPage extends React.Component {

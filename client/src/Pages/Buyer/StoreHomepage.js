@@ -1,7 +1,7 @@
 import React from 'react'
 import { FaShoppingCart, FaCarrot, FaTimesCircle } from 'react-icons/fa'
 import NavCard from '../../Components/NavCard.js'
-import FetchStore from '../../Components/FetchStore.js'
+import FetchStore from '../../Model/FetchStore.js/index.js.js'
 import Loading from '../../Components/Loading.js'
 
 export default class StoreHomePage extends React.Component {
@@ -11,6 +11,11 @@ export default class StoreHomePage extends React.Component {
     this.state = {
       id: ''
     }
+  }
+
+  cancel = () => {
+    // TODO: clear cart
+    this.props.history.push(`/home`)
   }
 
   render() {
@@ -39,7 +44,7 @@ export default class StoreHomePage extends React.Component {
                     label="Find Item"
                   />
                   <NavCard
-                    link="/order_history"
+                    link={`/store/${id}/cart`}
                     icon={
                       <FaShoppingCart
                         color="#705772 "
@@ -53,7 +58,7 @@ export default class StoreHomePage extends React.Component {
 
                 <div className="grid-container-row">
                   <NavCard
-                    link="/account"
+                    onClick={this.cancel}
                     icon={
                       <FaTimesCircle
                         color="#f38181"

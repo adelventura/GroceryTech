@@ -1,5 +1,5 @@
 import React from 'react'
-import FetchPaymentMethods from '../../Components/FetchPaymentMethods'
+import FetchPaymentMethods from '../../Model/FetchPaymentMethods'
 import Loading from '../../Components/Loading'
 
 export default class PaymentMethodsPage extends React.Component {

@@ -50,7 +50,6 @@ class App extends Component {
             <Route path="/home" component={BuyerHomePage} />
             <Route path="/account" component={AccountInfoPage} />
             <Route path="/order_history" component={OrderHistoryPage} />
-            <Route exact path="/cart" component={ViewCartPage} />
             <Route exact path="/checkout" component={CheckoutPage} />
             <Route exact path="/checkout/receipt" component={ReceiptPage} />
 
@@ -78,6 +77,8 @@ class App extends Component {
               path="/store/:id/search/:category"
               component={ItemListingPage}
             />
+            <Route exact path="/store/:id/cart" component={ViewCartPage} />
+
             <Route component={ErrorPage} />
           </Switch>
         </div>

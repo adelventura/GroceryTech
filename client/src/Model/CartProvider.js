@@ -59,33 +59,6 @@ class CartProvider extends React.Component {
   }
 }
 
-// Cart - Component
-
-// Component
-// order_history
-
-// Comonent
-// account
-//  - 1 basic account info
-//  - 2 create/delete card
-//  - 1 update default card
-//
-
-// place order (id)
-//   steps:
-//      1. update store inventory
-//          - rollback/fail the order if needed
-//      2. create order object
-///         - the cart
-//          - the time placed
-//          - driver? or seperate table for driver orders joined with order?
-//      3. cart goes to
-//          1. users order history
-//          2. assigned to a random delivery drivers order queue
-//          3. added to the stores order history
-//      4.
-//
-
 class AccountProvider extends React.Component {
   render() {
     const { account } = this.state
