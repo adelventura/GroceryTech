@@ -1,5 +1,4 @@
 import React from 'react'
-import { Link } from 'react-router-dom'
 import FetchPaymentMethods from '../../Components/FetchPaymentMethods'
 import Loading from '../../Components/Loading'
 
@@ -27,7 +26,7 @@ export default class PaymentMethodsPage extends React.Component {
   }
 
   handleChoose = event => {
-    if (this.state.selected == '') {
+    if (this.state.selected === '') {
       alert('Must select a payment method')
     } else {
       const { selectedPayment } = this.state
@@ -71,10 +70,10 @@ export default class PaymentMethodsPage extends React.Component {
                                 <input
                                   type="radio"
                                   name="payment method"
-                                  value="payment name"
                                   value={paymentMethod.paymentName}
                                   checked={
-                                    selectedPayment == paymentMethod.paymentName
+                                    selectedPayment ===
+                                    paymentMethod.paymentName
                                   }
                                   onChange={this.selectHandler(
                                     paymentMethod.paymentName

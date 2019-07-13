@@ -1,9 +1,7 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 
-let purple = '#705772'
 let coral = '#f38181'
-let yellow = '#fad284'
 let green = '#a9eec2'
 
 export default class RegistrationNavPage extends React.Component {

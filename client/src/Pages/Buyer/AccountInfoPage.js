@@ -1,5 +1,4 @@
 import React from 'react'
-import { History } from 'react-router-dom'
 
 function disableEdits(inputs) {
   var length = inputs.length

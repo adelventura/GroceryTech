@@ -1,8 +1,6 @@
 import React from 'react'
-import { Link } from 'react-router-dom'
 import { FaShoppingCart, FaCarrot, FaTimesCircle } from 'react-icons/fa'
 import NavCard from '../../Components/NavCard.js'
-import SmallNavCard from '../../Components/SmallNavCard.js'
 import FetchStore from '../../Components/FetchStore.js'
 import Loading from '../../Components/Loading.js'
 

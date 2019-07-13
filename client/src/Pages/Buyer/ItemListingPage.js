@@ -1,12 +1,6 @@
 import React from 'react'
-import FetchStore from '../../Components/FetchStore'
 import FetchItems from '../../Components/FetchItems'
 import Loading from '../../Components/Loading'
-
-let purple = '#705772'
-let coral = '#f38181'
-let yellow = '#fad284'
-let green = '#a9eec2'
 
 export default class ItemListingPage extends React.Component {
   render() {

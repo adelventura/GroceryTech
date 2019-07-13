@@ -16,11 +16,11 @@ export default class FetchItems extends React.Component {
 
     setTimeout(() => {
       const store = STORES.find(store => {
-        return store.id == this.props.id
+        return store.id === this.props.id
       })
 
       const items = store.inventory.filter(item => {
-        return item.item.type.toLowerCase() == category.toLowerCase()
+        return item.item.type.toLowerCase() === category.toLowerCase()
       })
 
       this.setState({ items })

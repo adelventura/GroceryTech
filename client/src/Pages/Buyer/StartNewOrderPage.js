@@ -1,7 +1,6 @@
 import React from 'react'
 import FetchStores from '../../Components/FetchStores'
 import Loading from '../../Components/Loading'
-import { Redirect } from 'react-router-dom'
 
 export default class StartNewOrderPage extends React.Component {
   constructor(props) {
@@ -23,7 +22,7 @@ export default class StartNewOrderPage extends React.Component {
   }
 
   handleChoose = event => {
-    if (this.state.selected == '') {
+    if (this.state.selected === '') {
       alert('Must select store to continue')
     } else {
       const { selectedId } = this.state
@@ -69,7 +68,7 @@ export default class StartNewOrderPage extends React.Component {
                                   type="radio"
                                   name="store"
                                   value={store.name}
-                                  checked={selectedId == store.id}
+                                  checked={selectedId === store.id}
                                   onChange={this.selectHandler(store.id)}
                                   onClick={this.selectHandler(store.id)}
                                   style={{ marginRight: '10px' }}

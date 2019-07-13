@@ -1,5 +1,4 @@
 import React from 'react'
-import { History } from 'react-router-dom'
 
 export default class RegisterDelivererPage extends React.Component {
   constructor(props) {

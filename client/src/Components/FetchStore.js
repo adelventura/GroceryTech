@@ -225,7 +225,7 @@ export default class FetchStore extends React.Component {
   componentDidMount() {
     setTimeout(() => {
       const store = STORES.find(store => {
-        return store.id == this.props.id
+        return store.id === this.props.id
       })
       this.setState({ store: store })
     }, 100)
