@@ -1,25 +1,25 @@
-import React, { Component } from 'react'
-import './App.css'
-import RegisterBuyerPage from './Pages/Buyer/RegisterBuyerPage'
-import RegisterDelivererPage from './Pages/Deliverer/RegisterDelivererPage'
-import RegisterManagerPage from './Pages/Manager/RegisterManagerPage'
-import BuyerHomePage from './Pages/Buyer/BuyerHomePage'
-import StoreHomePage from './Pages/Buyer/StoreHomePage'
-import ItemListingPage from './Pages/Buyer/ItemListingPage'
-import LandingPage from './Pages/LandingPage'
-import OrderHistoryPage from './Pages/Buyer/OrderHistoryPage'
-import StartNewOrderPage from './Pages/Buyer/StartNewOrderPage'
-import PaymentMethodsPage from './Pages/Buyer/PaymentMethodsPage'
-import NewPaymentMethodPage from './Pages/Buyer/NewPaymentMethodPage'
-import ItemCategoriesPage from './Pages/Buyer/ItemCategoriesPage'
-import RegistrationNavPage from './Pages/Buyer/RegistrationNavPage'
-import AccountInfoPage from './Pages/Buyer/AccountInfoPage'
-import ViewCartPage from './Pages/Buyer/ViewCartPage'
-import CheckoutPage from './Pages/Buyer/CheckoutPage'
-import Navigation from './Components/Navigation'
-import ErrorPage from './Pages/ErrorPage.js'
-import ReceiptPage from './Pages/Buyer/ReceiptPage'
-import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
+import React, { Component } from "react";
+import "./App.css";
+import RegisterBuyerPage from "./Pages/Buyer/RegisterBuyerPage";
+import RegisterDelivererPage from "./Pages/Deliverer/RegisterDelivererPage";
+import RegisterManagerPage from "./Pages/Manager/RegisterManagerPage";
+import BuyerHomePage from "./Pages/Buyer/BuyerHomePage";
+import StoreHomePage from "./Pages/Buyer/StoreHomePage";
+import ItemListingPage from "./Pages/Buyer/ItemListingPage";
+import LandingPage from "./Pages/LandingPage";
+import OrderHistoryPage from "./Pages/Buyer/OrderHistoryPage";
+import StartNewOrderPage from "./Pages/Buyer/StartNewOrderPage";
+import PaymentMethodsPage from "./Pages/Buyer/PaymentMethodsPage";
+import NewPaymentMethodPage from "./Pages/Buyer/NewPaymentMethodPage";
+import ItemCategoriesPage from "./Pages/Buyer/ItemCategoriesPage";
+import RegistrationNavPage from "./Pages/Buyer/RegistrationNavPage";
+import AccountInfoPage from "./Pages/Buyer/AccountInfoPage";
+import ViewCartPage from "./Pages/Buyer/ViewCartPage";
+import CheckoutPage from "./Pages/Buyer/CheckoutPage";
+import Navigation from "./Components/Navigation";
+import ErrorPage from "./Pages/ErrorPage.js";
+import ReceiptPage from "./Pages/Buyer/ReceiptPage";
+import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 
 class App extends Component {
   render() {
@@ -28,9 +28,9 @@ class App extends Component {
         <div
           className="App"
           style={{
-            display: 'flex',
-            flexDirection: 'column',
-            position: 'absolute',
+            display: "flex",
+            flexDirection: "column",
+            position: "absolute",
             top: 0,
             left: 0,
             right: 0,
@@ -83,8 +83,8 @@ class App extends Component {
           </Switch>
         </div>
       </Router>
-    )
+    );
   }
 }
 
-export default App
+export default App;
