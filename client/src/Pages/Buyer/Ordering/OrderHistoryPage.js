@@ -1,6 +1,6 @@
 import React from 'react'
-import FetchOrders from '../../Model/FetchOrders'
-import Loading from '../../Components/Loading'
+import FetchOrders from '../../../Model/FetchOrders'
+import Loading from '../../../Components/Loading'
 
 export default class OrderHistoryPage extends React.Component {
   render() {

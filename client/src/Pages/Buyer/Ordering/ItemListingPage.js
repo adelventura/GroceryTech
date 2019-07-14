@@ -1,7 +1,7 @@
 import React from 'react'
-import FetchItems from '../../Model/FetchItems'
-import Loading from '../../Components/Loading'
-import CartProvider from '../../Model/Cart/CartProvider'
+import FetchItems from '../../../Model/FetchItems'
+import Loading from '../../../Components/Loading'
+import CartProvider from '../../../Model/Cart/CartProvider'
 
 export default class ItemListingPage extends React.Component {
   state = {

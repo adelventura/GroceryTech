@@ -1,7 +1,7 @@
 import React from "react";
-import NavCard from "../../Components/NavCard.js";
-import FetchStore from "../../Model/FetchStore.js";
-import Loading from "../../Components/Loading.js";
+import NavCard from "../../../Components/NavCard.js";
+import FetchStore from "../../../Model/FetchStore.js";
+import Loading from "../../../Components/Loading.js";
 import { RouteComponentProps } from "react-router";
 import { FaShoppingCart, FaCarrot, FaTimesCircle } from "react-icons/fa";
 

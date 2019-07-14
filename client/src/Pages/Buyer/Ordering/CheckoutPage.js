@@ -1,6 +1,6 @@
 import React from 'react'
-import FetchPaymentMethods from '../../Model/FetchPaymentMethods'
-import Loading from '../../Components/Loading'
+import FetchPaymentMethods from '../../../Model/FetchPaymentMethods'
+import Loading from '../../../Components/Loading'
 
 export default class CheckoutPage extends React.Component {
   render() {

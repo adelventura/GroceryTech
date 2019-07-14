@@ -1,6 +1,6 @@
 import React from 'react'
-import FetchStores from '../../Model/FetchStores'
-import Loading from '../../Components/Loading'
+import FetchStores from '../../../Model/FetchStores'
+import Loading from '../../../Components/Loading'
 
 export default class StartNewOrderPage extends React.Component {
   constructor(props) {

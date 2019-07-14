@@ -1,5 +1,5 @@
 import React from 'react'
-import SmallNavCard from '../../Components/SmallNavCard.js'
+import SmallNavCard from '../../../Components/SmallNavCard.js'
 import {
   FaCheese,
   FaCarrot,
