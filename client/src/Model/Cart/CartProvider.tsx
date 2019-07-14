@@ -1,4 +1,4 @@
-import React from "react";
+import React, { Component } from "react";
 
 var CART = {
   id: "",
@@ -7,11 +7,11 @@ var CART = {
       id: "",
       quantity: 10,
       item: {
-        id: "",
-        type: "",
-        name: "",
-        description: "",
-        price: 1
+        id: "000",
+        type: "Beverages",
+        name: "Twinings Tea",
+        description: "English Breakfast Tea",
+        price: 3.99
       }
     }
   ]
@@ -60,27 +60,26 @@ interface CartDeleteItemAction {
 
 type CartAction = CartDeleteAction | CartAddItemAction | CartDeleteItemAction;
 
-class CartProvider extends React.Component<
-  {
-    storeId: string;
-    content: (
-      cart: Cart,
-      update: (action: CartAction) => void
-    ) => React.ReactElement;
-    placeholder: () => React.ReactElement;
-  },
-  {
-    cart?: Cart;
-  }
-> {
+class CartProvider extends Component<{
+  storeId: string;
+  content: (
+    cart: Cart,
+    update: (action: CartAction) => void
+  ) => React.ReactElement;
+  placeholder: () => React.ReactElement;
+}> {
+  state: {
+    cart: Cart | null;
+  } = { cart: null };
+
   componentDidMount() {
     setTimeout(() => {
       this.setState({ cart: CART });
-    }, 2000);
+    }, 200);
   }
 
   update = (action: CartAction) => {
-    let { cart } = this.state;
+    let cart = this.state.cart;
     if (!cart) {
       return;
     }
@@ -92,6 +91,7 @@ class CartProvider extends React.Component<
           item: action.item,
           quantity: action.quantity
         });
+        alert(JSON.stringify(cart.items));
         break;
       case "delete":
         cart = {
@@ -121,3 +121,5 @@ class CartProvider extends React.Component<
     }
   }
 }
+
+export default CartProvider;
