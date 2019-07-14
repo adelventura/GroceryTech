@@ -1,12 +1,12 @@
 import Item from "./Model/Item";
 
 // Delete the cart
-interface CartDeleteAction {
+export interface CartDeleteAction {
   type: "delete";
 }
 
 // Add an item to cart
-interface CartAddItemAction {
+export interface CartAddItemAction {
   type: "add";
 
   // item id
@@ -15,11 +15,9 @@ interface CartAddItemAction {
 }
 
 // Delete an item
-interface CartDeleteItemAction {
+export interface CartDeleteItemAction {
   type: "delete_item";
 
   // cart item id
   id: string;
 }
-
-type CartAction = CartDeleteAction | CartAddItemAction | CartDeleteItemAction;

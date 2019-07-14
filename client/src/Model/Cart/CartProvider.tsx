@@ -1,4 +1,10 @@
 import React, { Component } from "react";
+import Cart from "./Model/Cart";
+import {
+  CartDeleteAction,
+  CartAddItemAction,
+  CartDeleteItemAction
+} from "./CartActions";
 
 var CART = {
   id: "",
@@ -16,47 +22,6 @@ var CART = {
     }
   ]
 };
-
-interface Item {
-  id: String;
-  name: string;
-  type: string;
-  description: string;
-  price: number;
-}
-
-interface CartItem {
-  id: string;
-  quantity: number;
-  item: Item;
-}
-
-interface Cart {
-  id: string;
-  items: CartItem[];
-}
-
-// Delete the cart
-interface CartDeleteAction {
-  type: "delete";
-}
-
-// Add an item to cart
-interface CartAddItemAction {
-  type: "add";
-
-  // item id
-  item: Item;
-  quantity: number;
-}
-
-// Delete an item
-interface CartDeleteItemAction {
-  type: "delete_item";
-
-  // cart item id
-  id: string;
-}
 
 type CartAction = CartDeleteAction | CartAddItemAction | CartDeleteItemAction;
 
