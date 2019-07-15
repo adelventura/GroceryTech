@@ -3,6 +3,10 @@ import FetchPaymentMethods from '../../../Model/FetchPaymentMethods'
 import Loading from '../../../Components/Loading'
 
 export default class CheckoutPage extends React.Component {
+  handleOrder = event => {
+    this.props.history.push('/checkout/receipt')
+  }
+
   render() {
     return (
       <React.Fragment>
@@ -86,7 +90,9 @@ export default class CheckoutPage extends React.Component {
                   </div>
 
                   <div style={{ float: 'right' }}>
-                    <button className="btn">Finalize Order</button>
+                    <button className="btn" onClick={this.handleOrder}>
+                      Finalize Order
+                    </button>
                   </div>
                 </div>
               </div>

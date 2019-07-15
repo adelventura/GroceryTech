@@ -1,6 +1,10 @@
 import React from 'react'
+import { throwStatement } from '@babel/types'
 
 export default class ReceiptPage extends React.Component {
+  onClick = event => {
+    this.props.history.push('/home')
+  }
   render() {
     return (
       <React.Fragment>
@@ -74,6 +78,7 @@ export default class ReceiptPage extends React.Component {
             className="btn"
             //onClick={this.handleUpdate}
             style={{ float: 'right' }}
+            onClick={this.onClick}
           >
             Home
           </button>

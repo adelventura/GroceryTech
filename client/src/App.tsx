@@ -5,6 +5,7 @@ import RegisterDelivererPage from "./Pages/Deliverer/RegisterDelivererPage";
 import RegisterManagerPage from "./Pages/Manager/RegisterManagerPage";
 import BuyerHomePage from "./Pages/Buyer/BuyerHomePage";
 import StoreHomePage from "./Pages/Buyer/Ordering/StoreHomePage";
+import DelivererHomePage from "./Pages/Deliverer/DelivererHomePage";
 import ItemListingPage from "./Pages/Buyer/Ordering/ItemListingPage";
 import LandingPage from "./Pages/LandingPage";
 import OrderHistoryPage from "./Pages/Buyer/Ordering/OrderHistoryPage";
@@ -42,9 +43,12 @@ class App extends Component {
             <Route exact path="/" component={LandingPage} />
             <Route path="/register_buyer" component={RegisterBuyerPage} />
             <Route
+              exact
               path="/register_deliverer"
               component={RegisterDelivererPage}
             />
+            <Route exact path="/home/deliverer" component={DelivererHomePage} />
+
             <Route path="/register_manager" component={RegisterManagerPage} />
             <Route path="/register" component={RegistrationNavPage} />
             <Route path="/home" component={BuyerHomePage} />

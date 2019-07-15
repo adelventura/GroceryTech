@@ -1,6 +1,6 @@
-import React from 'react'
-import FetchOrders from '../../../Model/FetchOrders'
-import Loading from '../../../Components/Loading'
+import React from 'react';
+import FetchOrders from '../../../Model/FetchOrders';
+import Loading from '../../../Components/Loading';
 
 export default class OrderHistoryPage extends React.Component {
   render() {
@@ -9,13 +9,13 @@ export default class OrderHistoryPage extends React.Component {
         <FetchOrders
           buyerID={1234}
           placeholder={() => {
-            return <Loading />
+            return <Loading />;
           }}
           content={history => {
             return (
               <div>
                 <br />
-                <span className="pageHeader">Order History </span>
+                <div className="page-header">Order History </div>
                 <div className="tbl-card">
                   <table className="tbl">
                     <thead>
@@ -40,7 +40,7 @@ export default class OrderHistoryPage extends React.Component {
                             <td>{order.delivered > 0 ? 'Yes' : 'No'}</td>
                           </tr>
                         </tbody>
-                      )
+                      );
                     })}
                   </table>
                   <br />
@@ -90,10 +90,10 @@ export default class OrderHistoryPage extends React.Component {
                   </div>
                 </div>
               </div>
-            )
+            );
           }}
         />
       </React.Fragment>
-    )
+    );
   }
 }

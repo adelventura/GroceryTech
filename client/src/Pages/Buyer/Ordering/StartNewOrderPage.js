@@ -1,15 +1,15 @@
-import React from 'react'
-import FetchStores from '../../../Model/FetchStores'
-import Loading from '../../../Components/Loading'
+import React from 'react';
+import FetchStores from '../../../Model/FetchStores';
+import Loading from '../../../Components/Loading';
 
 export default class StartNewOrderPage extends React.Component {
   constructor(props) {
-    super(props)
+    super(props);
 
     this.state = {
       selected: '',
       selectedId: ''
-    }
+    };
   }
 
   selectHandler = id => {
@@ -17,33 +17,33 @@ export default class StartNewOrderPage extends React.Component {
       this.setState({
         selected: event.target.value,
         selectedId: id
-      })
-    }
-  }
+      });
+    };
+  };
 
   handleChoose = event => {
     if (this.state.selected === '') {
-      alert('Must select store to continue')
+      alert('Must select store to continue');
     } else {
-      const { selectedId } = this.state
-      this.props.history.push(`store/${selectedId}`)
+      const { selectedId } = this.state;
+      this.props.history.push(`store/${selectedId}`);
     }
-  }
+  };
 
   render() {
-    const selectedId = this.state.selectedId
+    const selectedId = this.state.selectedId;
 
     return (
       <React.Fragment>
         <FetchStores
           placeholder={() => {
-            return <Loading />
+            return <Loading />;
           }}
           content={stores => {
             return (
               <div>
                 <br />
-                <span className="pageHeader">List of Stores</span>
+                <div className="page-header">List of Stores</div>
                 <div className="tbl-card">
                   <table className="tbl">
                     <thead>
@@ -81,7 +81,7 @@ export default class StartNewOrderPage extends React.Component {
                             <td>{store.hours}</td>
                           </tr>
                         </tbody>
-                      )
+                      );
                     })}
                   </table>
                   <br />
@@ -132,10 +132,10 @@ export default class StartNewOrderPage extends React.Component {
                   </div>
                 </div>
               </div>
-            )
+            );
           }}
         />
       </React.Fragment>
-    )
+    );
   }
 }

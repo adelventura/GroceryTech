@@ -1,13 +1,8 @@
 import React from 'react';
-import {
-  FaShoppingCart,
-  FaClock,
-  FaCreditCard,
-  FaUserEdit
-} from 'react-icons/fa';
+import { FaUserEdit, FaClipboardList } from 'react-icons/fa';
 import NavCard from '../../Components/NavCard.js';
 
-export default class BuyerHomePage extends React.Component {
+export default class DelivererHomePage extends React.Component {
   button = (link, label, iconComponent, iconColor) => {
     return (
       <NavCard
@@ -22,25 +17,15 @@ export default class BuyerHomePage extends React.Component {
     return (
       <React.Fragment>
         <p className="page-header">
-          Your Buyer Homepage <br />
+          Your Deliverer Homepage <br />
         </p>
         <div className="grid-container-row">
-          {this.button('/store', 'New Order', FaShoppingCart, '#a9eec2')}
-          {this.button('/order_history', 'Order History', FaClock, '#705772')}
-        </div>
-
-        <div className="grid-container-row">
+          {this.button('/store', 'Assignments', FaClipboardList, '#a9eec2')}
           {this.button(
-            '/account',
+            '/order_history',
             'Account Information',
             FaUserEdit,
-            '#f38181'
-          )}
-          {this.button(
-            '/payment_methods',
-            'Payment Methods',
-            FaCreditCard,
-            '#fad284'
+            '#705772'
           )}
         </div>
       </React.Fragment>

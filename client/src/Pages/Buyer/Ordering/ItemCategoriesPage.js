@@ -62,7 +62,7 @@ export default class ItemCategoriesPage extends React.Component {
           </div>
         </div>
 
-        <Link to="/home">
+        <Link to="/checkout">
           <div
             className="btn"
             style={{ display: 'block', marginRight: '20%', marginLeft: 'auto' }}

@@ -1,36 +1,39 @@
-import React from 'react'
-import { Link } from 'react-router-dom'
+import React from 'react';
+import { Link } from 'react-router-dom';
 
 export default class LandingPage extends React.Component {
   constructor(props) {
-    super(props)
+    super(props);
 
     this.state = {
       username: '',
       password: ''
-    }
+    };
 
-    this.handleChange = this.handleChange.bind(this)
-    this.handleSubmit = this.handleSubmit.bind(this)
+    this.handleChange = this.handleChange.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
   }
 
   handleSubmit() {
-    alert('Name is: ' + this.state.firstName + ' ' + this.state.lastName)
+    alert('Name is: ' + this.state.firstName + ' ' + this.state.lastName);
   }
 
   handleChange(event) {
     this.setState({
       [event.target.name]: event.target.value
-    })
+    });
   }
 
   render() {
     return (
       <React.Fragment>
-        <div className="pageHeader">Login</div>
+        <div className="page-header">Welcome to GroceryTech</div>
 
-        <div className="login-card">
-          <div className="inner-card">
+        <div
+          className="card block-centered"
+          style={{ width: '35%', overflow: 'auto' }}
+        >
+          <div className="flex-col">
             <div>
               <h3 className="form-input-label">Username</h3>
               <input
@@ -52,15 +55,36 @@ export default class LandingPage extends React.Component {
                 onChange={this.handleChange}
               />
             </div>
-            <div>
-              <br />
+            <div
+              className="flex-row"
+              style={{
+                width: '100%',
+                marginTop: '20px',
+                justifyContent: 'space-evenly',
+                alignContent: 'center'
+              }}
+            >
               <Link to="/home">
-                <div className="btn" style={{ float: 'left' }}>
+                <div
+                  className="btn"
+                  style={{
+                    flexShrink: '0',
+                    justifyContent: 'start'
+                  }}
+                >
                   Login
                 </div>
+                />
               </Link>
               <Link to="/register">
-                <div className="btn" style={{ float: 'right' }}>
+                <div
+                  className="btn"
+                  style={{
+                    flexShrink: '0',
+                    justifyContent: 'start',
+                    marginLeft: 'auto'
+                  }}
+                >
                   Register
                 </div>
               </Link>
@@ -68,6 +92,6 @@ export default class LandingPage extends React.Component {
           </div>
         </div>
       </React.Fragment>
-    )
+    );
   }
 }

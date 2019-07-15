@@ -21,14 +21,16 @@ ul {
     color: #705772;
 }
 
-.pageHeader {
+.page-header {
+  display: block;
     text-align: left;
-    margin-left: 5%;
-    margin-bottom: 10px;
-    margin-top: 20px;
+    margin-left: 10%;
+    margin-right: auto;
+    margin-bottom: 4%;
+    margin-top: 4%;
     font-size: 24px;
     font-weight: bold;
-    color: #565656;
+    color: #666666;
 }
 
 /*navigation bar */
@@ -46,32 +48,9 @@ ul {
 .card {
     border-radius: 5px;
     box-shadow: 2px 2px 7px silver;
+    padding: 25px;
 }
 
-.login-card {
-    height: 250px;
-    width: 400px;
-    background-color: #FFFFFF;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    border-radius: 5px;
-    align-content: center;
-    margin-left: auto;
-    margin-right: auto;
-    box-shadow: 2px 2px 7px silver;
-}
-
-.register-card {
-    box-shadow: 2px 2px 7px silver;
-    display: block;
-    width: 65%;
-    max-width: 600px;
-    padding: 30px;
-    margin-top: 50px;
-    margin-left: auto;
-    margin-right: auto;
-}
 .card-header {
     float: left;
     color: #705772;
@@ -136,8 +115,8 @@ ul {
 }
 
 .grid-container {
-    width: 250px;
-    height: 250px;
+    width: 210px;
+    height: 210px;
     margin: 30px;
     background-color: #FFFFFF;
     border-radius:  5px;
@@ -287,7 +266,7 @@ ul {
 
   /* CONTAINER ALIGNMENTS */
   .block-centered {
-    width: 100%;
+    width: 70%;
     display: block;
     margin-left: auto;
     margin-right: auto;
@@ -311,7 +290,7 @@ ul {
   .btn {
     background-color: #705772;
     color: #FFFFFF;
-    display:inline-block;
+    display:inline-flex;
     border-radius: 5px;
     border-style: none;
     box-shadow: 0 0 5px -1px rgba(0,0,0,0.2);
