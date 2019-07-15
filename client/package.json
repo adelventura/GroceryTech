@@ -41,5 +41,6 @@
     "awesome-typescript-loader": "^5.2.1",
     "source-map-loader": "^0.2.4",
     "typescript": "^3.5.3"
-  }
+  },
+  "proxy": "http://localhost:3030/"
 }

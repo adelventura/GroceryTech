@@ -1,39 +1,30 @@
-import React from 'react'
-
-import { STORES } from './FetchStore'
+import React from 'react';
+import Config from '../Config/Config';
 
 export default class FetchItems extends React.Component {
   constructor(props) {
-    super(props)
+    super(props);
 
     this.state = {
       items: undefined
-    }
+    };
   }
 
   componentDidMount() {
-    const { id, category } = this.props
+    const { id, category } = this.props;
 
-    setTimeout(() => {
-      const store = STORES.find(store => {
-        return store.id === this.props.id
-      })
-
-      const items = store.inventory.filter(item => {
-        return item.item.type.toLowerCase() === category.toLowerCase()
-      })
-
-      this.setState({ items })
-    }, 100)
+    fetch(`${Config.baseUrl}/store/${id}/search/${category}`)
+      .then(response => response.json())
+      .then(data => this.setState({ items: data }));
   }
 
   render() {
-    const { items } = this.state
+    const { items } = this.state;
 
     if (items) {
-      return this.props.content(items)
+      return this.props.content(items);
     } else {
-      return this.props.placeholder()
+      return this.props.placeholder();
     }
   }
 }
