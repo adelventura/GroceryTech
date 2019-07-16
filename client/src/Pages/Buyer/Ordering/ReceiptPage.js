@@ -1,13 +1,14 @@
-import React from 'react'
-import { throwStatement } from '@babel/types'
+import React from 'react';
+import { throwStatement } from '@babel/types';
+import RequiresAuthentication from '../../../Components/RequiresAuthentication';
 
 export default class ReceiptPage extends React.Component {
   onClick = event => {
-    this.props.history.push('/home')
-  }
+    this.props.history.push('/home');
+  };
   render() {
     return (
-      <React.Fragment>
+      <RequiresAuthentication>
         <div className="checkout-card">
           <div>
             <h3 className="form-input-label">Order Number</h3>
@@ -83,7 +84,7 @@ export default class ReceiptPage extends React.Component {
             Home
           </button>
         </div>
-      </React.Fragment>
-    )
+      </RequiresAuthentication>
+    );
   }
 }

@@ -1,5 +1,5 @@
-import React from 'react'
-import SmallNavCard from '../../../Components/SmallNavCard.js'
+import React from 'react';
+import SmallNavCard from '../../../Components/SmallNavCard.js';
 import {
   FaCheese,
   FaCarrot,
@@ -11,21 +11,22 @@ import {
   FaBroom,
   FaSnowflake,
   FaShoppingBasket
-} from 'react-icons/fa'
-import { Link } from 'react-router-dom'
+} from 'react-icons/fa';
+import { Link } from 'react-router-dom';
+import RequiresAuthentication from '../../../Components/RequiresAuthentication';
 
-let purple = '#705772'
-let coral = '#f38181'
-let yellow = '#fad284'
-let green = '#a9eec2'
+let purple = '#705772';
+let coral = '#f38181';
+let yellow = '#fad284';
+let green = '#a9eec2';
 
 export default class ItemCategoriesPage extends React.Component {
   handleCategory = category => {
     return () => {
-      const { id } = this.props.match.params
-      this.props.history.push(`/store/${id}/search/${category}`)
-    }
-  }
+      const { id } = this.props.match.params;
+      this.props.history.push(`/store/${id}/search/${category}`);
+    };
+  };
 
   button = (label, iconComponent, iconColor) => {
     return (
@@ -34,12 +35,12 @@ export default class ItemCategoriesPage extends React.Component {
         icon={iconComponent({ color: iconColor, size: 50, className: 'icon' })}
         label={label}
       />
-    )
-  }
+    );
+  };
 
   render() {
     return (
-      <React.Fragment>
+      <RequiresAuthentication>
         <p className="pageHeader">
           Item Lookup <br />
         </p>
@@ -70,7 +71,7 @@ export default class ItemCategoriesPage extends React.Component {
             Checkout
           </div>
         </Link>
-      </React.Fragment>
-    )
+      </RequiresAuthentication>
+    );
   }
 }

@@ -3,6 +3,7 @@ import CartProvider from "../../../Model/Cart/CartProvider";
 import Loading from "../../../Components/Loading";
 import { RouteComponentProps } from "react-router";
 import Router from "react-router-dom";
+import RequiresAuthentication from "../../../Components/RequiresAuthentication";
 
 type RouteParams = {
   storeID: string;
@@ -17,7 +18,7 @@ export default class ViewCartPage extends React.Component<Props> {
     const storeID = this.props.match.params.storeID;
 
     return (
-      <React.Fragment>
+      <RequiresAuthentication>
         <CartProvider
           storeId={storeID}
           content={cart => {
@@ -100,7 +101,7 @@ export default class ViewCartPage extends React.Component<Props> {
             );
           }}
         />
-      </React.Fragment>
+      </RequiresAuthentication>
     );
   }
 }

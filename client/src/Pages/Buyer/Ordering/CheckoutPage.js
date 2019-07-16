@@ -1,6 +1,6 @@
 import React from 'react';
 import FetchPaymentMethods from '../../../Model/FetchPaymentMethods';
-import Loading from '../../../Components/Loading';
+import RequiresAuthentication from '../../../Components/RequiresAuthentication';
 
 export default class CheckoutPage extends React.Component {
   handleOrder = event => {
@@ -9,7 +9,7 @@ export default class CheckoutPage extends React.Component {
 
   render() {
     return (
-      <React.Fragment>
+      <RequiresAuthentication>
         <FetchPaymentMethods
           content={paymentMethods => {
             return (
@@ -96,7 +96,7 @@ export default class CheckoutPage extends React.Component {
             );
           }}
         />
-      </React.Fragment>
+      </RequiresAuthentication>
     );
   }
 }

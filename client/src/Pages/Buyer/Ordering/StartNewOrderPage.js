@@ -1,6 +1,7 @@
 import React from 'react';
 import FetchStores from '../../../Model/FetchStores';
 import Loading from '../../../Components/Loading';
+import RequiresAuthentication from '../../../Components/RequiresAuthentication';
 
 export default class StartNewOrderPage extends React.Component {
   constructor(props) {
@@ -34,7 +35,7 @@ export default class StartNewOrderPage extends React.Component {
     const selectedId = this.state.selectedId;
 
     return (
-      <React.Fragment>
+      <RequiresAuthentication>
         <FetchStores
           content={stores => {
             return (
@@ -132,7 +133,7 @@ export default class StartNewOrderPage extends React.Component {
             );
           }}
         />
-      </React.Fragment>
+      </RequiresAuthentication>
     );
   }
 }

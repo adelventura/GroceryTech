@@ -2,6 +2,7 @@ import React from 'react';
 import FetchItems from '../../../Model/FetchItems';
 import Loading from '../../../Components/Loading';
 import CartProvider from '../../../Model/Cart/CartProvider';
+import RequiresAuthentication from '../../../Components/RequiresAuthentication';
 
 export default class ItemListingPage extends React.Component {
   state = {
@@ -37,7 +38,7 @@ export default class ItemListingPage extends React.Component {
   render() {
     const { id, category } = this.props.match.params;
     return (
-      <React.Fragment>
+      <RequiresAuthentication>
         <CartProvider
           content={(cart, updater) => {
             return (
@@ -151,7 +152,7 @@ export default class ItemListingPage extends React.Component {
             );
           }}
         />
-      </React.Fragment>
+      </RequiresAuthentication>
     );
   }
 }
