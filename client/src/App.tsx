@@ -42,7 +42,11 @@ class App extends Component<{}, AppState> {
     accountContextState: {
       token: Cookies.get("token") || null,
       update: token => {
-        Cookies.set("token", token);
+        if (token == null) {
+          Cookies.remove("token");
+        } else {
+          Cookies.set("token", token);
+        }
 
         this.setState(prev => {
           return {

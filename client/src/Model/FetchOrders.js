@@ -12,7 +12,9 @@ export default class FetchOrders extends React.Component {
   }
 
   componentDidMount() {
-    fetch(`${Config.baseUrl}/account/order_history`)
+    fetch(`${Config.baseUrl}/account/order_history`, {
+      headers: { Authorization: this.props.token }
+    })
       .then(response => response.json())
       .then(data => this.setState({ history: data }));
   }

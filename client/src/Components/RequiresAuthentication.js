@@ -4,7 +4,7 @@ import { withRouter } from 'react-router-dom';
 
 class RequiresAuthentication extends React.Component {
   goToSignIn() {
-    this.props.history.push(`/`);
+    this.props.history.replace(`/`);
   }
 
   render() {

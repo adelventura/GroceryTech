@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { AccountContext } from '../App';
+import Config from '../Config/Config';
 
 export default class LandingPage extends React.Component {
   constructor(props) {
@@ -20,12 +21,25 @@ export default class LandingPage extends React.Component {
 
   onLogin = update => {
     return () => {
-      update('test token');
+      fetch(`${Config.baseUrl}/account/token`, {
+        method: 'POST',
+        body: JSON.stringify(this.state),
+        headers: {
+          'Content-Type': 'application/json'
+        }
+      })
+        .then(response => response.json())
+        .then(data => {
+          update(data.token);
+        })
+        .catch(error => {
+          alert(error);
+        });
     };
   };
 
   redirectToHome = () => {
-    this.props.history.push(`/home`);
+    this.props.history.replace(`/home`);
   };
 
   render() {
