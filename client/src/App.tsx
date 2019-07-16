@@ -1,11 +1,8 @@
 import React, { Component } from "react";
 import "./App.css";
 import RegisterBuyerPage from "./Pages/Buyer/RegisterBuyerPage";
-import RegisterDelivererPage from "./Pages/Deliverer/RegisterDelivererPage";
-import RegisterManagerPage from "./Pages/Manager/RegisterManagerPage";
 import BuyerHomePage from "./Pages/Buyer/BuyerHomePage";
 import StoreHomePage from "./Pages/Buyer/Ordering/StoreHomePage";
-import DelivererHomePage from "./Pages/Deliverer/DelivererHomePage";
 import ItemListingPage from "./Pages/Buyer/Ordering/ItemListingPage";
 import LandingPage from "./Pages/LandingPage";
 import OrderHistoryPage from "./Pages/Buyer/Ordering/OrderHistoryPage";
@@ -20,6 +17,18 @@ import CheckoutPage from "./Pages/Buyer/Ordering/CheckoutPage";
 import Navigation from "./Components/Navigation";
 import ErrorPage from "./Pages/ErrorPage.js";
 import ReceiptPage from "./Pages/Buyer/Ordering/ReceiptPage";
+import RegisterManagerPage from "./Pages/Manager/RegisterManagerPage";
+import ManagerAccountInfoPage from "./Pages/Manager/ManagerAccountInfoPage";
+import ManagerHomePage from "./Pages/Manager/ManagerHomePage";
+import OutstandingOrdersPage from "./Pages/Manager/OutstandingOrdersPage";
+import RevenueReportPage from "./Pages/Manager/RevenueReportPage";
+import StoreInventoryPage from "./Pages/Manager/StoreInventoryPage";
+import DelivererHomePage from "./Pages/Deliverer/DelivererHomePage";
+import RegisterDelivererPage from "./Pages/Deliverer/RegisterDelivererPage";
+import AssignmentsListPage from "./Pages/Deliverer/AssignmentsListPage";
+import DelivererAccountInfoPage from "./Pages/Deliverer/DelivererAccountInfoPage";
+import ViewAssignmentPage from "./Pages/Deliverer/ViewAssignmentPage";
+
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import Cookies from "js-cookie";
 
@@ -79,10 +88,12 @@ class App extends Component<{}, AppState> {
             <Navigation />
             <Switch>
               <Route exact path="/" component={LandingPage} />
-              <Route path="/register_buyer" component={RegisterBuyerPage} />
+              <Route path="/register" component={RegistrationNavPage} />
+              <Route component={ErrorPage} />
+              {/* Deliverer */}
               <Route
                 exact
-                path="/register_deliverer"
+                path="/register/deliverer"
                 component={RegisterDelivererPage}
               />
               <Route
@@ -90,9 +101,39 @@ class App extends Component<{}, AppState> {
                 path="/home/deliverer"
                 component={DelivererHomePage}
               />
-
-              <Route path="/register_manager" component={RegisterManagerPage} />
-              <Route path="/register" component={RegistrationNavPage} />
+              <Route
+                exact
+                path="/account/deliverer"
+                component={DelivererAccountInfoPage}
+              />
+              <Route
+                exact
+                path="/assignments"
+                component={AssignmentsListPage}
+              />
+              <Route
+                exact
+                path="/assignments/:id"
+                component={ViewAssignmentPage}
+              />
+              {/* Manager */}
+              <Route path="/home/manager" component={ManagerHomePage} />
+              <Route path="/register/manager" component={RegisterManagerPage} />
+              <Route
+                path="/account/manager"
+                component={ManagerAccountInfoPage}
+              />
+              <Route
+                path="/store/:id/orders"
+                component={OutstandingOrdersPage}
+              />
+              <Route path="/store/:id/revenue" component={RevenueReportPage} />
+              <Route
+                path="/store/:id/inventory"
+                component={StoreInventoryPage}
+              />
+              {/* Buyer */}
+              <Route path="/register/buyer" component={RegisterBuyerPage} />
               <Route path="/home" component={BuyerHomePage} />
               <Route exact path="/account" component={AccountInfoPage} />
               <Route
@@ -101,7 +142,6 @@ class App extends Component<{}, AppState> {
               />
               <Route exact path="/checkout" component={CheckoutPage} />
               <Route exact path="/checkout/receipt" component={ReceiptPage} />
-
               <Route
                 exact
                 path="/account/payment_methods"
@@ -112,8 +152,6 @@ class App extends Component<{}, AppState> {
                 path="/account/payment_methods/new"
                 component={NewPaymentMethodPage}
               />
-
-              {/* Store */}
               <Route exact path="/store" component={StartNewOrderPage} />
               <Route
                 exact
@@ -127,8 +165,6 @@ class App extends Component<{}, AppState> {
                 component={ItemListingPage}
               />
               <Route exact path="/store/:id/cart" component={ViewCartPage} />
-
-              <Route component={ErrorPage} />
             </Switch>
           </div>
         </Router>
