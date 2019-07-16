@@ -6,6 +6,7 @@ import {
   FaUserEdit
 } from 'react-icons/fa';
 import NavCard from '../../Components/NavCard.js';
+import RequiresAuthentication from '../../Components/RequiresAuthentication.js';
 
 export default class BuyerHomePage extends React.Component {
   button = (link, label, iconComponent, iconColor) => {
@@ -20,7 +21,7 @@ export default class BuyerHomePage extends React.Component {
 
   render() {
     return (
-      <React.Fragment>
+      <RequiresAuthentication>
         <p className="page-header">
           Your Buyer Homepage <br />
         </p>
@@ -48,7 +49,7 @@ export default class BuyerHomePage extends React.Component {
             '#fad284'
           )}
         </div>
-      </React.Fragment>
+      </RequiresAuthentication>
     );
   }
 }
