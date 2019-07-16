@@ -1,87 +1,85 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
-let coral = '#f38181';
-let green = '#a9eec2';
-
 export default class RegistrationNavPage extends React.Component {
   render() {
     return (
-      <div className="container">
-        <div className="register-card" style={{ maxWidth: '400px' }}>
-          <div
-            style={{
-              display: 'flex',
-              flexDirection: 'column',
-              justifyContent: 'center',
-              alignContent: 'center'
-            }}
-          >
-            <div className="card-header">Are you a...</div>
-            <br />
-            <Link
-              to="/register/buyer"
+      <div>
+        <div className="page-header">Register New Account</div>
+        <div className="block-centered">
+          <div className="card flex-col" style={{ maxWidth: '400px' }}>
+            <div
               style={{
                 display: 'flex',
-                flexDirection: 'row',
-                justifyContent: 'center'
+                flexDirection: 'column',
+                justifyContent: 'center',
+                alignContent: 'center'
               }}
             >
-              <div
-                className="btn"
-                style={{
-                  backgroundColor: coral,
-                  display: 'flex',
-                  justifyContent: 'center',
-                  minWidth: '75px'
-                }}
-              >
-                Buyer
-              </div>
-            </Link>
-            <br />
-            <br />
-            <Link
-              to="/deliverer/register"
-              style={{
-                display: 'flex',
-                flexDirection: 'row',
-                justifyContent: 'center'
-              }}
-            >
-              <div
-                className="btn"
+              <div className="card-header">Are you a...</div>
+              <br />
+              <Link
+                to="/register/buyer"
                 style={{
                   display: 'flex',
-                  justifyContent: 'center',
-                  minWidth: '75px'
+                  flexDirection: 'row',
+                  justifyContent: 'center'
                 }}
               >
-                Deliverer
-              </div>
-            </Link>
-            <br />
-            <br />
-            <Link
-              to="/manager/register"
-              style={{
-                display: 'flex',
-                flexDirection: 'row',
-                justifyContent: 'center'
-              }}
-            >
-              <div
-                className="btn"
+                <div
+                  className="btn"
+                  style={{
+                    display: 'flex',
+                    justifyContent: 'center',
+                    minWidth: '75px'
+                  }}
+                >
+                  Buyer
+                </div>
+              </Link>
+              <br />
+              <br />
+              <Link
+                to="/deliverer/register"
                 style={{
-                  backgroundColor: green,
                   display: 'flex',
-                  justifyContent: 'center',
-                  minWidth: '75px'
+                  flexDirection: 'row',
+                  justifyContent: 'center'
                 }}
               >
-                Manager
-              </div>
-            </Link>
+                <div
+                  className="btn"
+                  style={{
+                    display: 'flex',
+                    justifyContent: 'center',
+                    minWidth: '75px'
+                  }}
+                >
+                  Deliverer
+                </div>
+              </Link>
+              <br />
+              <br />
+              <Link
+                to="/manager/register"
+                style={{
+                  display: 'flex',
+                  flexDirection: 'row',
+                  justifyContent: 'center'
+                }}
+              >
+                <div
+                  className="btn"
+                  style={{
+                    display: 'flex',
+                    justifyContent: 'center',
+                    minWidth: '75px'
+                  }}
+                >
+                  Manager
+                </div>
+              </Link>
+            </div>
           </div>
         </div>
       </div>
