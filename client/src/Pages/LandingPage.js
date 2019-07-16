@@ -60,7 +60,7 @@ export default class LandingPage extends React.Component {
                 style={{ width: '35%', overflow: 'auto' }}
               >
                 <div className="flex-col">
-                  <div>
+                  <div style={{ width: '100%', marginBottom: '20px' }}>
                     <h3 className="form-input-label">Username</h3>
                     <input
                       className="form-input"

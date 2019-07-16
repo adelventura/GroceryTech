@@ -22,7 +22,7 @@ export default class PaymentMethodsPage extends React.Component {
   };
 
   handleNewPayment = event => {
-    this.props.history.push(`/payment_methods/new`);
+    this.props.history.push(`/account/payment_methods/new`);
   };
 
   handleChoose = event => {

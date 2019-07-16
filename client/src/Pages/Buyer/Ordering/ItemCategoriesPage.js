@@ -41,7 +41,7 @@ export default class ItemCategoriesPage extends React.Component {
   render() {
     return (
       <RequiresAuthentication>
-        <p className="pageHeader">
+        <p className="page-header">
           Item Lookup <br />
         </p>
         <div className="grid">
@@ -51,7 +51,6 @@ export default class ItemCategoriesPage extends React.Component {
             {this.button('Canned Goods', FaShoppingBasket, purple)}
             {this.button('Cleaning Products', FaBroom, green)}
             {this.button('Dairy', FaCheese, coral)}
-            />
           </div>
 
           <div className="grid-column-right">

@@ -1,25 +1,24 @@
-import React from 'react'
+import React from 'react';
 
 export default class NewPaymentMethodPage extends React.Component {
   render() {
     return (
       <React.Fragment>
-        <div className="pageHeader">Add a new payment method</div>
+        <div className="page-header">Add a new payment method</div>
         <div
+          className="card block-centered"
           style={{
-            width: '30%',
-            display: 'block',
-            marginLeft: 'auto',
-            marginRight: 'auto'
+            width: '30%'
           }}
         >
-          <div className="newPaymentCard">
+          <div className="flex-col">
             <div
               style={{
                 display: 'block',
                 marginLeft: 'auto',
                 marginRight: 'auto',
-                paddingTop: '20px'
+                paddingTop: '30px',
+                width: '100%'
               }}
             >
               <h3 className="form-input-label">Payment Name</h3>
@@ -37,7 +36,8 @@ export default class NewPaymentMethodPage extends React.Component {
               style={{
                 display: 'block',
                 marginLeft: 'auto',
-                marginRight: 'auto'
+                marginRight: 'auto',
+                width: '100%'
               }}
             >
               <h3 className="form-input-label">Account Number</h3>
@@ -56,7 +56,8 @@ export default class NewPaymentMethodPage extends React.Component {
               style={{
                 display: 'block',
                 marginLeft: 'auto',
-                marginRight: 'auto'
+                marginRight: 'auto',
+                width: '100%'
               }}
             >
               <h3 className="form-input-label">Routing Number</h3>
@@ -71,19 +72,22 @@ export default class NewPaymentMethodPage extends React.Component {
             </div>
             <br />
 
-            <div
-              style={{
-                display: 'block',
-                marginLeft: '12%',
-                marginRight: 'auto'
-              }}
-            >
-              <h3 className="form-input-label">Default?</h3>
+            <div style={{ width: '100%' }}>
+              <div
+                style={{
+                  display: 'block',
+                  width: '30%',
+                  marginRight: 'auto',
+                  marginLEft: 'auto'
+                }}
+              >
+                <h3 className="form-input-label">Default?</h3>
 
-              <select name="default" className="select">
-                <option value="default">Yes</option>
-                <option value="not default">No</option>
-              </select>
+                <select name="default" className="select">
+                  <option value="default">Yes</option>
+                  <option value="not default">No</option>
+                </select>
+              </div>
             </div>
             <br />
             <div
@@ -108,6 +112,6 @@ export default class NewPaymentMethodPage extends React.Component {
           </div>
         </div>
       </React.Fragment>
-    )
+    );
   }
 }
