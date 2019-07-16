@@ -3,6 +3,7 @@ var router = express.Router();
 
 var stores = require('../mock_data/mock_stores');
 var inventory = require('../mock_data/mock_inventory');
+var cart = require('../mock_data/mock_cart');
 
 router.get('/', function(req, res, next) {
   res.json(stores);
@@ -28,6 +29,10 @@ router.get('/:id/search/:category', function(req, res, next) {
   });
 
   res.json(items);
+});
+
+router.get('/:id/cart', function(req, res, next) {
+  res.json(cart);
 });
 
 module.exports = router;
