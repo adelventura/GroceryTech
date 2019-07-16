@@ -37,43 +37,48 @@ export default class StoreHomePage extends React.Component<
             content={(store: any) => {
               return (
                 <div>
-                  <p className="pageHeader">
-                    Welcome to {store.name} {store.id} {id} <br />
+                  <p className="page-header">
+                    Welcome to {store.name} <br />
                   </p>
+                  <div className="block-centered">
+                    <div className="grid-container-row">
+                      <NavCard
+                        link={`/store/${id}/search`}
+                        icon={
+                          <FaCarrot
+                            color="#a9eec2"
+                            size={140}
+                            className="icon"
+                          />
+                        }
+                        label="Find Item"
+                      />
+                      <NavCard
+                        link={`/store/${id}/cart`}
+                        icon={
+                          <FaShoppingCart
+                            color="#705772 "
+                            size={140}
+                            className="icon"
+                          />
+                        }
+                        label="View Cart"
+                      />
+                    </div>
 
-                  <div className="grid-container-row">
-                    <NavCard
-                      link={`/store/${id}/search`}
-                      icon={
-                        <FaCarrot color="#a9eec2" size={140} className="icon" />
-                      }
-                      label="Find Item"
-                    />
-                    <NavCard
-                      link={`/store/${id}/cart`}
-                      icon={
-                        <FaShoppingCart
-                          color="#705772 "
-                          size={140}
-                          className="icon"
-                        />
-                      }
-                      label="View Cart"
-                    />
-                  </div>
-
-                  <div className="grid-container-row">
-                    <NavCard
-                      onClick={this.cancel}
-                      icon={
-                        <FaTimesCircle
-                          color="#f38181"
-                          size={140}
-                          className="icon"
-                        />
-                      }
-                      label="Cancel order"
-                    />
+                    <div className="grid-container-row">
+                      <NavCard
+                        onClick={this.cancel}
+                        icon={
+                          <FaTimesCircle
+                            color="#f38181"
+                            size={140}
+                            className="icon"
+                          />
+                        }
+                        label="Cancel order"
+                      />
+                    </div>
                   </div>
                 </div>
               );

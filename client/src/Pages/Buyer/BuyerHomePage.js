@@ -26,12 +26,12 @@ export default class BuyerHomePage extends React.Component {
           Your Buyer Homepage <br />
         </p>
         <div className="grid-container-row">
-          {this.button('/store', 'New Order', FaShoppingCart, '#a9eec2')}
+          {this.button('/store', 'New Order', FaShoppingCart, '#F25F5C')}
           {this.button(
             '/account/order_history',
             'Order History',
             FaClock,
-            '#705772'
+            '#70C18C'
           )}
         </div>
 
@@ -40,13 +40,13 @@ export default class BuyerHomePage extends React.Component {
             '/account',
             'Account Information',
             FaUserEdit,
-            '#f38181'
+            '#247BA0'
           )}
           {this.button(
             '/account/payment_methods',
             'Payment Methods',
             FaCreditCard,
-            '#fad284'
+            '#FFE066'
           )}
         </div>
       </RequiresAuthentication>

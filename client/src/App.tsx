@@ -88,22 +88,21 @@ class App extends Component<{}, AppState> {
             <Navigation />
             <Switch>
               <Route exact path="/" component={LandingPage} />
-              <Route path="/register" component={RegistrationNavPage} />
-              <Route component={ErrorPage} />
-              {/* Deliverer */}
+              <Route path="/home" component={BuyerHomePage} />
+              <Route exact path="/register" component={RegistrationNavPage} />
               <Route
                 exact
-                path="/register/deliverer"
+                path="/deliverer/register"
                 component={RegisterDelivererPage}
               />
               <Route
                 exact
-                path="/home/deliverer"
+                path="/deliverer/home"
                 component={DelivererHomePage}
               />
               <Route
                 exact
-                path="/account/deliverer"
+                path="/deliverer/account"
                 component={DelivererAccountInfoPage}
               />
               <Route
@@ -116,27 +115,40 @@ class App extends Component<{}, AppState> {
                 path="/assignments/:id"
                 component={ViewAssignmentPage}
               />
-              {/* Manager */}
-              <Route path="/home/manager" component={ManagerHomePage} />
-              <Route path="/register/manager" component={RegisterManagerPage} />
+              <Route exact path="/manager/home" component={ManagerHomePage} />
               <Route
-                path="/account/manager"
+                exact
+                path="/manager/register"
+                component={RegisterManagerPage}
+              />
+              <Route
+                exact
+                path="/manager/account"
                 component={ManagerAccountInfoPage}
               />
               <Route
+                exact
                 path="/store/:id/orders"
                 component={OutstandingOrdersPage}
               />
-              <Route path="/store/:id/revenue" component={RevenueReportPage} />
               <Route
-                path="/store/:id/inventory"
+                exact
+                path="/manager/store/:id/revenue"
+                component={RevenueReportPage}
+              />
+              <Route
+                exact
+                path="/manager/store/:id/inventory"
                 component={StoreInventoryPage}
               />
-              {/* Buyer */}
-              <Route path="/register/buyer" component={RegisterBuyerPage} />
-              <Route path="/home" component={BuyerHomePage} />
+              <Route
+                exact
+                path="/register/buyer"
+                component={RegisterBuyerPage}
+              />
               <Route exact path="/account" component={AccountInfoPage} />
               <Route
+                exact
                 path="/account/order_history"
                 component={OrderHistoryPage}
               />
@@ -165,6 +177,7 @@ class App extends Component<{}, AppState> {
                 component={ItemListingPage}
               />
               <Route exact path="/store/:id/cart" component={ViewCartPage} />
+              <Route component={ErrorPage} />
             </Switch>
           </div>
         </Router>

@@ -27,16 +27,29 @@ class Navigation extends React.Component {
           return (
             <>
               <div className="nav-bar">
-                <button className="nav-link btn-clear" onClick={this.goBack}>
-                  <img src={backArrows} alt="<<" />
-                </button>
                 <button
                   className="nav-link btn-clear"
+                  onClick={this.goBack}
+                  style={{
+                    marginLeft: '2%',
+                    marginRight: '1%'
+                  }}
+                >
+                  <img src={backArrows} alt="<<" />
+                </button>
+
+                <span style={{ fontSize: '26px' }}>GroceryTech</span>
+                <button
+                  className="nav-link btn-clear"
+                  style={{
+                    marginLeft: 'auto',
+                    marginRight: '3%',
+                    fontSize: '14px'
+                  }}
                   onClick={this.signOut(context.update)}
                 >
                   Sign Out
                 </button>
-                <span style={{ fontSize: '26px' }}>GroceryTech</span>
               </div>
             </>
           );

@@ -18,7 +18,7 @@ ul {
     border-bottom-style: solid;
     border-bottom-width: 1px;
     border-bottom-color: #D6D6D6;
-    color: #705772;
+    color: #247BA0;
 }
 
 .page-header {
@@ -48,13 +48,13 @@ ul {
 .card {
     border-radius: 5px;
     box-shadow: 2px 2px 7px silver;
-    padding: 25px;
+    padding: 50px;
 }
 
 .card-header {
     float: left;
-    color: #705772;
-    font-size: 18px;
+    color: #4b4b4b;
+    font-size: 20px;
     font-weight: bolder;
     display: flex;
 }
@@ -288,7 +288,7 @@ ul {
 
   /* STANDARD COMPONENTS */
   .btn {
-    background-color: #705772;
+    background-color: #247BA0;
     color: #FFFFFF;
     display:inline-flex;
     border-radius: 5px;
@@ -312,7 +312,7 @@ ul {
 .form-input {
     width: 250px;
     height: 30px;
-    border-color: #f38181;
+    border-color: #70C18C;
     border-style: solid;
     border-top-style: none;
     border-left-style: none;
@@ -320,10 +320,11 @@ ul {
     border-width: 1px;
     display: block;
     min-width: 100px;
+    outline: none;
 }
 
 .form-input-label {
-    color: #705772;
+    color: #247BA0;
     text-transform: uppercase;
     font-size: 16px;
     margin-bottom: 5px;
@@ -389,7 +390,7 @@ ul {
 
   .table-header {
     text-transform: uppercase;
-    color: #705772;
+    color: #247BA0;
     letter-spacing: 1px;
   }
 

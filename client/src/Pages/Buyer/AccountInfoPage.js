@@ -71,11 +71,18 @@ export default class AccountInfoPage extends React.Component {
   render() {
     return (
       <React.Fragment>
-        <div className="card block-centered" style={{ marginTop: '8%' }}>
+        <div
+          className="card block-centered"
+          style={{
+            marginTop: '8%',
+            overflow: 'auto',
+            width: '55%'
+          }}
+        >
           <div className="card-header">Tell us about yourself</div>
           <br />
           <br />
-          <form>
+          <form className="flex-col" style={{ marginBottom: '35px' }}>
             <div className="form-row">
               <span style={{ float: 'left' }}>
                 {this.formItem('firstName', 'First Name')}
@@ -89,16 +96,16 @@ export default class AccountInfoPage extends React.Component {
                 {this.formItem('username', 'Username')}
               </span>
               <span style={{ float: 'right' }}>
-                {this.formItem('email', 'Email')}
+                {this.formItem('password', 'Password')}
               </span>
             </div>
 
             <div className="form-row">
               <span style={{ float: 'left' }}>
-                {this.formItem('password', 'Password')}
+                {this.formItem('email', 'Email')}
               </span>
               <span style={{ float: 'right' }}>
-                {this.formItem('confirmPassword', 'Confirm Password')}
+                {this.formItem('phoneNumber', 'Phone Number')}
               </span>
             </div>
 
@@ -118,24 +125,28 @@ export default class AccountInfoPage extends React.Component {
                 {this.formItem('zipcode', 'Zipcode')}
               </span>
             </div>
-            <div style={{ float: 'left', width: '100%' }}>
-              {this.formItem('phoneNumber', 'Phone Number')}
-            </div>
           </form>
-          <button
-            className="btn"
-            onClick={this.handleDelete}
-            style={{ float: 'right' }}
+          <div
+            style={{
+              width: '100%',
+              display: 'flex'
+            }}
           >
-            Delete Account
-          </button>
-          <button
-            className="btn"
-            onClick={this.handleUpdate}
-            style={{ float: 'right' }}
-          >
-            Update Account
-          </button>
+            <button
+              className="btn"
+              style={{ marginLeft: '0px', marginRight: 'auto' }}
+              onClick={this.handleDelete}
+            >
+              Delete Account
+            </button>
+            <button
+              className="btn"
+              style={{ marginRight: '0px', marginLeft: 'auto' }}
+              onClick={this.handleUpdate}
+            >
+              Update Account
+            </button>
+          </div>
         </div>
       </React.Fragment>
     );

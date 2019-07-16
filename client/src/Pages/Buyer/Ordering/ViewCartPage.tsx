@@ -25,7 +25,7 @@ export default class ViewCartPage extends React.Component<Props> {
             return (
               <div>
                 <br />
-                <span className="pageHeader">Cart </span>
+                <span className="page-header">Your Cart </span>
                 <div className="tbl-card">
                   <table className="tbl">
                     <thead>

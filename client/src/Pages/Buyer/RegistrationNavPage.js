@@ -1,8 +1,8 @@
-import React from 'react'
-import { Link } from 'react-router-dom'
+import React from 'react';
+import { Link } from 'react-router-dom';
 
-let coral = '#f38181'
-let green = '#a9eec2'
+let coral = '#f38181';
+let green = '#a9eec2';
 
 export default class RegistrationNavPage extends React.Component {
   render() {
@@ -20,7 +20,7 @@ export default class RegistrationNavPage extends React.Component {
             <div className="card-header">Are you a...</div>
             <br />
             <Link
-              to="/register_buyer"
+              to="/register/buyer"
               style={{
                 display: 'flex',
                 flexDirection: 'row',
@@ -42,7 +42,7 @@ export default class RegistrationNavPage extends React.Component {
             <br />
             <br />
             <Link
-              to="/register_deliverer"
+              to="/deliverer/register"
               style={{
                 display: 'flex',
                 flexDirection: 'row',
@@ -63,7 +63,7 @@ export default class RegistrationNavPage extends React.Component {
             <br />
             <br />
             <Link
-              to="/register_manager"
+              to="/manager/register"
               style={{
                 display: 'flex',
                 flexDirection: 'row',
@@ -85,6 +85,6 @@ export default class RegistrationNavPage extends React.Component {
           </div>
         </div>
       </div>
-    )
+    );
   }
 }
