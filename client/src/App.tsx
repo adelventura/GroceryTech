@@ -52,19 +52,19 @@ class App extends Component {
             <Route path="/register_manager" component={RegisterManagerPage} />
             <Route path="/register" component={RegistrationNavPage} />
             <Route path="/home" component={BuyerHomePage} />
-            <Route path="/account" component={AccountInfoPage} />
-            <Route path="/order_history" component={OrderHistoryPage} />
+            <Route exact path="/account" component={AccountInfoPage} />
+            <Route path="/account/order_history" component={OrderHistoryPage} />
             <Route exact path="/checkout" component={CheckoutPage} />
             <Route exact path="/checkout/receipt" component={ReceiptPage} />
 
             <Route
               exact
-              path="/payment_methods"
+              path="/account/payment_methods"
               component={PaymentMethodsPage}
             />
             <Route
               exact
-              path="/payment_methods/new"
+              path="/account/payment_methods/new"
               component={NewPaymentMethodPage}
             />
 

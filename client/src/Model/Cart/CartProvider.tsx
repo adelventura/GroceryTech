@@ -5,23 +5,7 @@ import {
   CartAddItemAction,
   CartDeleteItemAction
 } from "./CartActions";
-
-var CART = {
-  id: "",
-  items: [
-    {
-      id: "",
-      quantity: 10,
-      item: {
-        id: "000",
-        type: "Beverages",
-        name: "Twinings Tea",
-        description: "English Breakfast Tea",
-        price: 3.99
-      }
-    }
-  ]
-};
+import Config from "../../Config/Config";
 
 type CartAction = CartDeleteAction | CartAddItemAction | CartDeleteItemAction;
 
@@ -38,9 +22,11 @@ class CartProvider extends Component<{
   } = { cart: null };
 
   componentDidMount() {
-    setTimeout(() => {
-      this.setState({ cart: CART });
-    }, 200);
+    const id: String = this.props.storeId;
+
+    fetch(`${Config.baseUrl}/store/${id}/cart`)
+      .then(response => response.json())
+      .then(data => this.setState({ cart: data }));
   }
 
   update = (action: CartAction) => {

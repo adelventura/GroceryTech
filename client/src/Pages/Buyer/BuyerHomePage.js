@@ -26,7 +26,12 @@ export default class BuyerHomePage extends React.Component {
         </p>
         <div className="grid-container-row">
           {this.button('/store', 'New Order', FaShoppingCart, '#a9eec2')}
-          {this.button('/order_history', 'Order History', FaClock, '#705772')}
+          {this.button(
+            '/account/order_history',
+            'Order History',
+            FaClock,
+            '#705772'
+          )}
         </div>
 
         <div className="grid-container-row">
@@ -37,7 +42,7 @@ export default class BuyerHomePage extends React.Component {
             '#f38181'
           )}
           {this.button(
-            '/payment_methods',
+            '/account/payment_methods',
             'Payment Methods',
             FaCreditCard,
             '#fad284'
