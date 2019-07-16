@@ -32,9 +32,6 @@ export default class StoreHomePage extends React.Component<
       <div>
         <FetchStore
           id={id}
-          placeholder={() => {
-            return <Loading />;
-          }}
           content={(store: any) => {
             return (
               <div>

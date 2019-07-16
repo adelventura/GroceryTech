@@ -1,19 +1,16 @@
-import React from 'react'
-import FetchPaymentMethods from '../../../Model/FetchPaymentMethods'
-import Loading from '../../../Components/Loading'
+import React from 'react';
+import FetchPaymentMethods from '../../../Model/FetchPaymentMethods';
+import Loading from '../../../Components/Loading';
 
 export default class CheckoutPage extends React.Component {
   handleOrder = event => {
-    this.props.history.push('/checkout/receipt')
-  }
+    this.props.history.push('/checkout/receipt');
+  };
 
   render() {
     return (
       <React.Fragment>
         <FetchPaymentMethods
-          placeholder={() => {
-            return <Loading />
-          }}
           content={paymentMethods => {
             return (
               <div>
@@ -44,7 +41,7 @@ export default class CheckoutPage extends React.Component {
                                     ')'
                                   : paymentMethod.paymentName}
                               </option>
-                            )
+                            );
                           })}
                         </select>
                       </div>
@@ -96,10 +93,10 @@ export default class CheckoutPage extends React.Component {
                   </div>
                 </div>
               </div>
-            )
+            );
           }}
         />
       </React.Fragment>
-    )
+    );
   }
 }

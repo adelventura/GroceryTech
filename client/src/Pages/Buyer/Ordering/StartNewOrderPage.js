@@ -36,9 +36,6 @@ export default class StartNewOrderPage extends React.Component {
     return (
       <React.Fragment>
         <FetchStores
-          placeholder={() => {
-            return <Loading />;
-          }}
           content={stores => {
             return (
               <div>

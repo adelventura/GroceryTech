@@ -1,5 +1,6 @@
 import React from 'react';
 import Config from '../Config/Config';
+import Loading from '../Components/Loading';
 
 export default class FetchStore extends React.Component {
   constructor(props) {
@@ -22,7 +23,7 @@ export default class FetchStore extends React.Component {
     if (store) {
       return this.props.content(store);
     } else {
-      return this.props.placeholder();
+      return <Loading />;
     }
   }
 }

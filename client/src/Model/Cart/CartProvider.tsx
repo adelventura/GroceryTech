@@ -6,6 +6,7 @@ import {
   CartDeleteItemAction
 } from "./CartActions";
 import Config from "../../Config/Config";
+import Loading from "../../Components/Loading";
 
 type CartAction = CartDeleteAction | CartAddItemAction | CartDeleteItemAction;
 
@@ -15,7 +16,6 @@ class CartProvider extends Component<{
     cart: Cart,
     update: (action: CartAction) => void
   ) => React.ReactElement;
-  placeholder: () => React.ReactElement;
 }> {
   state: {
     cart: Cart | null;
@@ -68,7 +68,7 @@ class CartProvider extends Component<{
     if (cart) {
       return this.props.content(cart, this.update);
     } else {
-      return this.props.placeholder();
+      return <Loading />;
     }
   }
 }

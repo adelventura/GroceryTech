@@ -1,16 +1,11 @@
 import React from 'react';
 import FetchOrders from '../../../Model/FetchOrders';
-import Loading from '../../../Components/Loading';
 
 export default class OrderHistoryPage extends React.Component {
   render() {
     return (
       <React.Fragment>
         <FetchOrders
-          buyerID={1234}
-          placeholder={() => {
-            return <Loading />;
-          }}
           content={history => {
             return (
               <div>

@@ -20,9 +20,6 @@ export default class ViewCartPage extends React.Component<Props> {
       <React.Fragment>
         <CartProvider
           storeId={storeID}
-          placeholder={() => {
-            return <Loading />;
-          }}
           content={cart => {
             return (
               <div>

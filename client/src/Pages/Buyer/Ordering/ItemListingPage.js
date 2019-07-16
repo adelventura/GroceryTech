@@ -1,54 +1,51 @@
-import React from 'react'
-import FetchItems from '../../../Model/FetchItems'
-import Loading from '../../../Components/Loading'
-import CartProvider from '../../../Model/Cart/CartProvider'
+import React from 'react';
+import FetchItems from '../../../Model/FetchItems';
+import Loading from '../../../Components/Loading';
+import CartProvider from '../../../Model/Cart/CartProvider';
 
 export default class ItemListingPage extends React.Component {
   state = {
     selection: {}
-  }
+  };
 
   quantityHandler = item => {
     return event => {
-      let { selection } = this.state
+      let { selection } = this.state;
       selection[item.id] = {
         item: item,
         quantity: event.target.value
-      }
+      };
 
-      this.setState({ selection })
-    }
-  }
+      this.setState({ selection });
+    };
+  };
 
   updateCart = updater => {
     return () => {
       Object.keys(this.state.selection).forEach(key => {
-        const selection = this.state.selection[key]
+        const selection = this.state.selection[key];
 
         updater({
           type: 'add',
           quantity: selection.quantity,
           item: selection.item
-        })
-      })
-    }
-  }
+        });
+      });
+    };
+  };
 
   render() {
-    const { id, category } = this.props.match.params
+    const { id, category } = this.props.match.params;
     return (
       <React.Fragment>
         <CartProvider
-          placeholder={() => {
-            return <Loading />
-          }}
           content={(cart, updater) => {
             return (
               <FetchItems
                 id={id}
                 category={category}
                 placeholder={() => {
-                  return <Loading />
+                  return <Loading />;
                 }}
                 content={items => {
                   return (
@@ -97,7 +94,7 @@ export default class ItemListingPage extends React.Component {
                                   <td>{stock.quantity > 0 ? 'Yes' : 'NO!'}</td>
                                 </tr>
                               </tbody>
-                            )
+                            );
                           })}
                         </table>
                         <br />
@@ -148,13 +145,13 @@ export default class ItemListingPage extends React.Component {
                         </div>
                       </div>
                     </div>
-                  )
+                  );
                 }}
               />
-            )
+            );
           }}
         />
       </React.Fragment>
-    )
+    );
   }
 }

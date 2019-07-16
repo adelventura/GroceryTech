@@ -1,5 +1,6 @@
 import React from 'react';
 import Config from '../Config/Config';
+import Loading from '../Components/Loading';
 
 export default class FetchPaymentMethods extends React.Component {
   constructor(props) {
@@ -22,7 +23,7 @@ export default class FetchPaymentMethods extends React.Component {
     if (paymentMethods) {
       return this.props.content(paymentMethods);
     } else {
-      return this.props.placeholder();
+      return <Loading />;
     }
   }
 }

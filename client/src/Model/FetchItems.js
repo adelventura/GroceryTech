@@ -1,5 +1,6 @@
 import React from 'react';
 import Config from '../Config/Config';
+import Loading from '../Components/Loading';
 
 export default class FetchItems extends React.Component {
   constructor(props) {
@@ -24,7 +25,7 @@ export default class FetchItems extends React.Component {
     if (items) {
       return this.props.content(items);
     } else {
-      return this.props.placeholder();
+      return <Loading />;
     }
   }
 }
