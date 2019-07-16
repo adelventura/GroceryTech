@@ -5,7 +5,7 @@ const USERS = [
   }
 ];
 
-const TOKENS = [];
+const TOKENS = {};
 
 module.exports = {
   USERS,

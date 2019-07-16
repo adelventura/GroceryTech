@@ -7,21 +7,21 @@ var orderHistory = require('../mock_data/mock_orders');
 var users = require('../mock_data/mock_users').USERS;
 var tokens = require('../mock_data/mock_users').TOKENS;
 
-router.post('token', function(req, res, next) {
-  var body = req.body.json();
-  var username = body.username;
-  var password = body.password;
+router.post('/token', function(req, res, next) {
+  var username = req.body.username;
+  var password = req.body.password;
 
   var user = users.find(user => {
     return username == user.username && password == user.password;
   });
 
   if (!user) {
-    res.status(404);
+    res.sendStatus(404);
     return;
   }
 
-  var token = uuidv1();
+  var token = uuid.v1();
+  tokens[token] = user;
   res.json({
     token
   });
