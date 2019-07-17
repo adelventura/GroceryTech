@@ -1,8 +1,6 @@
 import React from "react";
 import CartProvider from "../../../Model/Cart/CartProvider";
-import Loading from "../../../Components/Loading";
 import { RouteComponentProps } from "react-router";
-import Router from "react-router-dom";
 import RequiresAuthentication from "../../../Components/RequiresAuthentication";
 
 type RouteParams = {

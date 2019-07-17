@@ -6,6 +6,7 @@ var ASSIGNMENTS = [
     date: '02-01-2020',
     orderTime: '12:33',
     deliveryTime: 'ASAP',
+    buyerAddress: '123 North St S, Atlanta, GA 30312',
     price: '15.00',
     numItems: '5'
   },
@@ -16,6 +17,7 @@ var ASSIGNMENTS = [
     date: '02-01-2020',
     orderTime: '12:01',
     deliveryTime: 'ASAP',
+    buyerAddress: '123 North St S, Atlanta, GA 30312',
     price: '2.33',
     numItems: '1'
   },
@@ -26,6 +28,7 @@ var ASSIGNMENTS = [
     date: '02-01-2020',
     orderTime: '3:45',
     deliveryTime: 'ASAP',
+    buyerAddress: '123 North St S, Atlanta, GA 30312',
     price: '13.56',
     numItems: '3'
   },
@@ -36,6 +39,7 @@ var ASSIGNMENTS = [
     date: '02-01-2020',
     orderTime: '5:00',
     deliveryTime: '3 hrs',
+    buyerAddress: '123 North St S, Atlanta, GA 30312',
     price: '12.12',
     numItems: '15'
   },
@@ -46,9 +50,76 @@ var ASSIGNMENTS = [
     date: '02-01-2020',
     orderTime: '8:00',
     deliveryTime: '12 hrs',
+    buyerAddress: '123 North St S, Atlanta, GA 30312',
     price: '4.43',
     numItems: '3'
   }
 ];
 
-module.exports = ASSIGNMENTS;
+const ITEMS = [
+  {
+    quantity: 5,
+    item: {
+      id: '011',
+      type: 'produce',
+      name: 'Fuji Apple',
+      price: '1.10',
+      expiration: 'Dec-2020'
+    }
+  },
+  {
+    quantity: 3,
+    item: {
+      id: '032',
+      type: 'produce',
+      name: 'Pear',
+      price: '1.19',
+      expiration: 'Dec-2020'
+    }
+  },
+  {
+    quantity: 2,
+    item: {
+      id: '013',
+      type: 'produce',
+      name: 'Red Bell Pepper',
+      price: '0.79',
+      expiration: 'Dec-2020'
+    }
+  },
+  {
+    quantity: 1,
+    item: {
+      id: '013',
+      type: 'meat',
+      name: 'Ground Beef',
+      price: '4.98',
+      expiration: 'Dec-2020'
+    }
+  },
+  {
+    quantity: 1,
+    item: {
+      id: '013',
+      type: 'Others',
+      name: 'Mixed Nuts',
+      price: '3.50',
+      expiration: 'Dec-2020'
+    }
+  },
+  {
+    quantity: 2,
+    item: {
+      id: '013',
+      type: 'canned goods',
+      name: 'Tomato Soup',
+      price: '3.50',
+      expiration: 'Dec-2020'
+    }
+  }
+];
+
+module.exports = {
+  ASSIGNMENTS,
+  ITEMS
+};
