@@ -23,7 +23,6 @@ export default class AccountInfoPage extends React.Component {
       lastName: 'DelVentura',
       username: 'fez_rulez',
       email: 'tyler_droolz@gmail.com',
-      password: 'password',
       address: '123 North St',
       city: 'Atlanta',
       state: 'GA',
@@ -91,9 +90,6 @@ export default class AccountInfoPage extends React.Component {
             <div className="form-row">
               <span style={{ float: 'left', width: '46%' }}>
                 {this.formItem('username', 'Username')}
-              </span>
-              <span style={{ float: 'right', width: '46%' }}>
-                {this.formItem('password', 'Password')}
               </span>
             </div>
 
