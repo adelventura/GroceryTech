@@ -2,26 +2,28 @@ import React from 'react';
 import Config from '../Config/Config';
 import Loading from '../Components/Loading';
 
-export default class FetchAssignment extends React.Component {
+export default class FetchOrderItems extends React.Component {
   constructor(props) {
     super(props);
 
     this.state = {
-      assignment: undefined
+      items: undefined
     };
   }
 
   componentDidMount() {
-    fetch(`${Config.baseUrl}/assignments/${this.props.id}`)
+    const { id } = this.props;
+
+    fetch(`${Config.baseUrl}/assignment/${id}`)
       .then(response => response.json())
-      .then(data => this.setState({ assignment: data }));
+      .then(data => this.setState({ items: data }));
   }
 
   render() {
-    const { assignment } = this.state;
+    const { items } = this.state;
 
-    if (assignment) {
-      return this.props.content(assignment);
+    if (items) {
+      return this.props.content(items);
     } else {
       return <Loading />;
     }

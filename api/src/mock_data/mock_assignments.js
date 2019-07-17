@@ -1,6 +1,6 @@
 var ASSIGNMENTS = [
   {
-    orderID: '12345',
+    orderID: '24680',
     storeName: 'Publix',
     storeID: '001',
     date: '02-01-2020',
@@ -8,10 +8,72 @@ var ASSIGNMENTS = [
     deliveryTime: 'ASAP',
     buyerAddress: '123 North St S, Atlanta, GA 30312',
     price: '15.00',
-    numItems: '5'
+    numItems: '5',
+    items: [
+      {
+        quantity: 5,
+        item: {
+          id: '011',
+          type: 'produce',
+          name: 'Fuji Apple',
+          price: '1.10',
+          expiration: 'Dec-2020'
+        }
+      },
+      {
+        quantity: 3,
+        item: {
+          id: '032',
+          type: 'produce',
+          name: 'Pear',
+          price: '1.19',
+          expiration: 'Dec-2020'
+        }
+      },
+      {
+        quantity: 2,
+        item: {
+          id: '013',
+          type: 'produce',
+          name: 'Red Bell Pepper',
+          price: '0.79',
+          expiration: 'Dec-2020'
+        }
+      },
+      {
+        quantity: 1,
+        item: {
+          id: '013',
+          type: 'meat',
+          name: 'Ground Beef',
+          price: '4.98',
+          expiration: 'Dec-2020'
+        }
+      },
+      {
+        quantity: 1,
+        item: {
+          id: '013',
+          type: 'Others',
+          name: 'Mixed Nuts',
+          price: '3.50',
+          expiration: 'Dec-2020'
+        }
+      },
+      {
+        quantity: 2,
+        item: {
+          id: '013',
+          type: 'canned goods',
+          name: 'Tomato Soup',
+          price: '3.50',
+          expiration: 'Dec-2020'
+        }
+      }
+    ]
   },
   {
-    orderID: '24680',
+    orderID: '12345',
     storeName: 'Publix',
     storeID: '001',
     date: '02-01-2020',
@@ -19,7 +81,8 @@ var ASSIGNMENTS = [
     deliveryTime: 'ASAP',
     buyerAddress: '123 North St S, Atlanta, GA 30312',
     price: '2.33',
-    numItems: '1'
+    numItems: '1',
+    items: ''
   },
   {
     orderID: '98765',
@@ -30,7 +93,8 @@ var ASSIGNMENTS = [
     deliveryTime: 'ASAP',
     buyerAddress: '123 North St S, Atlanta, GA 30312',
     price: '13.56',
-    numItems: '3'
+    numItems: '3',
+    items: ''
   },
   {
     orderID: '29384',
@@ -41,7 +105,8 @@ var ASSIGNMENTS = [
     deliveryTime: '3 hrs',
     buyerAddress: '123 North St S, Atlanta, GA 30312',
     price: '12.12',
-    numItems: '15'
+    numItems: '15',
+    items: ''
   },
   {
     orderID: '44444',
@@ -52,7 +117,8 @@ var ASSIGNMENTS = [
     deliveryTime: '12 hrs',
     buyerAddress: '123 North St S, Atlanta, GA 30312',
     price: '4.43',
-    numItems: '3'
+    numItems: '3',
+    items: ''
   }
 ];
 

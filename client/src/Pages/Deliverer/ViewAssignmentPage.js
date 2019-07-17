@@ -10,10 +10,6 @@ export default class ViewAssignmentPage extends React.Component {
     };
   }
 
-  onClick = event => {
-    this.props.history.push('/home');
-  };
-
   cell = (label, name, contents) => {
     return (
       <div className="flex-col">
@@ -42,88 +38,102 @@ export default class ViewAssignmentPage extends React.Component {
             return (
               <div>
                 <div className="page-header">Assignment Details</div>
-                <div className="card block-centered" style={{ width: '70%' }}>
-                  {assignment.map(content => {
-                    return (
-                      <div style={{ width: '50%', float: 'left' }}>
-                        {this.cell(
-                          'Order Placed',
-                          'orderTime',
-                          `${content.orderTime}`
-                        )}
-                        {this.cell(
-                          'Delivery Time',
-                          'deliveryTime',
-                          `${content.deliveryTime}`
-                        )}
-                        {this.cell(
-                          'Buyer Address',
-                          'buyerAddress',
-                          `${content.buyerAddress}`
-                        )}
-                        {this.cell(
-                          'Store Name',
-                          'storeName',
-                          `${content.storeName}`
-                        )}
-                        {this.cell('Status', 'status', 'Pending')}
-                      </div>
-                    );
-                  })}
-
-                  {/* right Col */}
-                  <div style={{ width: '50%', float: 'right' }}>
-                    <div className="flex-col">
-                      <div className="flex-row" style={{ width: '100%' }}>
-                        <h3 className="form-input-label">Item</h3>
-                        <h3 className="form-input-label">Quantity</h3>
-                      </div>
-
-                      <div style={{ width: '100%' }}>
-                        <input
-                          className="form-input"
-                          name="deliverTime"
-                          type="text"
-                          placeholder="Delivery time"
-                          disabled
-                        />
-                      </div>
-
-                      <div style={{ width: '100%' }}>
-                        <input
-                          className="form-input"
-                          name="deliverer"
-                          type="text"
-                          placeholder="Deliverer's Name"
-                          disabled
-                        />
-                      </div>
-
-                      <div style={{ width: '100%' }}>
-                        <input
-                          className="form-input"
-                          name="number-items"
-                          type="text"
-                          placeholder="Number of items"
-                          disabled
-                        />
-                      </div>
-
-                      <div style={{ width: '100%' }}>
-                        <input
-                          className="form-input"
-                          name="order-time"
-                          type="text"
-                          placeholder="Time of order"
-                          disabled
-                        />
-                      </div>
+                <div
+                  className="card block-centered"
+                  style={{ width: '70%', maxWidth: '700px' }}
+                >
+                  <div
+                    style={{
+                      display: 'block',
+                      width: '100%',
+                      height: '100%',
+                      marginBottom: '25px'
+                    }}
+                  >
+                    <div style={{ width: '45%', float: 'left' }}>
+                      {this.cell(
+                        'Order Placed',
+                        'orderTime',
+                        `${assignment.orderTime}`
+                      )}
+                      {this.cell(
+                        'Delivery Time',
+                        'deliveryTime',
+                        `${assignment.deliveryTime}`
+                      )}
+                      {this.cell(
+                        'Buyer Address',
+                        'buyerAddress',
+                        `${assignment.buyerAddress}`
+                      )}
+                      {this.cell(
+                        'Store Name',
+                        'storeName',
+                        `${assignment.storeName}`
+                      )}
+                      {this.cell('Status', 'status', 'Pending')}
+                    </div>
+                    {/* right Col */}
+                    <div
+                      style={{
+                        width: '46%',
+                        float: 'right'
+                      }}
+                    >
+                      <table
+                        className="mini-tbl"
+                        style={{ paddingTop: '5px', marginBottom: '40px' }}
+                      >
+                        <thead className="form-input-label">
+                          <th
+                            style={{
+                              width: '30%',
+                              borderBottom: '.5px solid #70C18C'
+                            }}
+                          >
+                            Quantity
+                          </th>
+                          <th
+                            style={{
+                              width: '70%',
+                              borderBottom: '.5px solid #70C18C'
+                            }}
+                          >
+                            Item
+                          </th>
+                        </thead>
+                        {assignment.items.map(item => {
+                          return (
+                            <tbody>
+                              <tr>
+                                <td
+                                  style={{
+                                    textAlign: 'center',
+                                    border: '.5px solid #70C18C'
+                                  }}
+                                >
+                                  {item.quantity}
+                                </td>
+                                <td
+                                  style={{
+                                    border: '.5px solid #70C18C'
+                                  }}
+                                >
+                                  {item.item.name}
+                                </td>
+                              </tr>
+                            </tbody>
+                          );
+                        })}
+                      </table>
                     </div>
                   </div>
                   <button
                     className="btn"
-                    //onClick={this.handleUpdate}
-                    style={{ float: 'right' }}
+                    style={{
+                      float: 'right',
+                      marginTop: '20px'
+                    }}
                     onClick={this.onClick}
                   >
                     Update Status
