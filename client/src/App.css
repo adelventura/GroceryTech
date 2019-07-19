@@ -11,24 +11,22 @@ ul {
 .nav-bar {
     display: flex;
     flex-direction: row;
-    justify-content: space-around;
-    align-items: space-between;
+    justify-content: space-between;
     background: #FFFFFF;
-    padding: 10px;
+    padding: 20px;
     margin: 0px;
     border-bottom-style: solid;
     border-bottom-width: 1px;
     border-bottom-color: #D6D6D6;
     color: #247BA0;
+    box-shadow: 0 0 5px -1px rgba(0,0,0,0.2);
+
 }
 
 .page-header {
   display: block;
     text-align: left;
-    margin-left: 10%;
-    margin-right: auto;
-    margin-bottom: 4%;
-    margin-top: 4%;
+    float: left;
     font-size: 24px;
     font-weight: bold;
     color: #666666;
@@ -46,6 +44,22 @@ ul {
     color: inherit;
 }
 
+.circle {
+  width: 30px;
+  height: 30px;
+  border-color: #247BA0;
+  border-style: solid;
+  border-width: 1px;
+  background: white;
+  border-radius: 50%;
+  padding-right: 2px;
+  padding-top: 2px;
+  display: flex;
+  justify-content: center;
+  align-content: center;
+  box-shadow: 0 0 5px -1px rgba(0,0,0,0.2);
+
+}
 
 .card-header {
     float: left;
@@ -277,12 +291,13 @@ ul {
 
   /* STANDARD COMPONENTS */
   .btn {
-    background-color: #247BA0;
+    /*background-color: #247BA0;
     color: #FFFFFF;
     display:inline-flex;
     border-radius: 5px;
     border-style: none;
     box-shadow: 0 0 5px -1px rgba(0,0,0,0.2);
+    */
     cursor:pointer;
     vertical-align:middle;
     min-width: 50px;
@@ -290,6 +305,9 @@ ul {
     padding: 5px;
     text-align: center;
     font-size: 17px;
+    color: #247BA0;
+    background-color: #FFFFFF;
+    border-style: none;
 }
 
 .no-border {
@@ -361,12 +379,14 @@ ul {
   .tbl {
     table-layout: fixed;
     border-collapse: collapse;
-    display: block;
-    margin-left: auto;
-    margin-right: auto;
+    padding-left: 25px;
+    padding-right: 25px;
+    margin-top: 25px;
+    margin-bottom: 20px;
+    min-width: 100%;
   }
 
-  thead th:nth-child(1) {
+  /* thead th:nth-child(1) {
     width: 30%;
   }
 
@@ -381,7 +401,7 @@ ul {
   thead th:nth-child(4) {
     width: 12%;
     text-align: center;
-  }
+  } */
 
   tbody td:nth-child(5) {
     text-align: center;
@@ -400,6 +420,7 @@ ul {
     text-transform: uppercase;
     color: #247BA0;
     letter-spacing: 1px;
+    font-size: 16px;
   }
 
   td {

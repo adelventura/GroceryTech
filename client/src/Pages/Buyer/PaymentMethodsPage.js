@@ -50,11 +50,19 @@ export default class PaymentMethodsPage extends React.Component {
                 <div className="tbl-card">
                   <table className="tbl">
                     <thead>
-                      <tr className="table-header">
-                        <th scope="col">Pament Name</th>
-                        <th scope="col">Account Number</th>
-                        <th scope="col">Routing Number</th>
-                        <th scope="col">Default</th>
+                      <tr className="table-header" style={{ width: '100%' }}>
+                        <th scope="col" style={{ width: '30%' }}>
+                          Pament Name
+                        </th>
+                        <th scope="col" style={{ width: '30%' }}>
+                          Account Number
+                        </th>
+                        <th scope="col" style={{ width: '30%' }}>
+                          Routing Number
+                        </th>
+                        <th scope="col" style={{ width: '10%' }}>
+                          Default
+                        </th>
                       </tr>
                     </thead>
                     {paymentMethods.map(paymentMethod => {

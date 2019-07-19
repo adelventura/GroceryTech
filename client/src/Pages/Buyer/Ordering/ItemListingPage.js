@@ -1,6 +1,7 @@
 import React from 'react';
 import FetchItems from '../../../Model/FetchItems';
 import Loading from '../../../Components/Loading';
+import CartBadge from '../../../Components/CartBadge';
 import CartProvider from '../../../Model/Cart/CartProvider';
 import RequiresAuthentication from '../../../Components/RequiresAuthentication';
 
@@ -52,17 +53,44 @@ export default class ItemListingPage extends React.Component {
                   return (
                     <div>
                       <br />
-                      <span className="pageHeader">Inventory > </span>
-                      {category}
+                      <div
+                        style={{
+                          width: '89%',
+                          marginTop: '25px',
+                          marginLeft: 'auto',
+                          marginRight: 'auto',
+                          display: 'flex',
+                          flexDirection: 'row',
+                          justifyContent: 'space-between'
+                        }}
+                      >
+                        <div className="page-header">
+                          Inventory > {category}
+                        </div>
+                        <CartBadge
+                          link={'/store/' + `${id}` + '/cart'}
+                          style={{ display: 'block', float: 'right' }}
+                        />
+                      </div>
                       <div className="tbl-card">
                         <table className="tbl">
                           <thead>
                             <tr className="table-header">
-                              <th scope="col">Item Name</th>
-                              <th scope="col">Description</th>
-                              <th scope="col">Expiration Date</th>
-                              <th scope="col">Price</th>
-                              <th scope="col">In Stock</th>
+                              <th scope="col" style={{ width: '23%' }}>
+                                Item Name
+                              </th>
+                              <th scope="col" style={{ width: '35%' }}>
+                                Description
+                              </th>
+                              <th scope="col" style={{ width: '20%' }}>
+                                Expiration Date
+                              </th>
+                              <th scope="col" style={{ width: '10%' }}>
+                                Price
+                              </th>
+                              <th scope="col" style={{ width: '12%' }}>
+                                In Stock
+                              </th>
                             </tr>
                           </thead>
                           {items.map(stock => {
@@ -91,7 +119,7 @@ export default class ItemListingPage extends React.Component {
                                   </td>
                                   <td>{stock.item.description}</td>
                                   <td>{stock.item.expiration}</td>
-                                  <td>{stock.item.price}</td>
+                                  <td>{stock.item.retailPrice}</td>
                                   <td>{stock.quantity > 0 ? 'Yes' : 'NO!'}</td>
                                 </tr>
                               </tbody>
