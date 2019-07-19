@@ -9,18 +9,52 @@ export default class OutstandingOrdersPage extends React.Component {
           return (
             <div>
               <br />
-              <div className="page-header">Outstanding Orders</div>
+              <div className="header-block">
+                <div className="page-header">Outstanding Orders</div>
+              </div>
               <div className="tbl-card">
                 <table className="tbl">
                   <thead>
                     <tr className="table-header">
-                      <th scope="col">Store Name</th>
-                      <th scope="col">Store Address</th>
-                      <th scope="col">Order ID</th>
-                      <th scope="col">Date</th>
-                      <th scope="col">Total Price</th>
-                      <th scope="col">Total Number of Items</th>
-                      <th scope="col">Delivery Address</th>
+                      <th scope="col" style={{ width: '6%', fontSize: '15px' }}>
+                        Store Name
+                      </th>
+                      <th
+                        scope="col"
+                        style={{
+                          width: '30%',
+                          fontSize: '15px'
+                        }}
+                      >
+                        Store Address
+                      </th>
+                      <th
+                        scope="col"
+                        style={{ width: '10%', fontSize: '15px' }}
+                      >
+                        Order ID
+                      </th>
+                      <th
+                        scope="col"
+                        style={{ width: '10%', fontSize: '15px' }}
+                      >
+                        Date
+                      </th>
+                      <th scope="col" style={{ width: '7%', fontSize: '15px' }}>
+                        Total Price
+                      </th>
+                      <th scope="col" style={{ width: '7%', fontSize: '15px' }}>
+                        Total Items
+                      </th>
+                      <th
+                        scope="col"
+                        style={{
+                          width: '30%',
+                          fontSize: '15px'
+                        }}
+                      >
+                        Delivery Address
+                      </th>
                     </tr>
                   </thead>
                   {outstandingOrders.map(order => {

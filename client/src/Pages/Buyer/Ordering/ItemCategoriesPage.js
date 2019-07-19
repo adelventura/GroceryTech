@@ -41,9 +41,21 @@ export default class ItemCategoriesPage extends React.Component {
   render() {
     return (
       <RequiresAuthentication>
-        <p className="page-header">
-          Item Lookup <br />
-        </p>
+        <div className="header-block">
+          <div className="page-header">Checkout</div>
+          <Link to="/checkout">
+            <div
+              className="btn"
+              style={{
+                display: 'block',
+                marginRight: '20%',
+                marginLeft: 'auto'
+              }}
+            >
+              Checkout
+            </div>
+          </Link>
+        </div>
         <div className="grid">
           <div className="grid-column-left">
             {this.button('Beverages', FaGlassWhiskey, coral)}
@@ -61,15 +73,6 @@ export default class ItemCategoriesPage extends React.Component {
             {this.button('Other', FaPastafarianism, purple)}
           </div>
         </div>
-
-        <Link to="/checkout">
-          <div
-            className="btn"
-            style={{ display: 'block', marginRight: '20%', marginLeft: 'auto' }}
-          >
-            Checkout
-          </div>
-        </Link>
       </RequiresAuthentication>
     );
   }

@@ -41,7 +41,9 @@ export default class StartNewOrderPage extends React.Component {
             return (
               <div>
                 <br />
-                <div className="page-header">List of Stores</div>
+                <div className="header-block">
+                  <div className="page-header">List of Stores</div>
+                </div>
                 <div className="tbl-card">
                   <table className="tbl">
                     <thead>
@@ -56,7 +58,7 @@ export default class StartNewOrderPage extends React.Component {
                       return (
                         <tbody key={store.id}>
                           <tr>
-                            <th scope="row">
+                            <th scope="row" style={{ textAlign: 'left' }}>
                               <form
                                 style={{
                                   display: 'inline'

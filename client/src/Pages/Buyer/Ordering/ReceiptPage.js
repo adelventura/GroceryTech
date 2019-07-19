@@ -9,8 +9,13 @@ export default class ReceiptPage extends React.Component {
   render() {
     return (
       <RequiresAuthentication>
-        <div className="page-header">Receipt</div>
-        <div className="card block-centered" style={{ width: '40%' }}>
+        <div className="header-block">
+          <div className="page-header">Receipt</div>
+        </div>{' '}
+        <div
+          className="card block-centered"
+          style={{ width: '40%', marginTop: '25px' }}
+        >
           <div className="flex-col">
             <div style={{ width: '100%', float: 'left' }}>
               <h3 className="form-input-label">Order Number</h3>

@@ -70,12 +70,15 @@ export default class AccountInfoPage extends React.Component {
   render() {
     return (
       <React.Fragment>
-        <div className="page-header">Your Account Information</div>
+        <div className="header-block">
+          <div className="page-header">Your Account Information</div>
+        </div>{' '}
         <div
           className="card block-centered"
           style={{
             overflow: 'auto',
-            width: '55%'
+            width: '55%',
+            marginTop: '25px'
           }}
         >
           <form className="flex-col" style={{ marginBottom: '35px' }}>

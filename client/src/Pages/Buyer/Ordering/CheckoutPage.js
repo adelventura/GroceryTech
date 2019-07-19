@@ -14,8 +14,9 @@ export default class CheckoutPage extends React.Component {
           content={paymentMethods => {
             return (
               <div>
-                <h3 className="pageHeader">Checkout</h3>
-
+                <div className="header-block">
+                  <div className="page-header">Checkout</div>
+                </div>
                 <div className="checkout-card">
                   <h3
                     className="card-header"

@@ -37,9 +37,9 @@ export default class StoreHomePage extends React.Component<
             content={(store: any) => {
               return (
                 <div>
-                  <p className="page-header">
-                    Welcome to {store.name} <br />
-                  </p>
+                  <div className="header-block">
+                    <div className="page-header">Welcome to {store.name}</div>
+                  </div>
                   <div className="block-centered">
                     <div className="grid-container-row">
                       <NavCard

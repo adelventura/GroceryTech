@@ -53,11 +53,12 @@ export default class LandingPage extends React.Component {
 
           return (
             <>
-              <div className="page-header">Welcome to GroceryTech</div>
-
+              <div className="header-block">
+                <div className="page-header">Welcome to GroceryTech</div>
+              </div>
               <div
                 className="card block-centered"
-                style={{ width: '35%', overflow: 'auto' }}
+                style={{ width: '35%', overflow: 'auto', marginTop: '25px' }}
               >
                 <div className="flex-col">
                   <div style={{ width: '100%', marginBottom: '20px' }}>

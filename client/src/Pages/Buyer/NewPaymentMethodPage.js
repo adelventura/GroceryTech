@@ -4,11 +4,14 @@ export default class NewPaymentMethodPage extends React.Component {
   render() {
     return (
       <React.Fragment>
-        <div className="page-header">Add a new payment method</div>
+        <div className="header-block">
+          <div className="page-header">Add a New Payment Method</div>
+        </div>{' '}
         <div
           className="card block-centered"
           style={{
-            width: '30%'
+            width: '30%',
+            marginTop: '25px'
           }}
         >
           <div className="flex-col">
@@ -17,7 +20,7 @@ export default class NewPaymentMethodPage extends React.Component {
                 display: 'block',
                 marginLeft: 'auto',
                 marginRight: 'auto',
-                paddingTop: '30px',
+                paddingTop: '20px',
                 width: '100%'
               }}
             >

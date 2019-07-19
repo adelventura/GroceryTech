@@ -5,9 +5,14 @@ export default class RegistrationNavPage extends React.Component {
   render() {
     return (
       <div>
-        <div className="page-header">Register New Account</div>
+        <div className="header-block">
+          <div className="page-header">Register New Account</div>
+        </div>
         <div className="block-centered">
-          <div className="card flex-col" style={{ maxWidth: '400px' }}>
+          <div
+            className="card flex-col"
+            style={{ maxWidth: '400px', marginTop: '25px' }}
+          >
             <div
               style={{
                 display: 'flex',

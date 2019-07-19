@@ -53,17 +53,7 @@ export default class ItemListingPage extends React.Component {
                   return (
                     <div>
                       <br />
-                      <div
-                        style={{
-                          width: '89%',
-                          marginTop: '25px',
-                          marginLeft: 'auto',
-                          marginRight: 'auto',
-                          display: 'flex',
-                          flexDirection: 'row',
-                          justifyContent: 'space-between'
-                        }}
-                      >
+                      <div className="header-block">
                         <div className="page-header">
                           Inventory > {category}
                         </div>
@@ -97,7 +87,7 @@ export default class ItemListingPage extends React.Component {
                             return (
                               <tbody>
                                 <tr>
-                                  <td>
+                                  <td style={{ textAlign: 'left' }}>
                                     <input
                                       type="number"
                                       onChange={this.quantityHandler(

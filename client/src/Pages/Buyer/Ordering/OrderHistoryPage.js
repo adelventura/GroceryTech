@@ -11,7 +11,9 @@ export default class OrderHistoryPage extends React.Component {
             return (
               <div>
                 <br />
-                <div className="page-header">Order History </div>
+                <div className="header-block">
+                  <div className="page-header">Checkout</div>
+                </div>
                 <div className="tbl-card">
                   <table className="tbl">
                     <thead>

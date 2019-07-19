@@ -22,9 +22,9 @@ export default class BuyerHomePage extends React.Component {
   render() {
     return (
       <RequiresAuthentication>
-        <p className="page-header">
-          Your Buyer Homepage <br />
-        </p>
+        <div className="header-block">
+          <div className="page-header">Homepage</div>
+        </div>
         <div className="grid-container-row">
           {this.button('/store', 'New Order', FaShoppingCart, '#F25F5C')}
           {this.button(

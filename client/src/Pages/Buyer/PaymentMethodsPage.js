@@ -46,7 +46,9 @@ export default class PaymentMethodsPage extends React.Component {
           content={paymentMethods => {
             return (
               <div>
-                <div className="page-header"> Payment Methods </div>
+                <div className="header-block">
+                  <div className="page-header">Payment Methods</div>
+                </div>
                 <div className="tbl-card">
                   <table className="tbl">
                     <thead>
@@ -69,7 +71,7 @@ export default class PaymentMethodsPage extends React.Component {
                       return (
                         <tbody>
                           <tr>
-                            <td>
+                            <td style={{ textAlign: 'left' }}>
                               <form
                                 style={{
                                   display: 'inline'

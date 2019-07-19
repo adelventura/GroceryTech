@@ -31,9 +31,10 @@ export default class RegisterDelivererPage extends React.Component {
   render() {
     return (
       <React.Fragment>
-        <div className="page-header">Register New Deliverer Account</div>
-
-        <div className="card block-centered">
+        <div className="header-block">
+          <div className="page-header">Register New Deliverer Account</div>
+        </div>
+        <div className="card block-centered" style={{ marginTop: '25px' }}>
           <div className="card-header">Tell us about yourself</div>
           <br />
           <br />
