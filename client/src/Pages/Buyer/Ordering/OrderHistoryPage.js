@@ -1,12 +1,12 @@
 import React from 'react';
-import FetchOrders from '../../../Model/FetchOrders';
+import FetchOrderHistory from '../../../Model/FetchOrderHistory';
 import RequiresAuthentication from '../../../Components/RequiresAuthentication';
 
 export default class OrderHistoryPage extends React.Component {
   render() {
     return (
       <RequiresAuthentication>
-        <FetchOrders
+        <FetchOrderHistory
           content={history => {
             return (
               <div>

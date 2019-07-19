@@ -2,7 +2,7 @@ import React from 'react';
 import Config from '../Config/Config';
 import Loading from '../Components/Loading';
 
-export default class FetchOrders extends React.Component {
+export default class FetchOrderHistory extends React.Component {
   constructor(props) {
     super(props);
 

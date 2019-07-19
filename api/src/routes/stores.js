@@ -4,6 +4,7 @@ var router = express.Router();
 var stores = require('../mock_data/mock_stores');
 var inventory = require('../mock_data/mock_inventory');
 var cart = require('../mock_data/mock_cart');
+var orders = require('../mock_data/mock_orders');
 
 router.get('/', function(req, res, next) {
   res.json(stores);
@@ -36,6 +37,18 @@ router.get('/:id/inventory', function(req, res, next) {
   // var storeID = req.params.id;
 
   res.json(inventory);
+});
+
+router.get('/:id/orders/outstanding', function(req, res, next) {
+  // TODO: all stores sharing the same inventory for now ...
+  // var storeID = req.params.id;
+  var id = req.params.id;
+
+  var outstandingOrders = orders.find(order => {
+    return !order.delivered;
+  });
+
+  res.json(outstandingOrders);
 });
 
 router.get('/:id/cart', function(req, res, next) {
