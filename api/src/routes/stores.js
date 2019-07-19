@@ -39,12 +39,12 @@ router.get('/:id/inventory', function(req, res, next) {
   res.json(inventory);
 });
 
-router.get('/:id/orders/outstanding', function(req, res, next) {
+router.get('/:id/orders', function(req, res, next) {
   // TODO: all stores sharing the same inventory for now ...
   // var storeID = req.params.id;
   var id = req.params.id;
 
-  var outstandingOrders = orders.find(order => {
+  var outstandingOrders = orders.filter(order => {
     return !order.delivered;
   });
 

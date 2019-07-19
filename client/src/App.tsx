@@ -128,7 +128,7 @@ class App extends Component<{}, AppState> {
               />
               <Route
                 exact
-                path="/store/:id/orders"
+                path="/stores/:id/orders"
                 component={OutstandingOrdersPage}
               />
               <Route

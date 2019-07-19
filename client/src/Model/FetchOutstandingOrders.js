@@ -12,7 +12,7 @@ export default class FetchOutstandingOrders extends React.Component {
   }
 
   componentDidMount() {
-    fetch(`${Config.baseUrl}/store/:id/orders/outstanding`, {
+    fetch(`${Config.baseUrl}/store/:id/orders`, {
       headers: { Authorization: this.props.token }
     })
       .then(response => response.json())
@@ -20,10 +20,10 @@ export default class FetchOutstandingOrders extends React.Component {
   }
 
   render() {
-    const { orders } = this.state;
+    const { outstandingOrders } = this.state;
 
-    if (orders) {
-      return this.props.content(orders);
+    if (outstandingOrders) {
+      return this.props.content(outstandingOrders);
     } else {
       return <Loading />;
     }
