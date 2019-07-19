@@ -40,12 +40,7 @@ export default class ManagerHomePage extends React.Component {
           )}
         </div>
         <div className="grid-container-row">
-          {this.button(
-            '/manager/store/:id/inventory',
-            'Inventory',
-            FaBoxes,
-            '#247BA0'
-          )}
+          {this.button('/store/:id/inventory', 'Inventory', FaBoxes, '#247BA0')}
           {this.button(
             '/store/:id/orders',
             'Outstanding Orders',

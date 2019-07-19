@@ -31,6 +31,13 @@ router.get('/:id/search/:category', function(req, res, next) {
   res.json(items);
 });
 
+router.get('/:id/inventory', function(req, res, next) {
+  // TODO: all stores sharing the same inventory for now ...
+  // var storeID = req.params.id;
+
+  res.json(inventory);
+});
+
 router.get('/:id/cart', function(req, res, next) {
   res.json(cart);
 });

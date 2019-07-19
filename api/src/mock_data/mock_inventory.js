@@ -6,7 +6,8 @@ const INVENTORY = [
       type: 'beverages',
       name: 'Dasani Water',
       description: '1.5L bottled water',
-      price: '4.69',
+      retailPrice: '4.69',
+      wholesalePrice: '3.69',
       expiration: 'Dec-2020'
     }
   },
@@ -17,7 +18,8 @@ const INVENTORY = [
       type: 'beverages',
       name: 'Sprite',
       description: 'Lemon lime soft drinks, 12 fl oz, 12 pack',
-      price: '3.99',
+      retailPrice: '3.99',
+      wholesalePrice: '2.99',
       expiration: 'Dec-2020'
     }
   },
@@ -28,7 +30,8 @@ const INVENTORY = [
       type: 'beverages',
       name: 'Coke',
       description: 'Coca Cola cherry coke, 12 oz, 12 pack',
-      price: '3.98',
+      retailPrice: '3.98',
+      wholesalePrice: '2.98',
       expiration: 'Dec-2020'
     }
   },
@@ -39,7 +42,8 @@ const INVENTORY = [
       type: 'canned goods',
       name: 'Bushs Vegetarian Baked Beans',
       description: 'Pepsi, bottles 16.9 fl oz, 6 pack',
-      price: '2.48',
+      retailPrice: '2.48',
+      wholesalePrice: '1.48',
       expiration: 'Dec-2020'
     }
   },
@@ -50,7 +54,8 @@ const INVENTORY = [
       type: 'canned goods',
       name: 'Green Giant Sweet Peas',
       description: 'Diet Lipton Green Tea, citrus, 12 count, 16.9 fl oz',
-      price: '4.98',
+      retailPrice: '4.98',
+      wholesalePrice: '3.98',
       expiration: 'Dec-2020',
       in_stock: true
     }
@@ -62,7 +67,8 @@ const INVENTORY = [
       type: 'canned goods',
       name: 'Hunts Diced Tomatoes',
       description: '1.5L bottled water',
-      price: '1.69',
+      retailPrice: '1.69',
+      wholesalePrice: '0.69',
       expiration: 'Dec-2020'
     }
   },
@@ -73,7 +79,8 @@ const INVENTORY = [
       type: 'produce',
       name: 'Meyer Lemon',
       description: 'Lemon lime soft drinks, 12 fl oz, 12 pack',
-      price: '0.99',
+      retailPrice: '1.99',
+      wholesalePrice: '0.99',
       expiration: 'Dec-2020'
     }
   },
@@ -84,7 +91,8 @@ const INVENTORY = [
       type: 'produce',
       name: 'Green Kale',
       description: 'Coca Cola cherry coke, 12 oz, 12 pack',
-      price: '1.98',
+      retailPrice: '1.98',
+      wholesalePrice: '0.98',
       expiration: 'Dec-2020'
     }
   },
@@ -95,7 +103,8 @@ const INVENTORY = [
       type: 'produce',
       name: 'Honecrisp Apple',
       description: 'Pepsi, bottles 16.9 fl oz, 6 pack',
-      price: '1.29',
+      retailPrice: '1.29',
+      wholesalePrice: '0.29',
       expiration: 'Dec-2020'
     }
   },
@@ -106,7 +115,8 @@ const INVENTORY = [
       type: 'dairy',
       name: 'Sargento Mild Cheddar Cheese',
       description: 'Diet Lipton Green Tea, citrus, 12 count, 16.9 fl oz',
-      price: '3.88',
+      retailPrice: '3.88',
+      wholesalePrice: '2.88',
       expiration: 'Dec-2020',
       in_stock: true
     }
@@ -118,7 +128,8 @@ const INVENTORY = [
       type: 'dairy',
       name: 'Chobani Yogurt',
       description: '1.5L bottled water',
-      price: '2.33',
+      retailPrice: '2.33',
+      wholesalePrice: '1.33',
       expiration: 'Dec-2020'
     }
   },
@@ -129,7 +140,8 @@ const INVENTORY = [
       type: 'dairy',
       name: 'Mayfield 2% Milk',
       description: 'Lemon lime soft drinks, 12 fl oz, 12 pack',
-      price: '2.99',
+      retailPrice: '2.99',
+      wholesalePrice: '1.99',
       expiration: 'Dec-2020'
     }
   },
@@ -140,7 +152,8 @@ const INVENTORY = [
       type: 'baking goods',
       name: 'Domino Brown Sugar',
       description: 'Coca Cola cherry coke, 12 oz, 12 pack',
-      price: '3.98',
+      retailPrice: '3.98',
+      wholesalePrice: '2.98',
       expiration: 'Dec-2020'
     }
   },
@@ -151,7 +164,8 @@ const INVENTORY = [
       type: 'baking goods',
       name: 'Clabber Girl Baking Powder',
       description: 'Pepsi, bottles 16.9 fl oz, 6 pack',
-      price: '2.98',
+      retailPrice: '2.98',
+      wholesalePrice: '1.98',
       expiration: 'Dec-2020'
     }
   },
@@ -162,7 +176,8 @@ const INVENTORY = [
       type: 'baking goods',
       name: 'White Lily All-Purpose Flour',
       description: 'Diet Lipton Green Tea, citrus, 12 count, 16.9 fl oz',
-      price: '5.51',
+      retailPrice: '5.51',
+      wholesalePrice: '4.51',
       expiration: 'Dec-2020'
     }
   }

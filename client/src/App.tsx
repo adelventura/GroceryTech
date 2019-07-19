@@ -138,7 +138,7 @@ class App extends Component<{}, AppState> {
               />
               <Route
                 exact
-                path="/manager/store/:id/inventory"
+                path="/store/:id/inventory"
                 component={StoreInventoryPage}
               />
               <Route
