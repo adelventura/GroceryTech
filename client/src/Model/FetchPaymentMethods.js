@@ -12,7 +12,9 @@ export default class FetchPaymentMethods extends React.Component {
   }
 
   componentDidMount() {
-    fetch(`${Config.baseUrl}/account/payment_methods`)
+    fetch(`${Config.baseUrl}/account/payment_methods`, {
+      headers: { Authorization: this.props.token }
+    })
       .then(response => response.json())
       .then(data => this.setState({ paymentMethods: data }));
   }

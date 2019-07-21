@@ -2,7 +2,7 @@ import React from 'react';
 import Config from '../Config/Config';
 import Loading from '../Components/Loading';
 
-export default class FetchStores extends React.Component {
+export default class FetchInventory extends React.Component {
   constructor(props) {
     super(props);
 
@@ -12,7 +12,7 @@ export default class FetchStores extends React.Component {
   }
 
   componentDidMount() {
-    fetch(`${Config.baseUrl}/store/:id/inventory`)
+    fetch(`${Config.baseUrl}/store/${this.props.id}/inventory`)
       .then(response => response.json())
       .then(data => this.setState({ inventory: data }));
   }

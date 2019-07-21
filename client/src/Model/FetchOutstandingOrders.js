@@ -12,7 +12,7 @@ export default class FetchOutstandingOrders extends React.Component {
   }
 
   componentDidMount() {
-    fetch(`${Config.baseUrl}/store/:id/orders`, {
+    fetch(`${Config.baseUrl}/manager/orders`, {
       headers: { Authorization: this.props.token }
     })
       .then(response => response.json())

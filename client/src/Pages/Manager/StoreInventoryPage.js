@@ -36,8 +36,7 @@ export default class StoreInventoryPage extends React.Component {
   };
 
   render() {
-    const id = this.props.match.params;
-    this.setState.storeID = id;
+    const { id } = this.props.match.params;
     const selectedId = this.state.selectedId;
 
     return (
@@ -66,7 +65,7 @@ export default class StoreInventoryPage extends React.Component {
                         <th scope="col">Expiration Date</th>
                       </tr>
                     </thead>
-                    {items.map(stock => {
+                    {items.map(item => {
                       return (
                         <tbody>
                           <tr>
@@ -75,20 +74,20 @@ export default class StoreInventoryPage extends React.Component {
                                 <input
                                   type="radio"
                                   name="item"
-                                  value={stock.item.id}
-                                  checked={selectedId === stock.item.id}
-                                  onChange={this.selectHandler(stock.item.id)}
-                                  onClick={this.selectHandler(stock.item.id)}
+                                  value={item.id}
+                                  checked={selectedId === item.id}
+                                  onChange={this.selectHandler(item.id)}
+                                  onClick={this.selectHandler(item.id)}
                                   style={{ marginRight: '10px' }}
                                 />
                               </form>
-                              {stock.item.name}
+                              {item.name}
                             </td>
-                            <td>{stock.item.description}</td>
-                            <td>{stock.quantity}</td>
-                            <td>{stock.item.retailPrice}</td>
-                            <td>{stock.item.wholesalePrice}</td>
-                            <td>{stock.item.expiration}</td>
+                            <td>{item.description}</td>
+                            <td>{item.quantity}</td>
+                            <td>{item.retailPrice}</td>
+                            <td>{item.wholesalePrice}</td>
+                            <td>{item.expiration}</td>
                           </tr>
                         </tbody>
                       );

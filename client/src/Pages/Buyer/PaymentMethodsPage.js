@@ -37,6 +37,7 @@ export default class PaymentMethodsPage extends React.Component {
 
   render() {
     const selectedPayment = this.state.selectedPayment;
+
     return (
       <React.Fragment>
         <FetchPaymentMethods
