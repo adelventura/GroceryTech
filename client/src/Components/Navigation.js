@@ -14,7 +14,7 @@ class Navigation extends React.Component {
     this.props.history.goBack();
   }
 
-  signOut = update => {
+  signOut = () => {
     userManager.update(null);
     this.props.history.replace(`/`);
   };

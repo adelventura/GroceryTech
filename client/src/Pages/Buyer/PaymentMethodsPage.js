@@ -81,22 +81,21 @@ export default class PaymentMethodsPage extends React.Component {
                                 <input
                                   type="radio"
                                   name="payment method"
-                                  value={paymentMethod.paymentName}
+                                  value={paymentMethod.name}
                                   checked={
-                                    selectedPayment ===
-                                    paymentMethod.paymentName
+                                    selectedPayment === paymentMethod.name
                                   }
                                   onChange={this.selectHandler(
-                                    paymentMethod.paymentName
+                                    paymentMethod.name
                                   )}
                                   onClick={this.selectHandler(
-                                    paymentMethod.paymentName
+                                    paymentMethod.name
                                   )}
                                   style={{ marginRight: '10px' }}
                                 />
                               </form>
 
-                              {paymentMethod.paymentName}
+                              {paymentMethod.name}
                             </td>
                             <td>{paymentMethod.accountNumber}</td>
                             <td>{paymentMethod.routingNumber}</td>
