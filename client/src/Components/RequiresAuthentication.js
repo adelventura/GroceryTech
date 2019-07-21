@@ -1,6 +1,6 @@
 import React from 'react';
-import { AccountContext } from '../App';
 import { withRouter } from 'react-router-dom';
+import { userManager } from '../App';
 
 class RequiresAuthentication extends React.Component {
   goToSignIn() {
@@ -8,17 +8,12 @@ class RequiresAuthentication extends React.Component {
   }
 
   render() {
-    return (
-      <AccountContext.Consumer>
-        {context => {
-          if (context.token != null) {
-            return this.props.children;
-          } else {
-            this.goToSignIn();
-          }
-        }}
-      </AccountContext.Consumer>
-    );
+    if (userManager.user != null) {
+      return this.props.children;
+    } else {
+      this.goToSignIn();
+      return <></>;
+    }
   }
 }
 

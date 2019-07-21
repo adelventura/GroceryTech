@@ -32,158 +32,142 @@ import ViewAssignmentPage from "./Pages/Deliverer/ViewAssignmentPage";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import Cookies from "js-cookie";
 
-interface AccountContextState {
-  token: string | null;
-  update: (token: string) => void;
-}
+class UserManager {
+  user: {
+    token: String;
+    type: String;
+  } | null = null;
 
-interface AppState {
-  accountContextState: AccountContextState;
-}
+  init() {
+    const token = Cookies.get("token");
+    const type = Cookies.get("type");
 
-export const AccountContext = React.createContext<AccountContextState>({
-  token: null,
-  update: () => {}
-});
+    if (token && type) {
+      this.user = {
+        token,
+        type
+      };
+    } else {
+      this.user = null;
+    }
+  }
 
-class App extends Component<{}, AppState> {
-  state: AppState = {
-    accountContextState: {
-      token: Cookies.get("token") || null,
-      update: token => {
-        if (token == null) {
-          Cookies.remove("token");
-        } else {
-          Cookies.set("token", token);
-        }
+  update = (user: { token: String; type: String } | null) => {
+    this.user = user;
 
-        this.setState(prev => {
-          return {
-            accountContextState: {
-              ...prev.accountContextState,
-              token
-            }
-          };
-        });
-      }
+    if (user != null) {
+      Cookies.set("token", user.token);
+      Cookies.set("type", user.type);
+    } else {
+      Cookies.remove("token");
+      Cookies.remove("type");
     }
   };
+}
 
+class App extends Component {
   render() {
     return (
-      <AccountContext.Provider value={this.state.accountContextState}>
-        <Router>
-          <div
-            className="App"
-            style={{
-              display: "flex",
-              flexDirection: "column",
-              position: "absolute",
-              top: 0,
-              left: 0,
-              right: 0,
-              bottom: 0
-            }}
-          >
-            <Navigation />
-            <Switch>
-              <Route exact path="/" component={LandingPage} />
-              <Route path="/home" component={BuyerHomePage} />
-              <Route exact path="/register" component={RegistrationNavPage} />
-              <Route
-                exact
-                path="/deliverer/register"
-                component={RegisterDelivererPage}
-              />
-              <Route
-                exact
-                path="/deliverer/home"
-                component={DelivererHomePage}
-              />
-              <Route
-                exact
-                path="/deliverer/account"
-                component={DelivererAccountInfoPage}
-              />
-              <Route
-                exact
-                path="/assignments"
-                component={AssignmentsListPage}
-              />
-              <Route
-                exact
-                path="/assignments/:id"
-                component={ViewAssignmentPage}
-              />
-              <Route exact path="/manager/home" component={ManagerHomePage} />
-              <Route
-                exact
-                path="/manager/register"
-                component={RegisterManagerPage}
-              />
-              <Route
-                exact
-                path="/manager/account"
-                component={ManagerAccountInfoPage}
-              />
-              <Route
-                exact
-                path="/manager/orders"
-                component={OutstandingOrdersPage}
-              />
-              <Route
-                exact
-                path="/manager/store/:id/revenue"
-                component={RevenueReportPage}
-              />
-              <Route
-                exact
-                path="/store/:id/inventory"
-                component={StoreInventoryPage}
-              />
-              <Route
-                exact
-                path="/register/buyer"
-                component={RegisterBuyerPage}
-              />
-              <Route exact path="/account" component={AccountInfoPage} />
-              <Route
-                exact
-                path="/account/order_history"
-                component={OrderHistoryPage}
-              />
-              <Route exact path="/checkout" component={CheckoutPage} />
-              <Route exact path="/checkout/receipt" component={ReceiptPage} />
-              <Route
-                exact
-                path="/account/payment_methods"
-                component={PaymentMethodsPage}
-              />
-              <Route
-                exact
-                path="/account/payment_methods/new"
-                component={NewPaymentMethodPage}
-              />
-              <Route exact path="/store" component={StartNewOrderPage} />
-              <Route
-                exact
-                path="/store/:id/search"
-                component={ItemCategoriesPage}
-              />
-              <Route exact path="/store/:id" component={StoreHomePage} />
-              <Route
-                exact
-                path="/store/:id/search/:category"
-                component={ItemListingPage}
-              />
-              <Route exact path="/store/:id/cart" component={ViewCartPage} />
-              <Route component={ErrorPage} />
-            </Switch>
-          </div>
-        </Router>
-      </AccountContext.Provider>
+      <Router>
+        <div
+          className="App"
+          style={{
+            display: "flex",
+            flexDirection: "column",
+            position: "absolute",
+            top: 0,
+            left: 0,
+            right: 0,
+            bottom: 0
+          }}
+        >
+          <Navigation />
+          <Switch>
+            <Route exact path="/" component={LandingPage} />
+            <Route path="/home" component={BuyerHomePage} />
+            <Route exact path="/register" component={RegistrationNavPage} />
+            <Route
+              exact
+              path="/deliverer/register"
+              component={RegisterDelivererPage}
+            />
+            <Route exact path="/deliverer/home" component={DelivererHomePage} />
+            <Route
+              exact
+              path="/deliverer/account"
+              component={DelivererAccountInfoPage}
+            />
+            <Route exact path="/assignments" component={AssignmentsListPage} />
+            <Route
+              exact
+              path="/assignments/:id"
+              component={ViewAssignmentPage}
+            />
+            <Route exact path="/manager/home" component={ManagerHomePage} />
+            <Route
+              exact
+              path="/manager/register"
+              component={RegisterManagerPage}
+            />
+            <Route
+              exact
+              path="/manager/account"
+              component={ManagerAccountInfoPage}
+            />
+            <Route
+              exact
+              path="/manager/orders"
+              component={OutstandingOrdersPage}
+            />
+            <Route
+              exact
+              path="/manager/store/:id/revenue"
+              component={RevenueReportPage}
+            />
+            <Route
+              exact
+              path="/store/:id/inventory"
+              component={StoreInventoryPage}
+            />
+            <Route exact path="/register/buyer" component={RegisterBuyerPage} />
+            <Route exact path="/account" component={AccountInfoPage} />
+            <Route
+              exact
+              path="/account/order_history"
+              component={OrderHistoryPage}
+            />
+            <Route exact path="/checkout" component={CheckoutPage} />
+            <Route exact path="/checkout/receipt" component={ReceiptPage} />
+            <Route
+              exact
+              path="/account/payment_methods"
+              component={PaymentMethodsPage}
+            />
+            <Route
+              exact
+              path="/account/payment_methods/new"
+              component={NewPaymentMethodPage}
+            />
+            <Route exact path="/store" component={StartNewOrderPage} />
+            <Route
+              exact
+              path="/store/:id/search"
+              component={ItemCategoriesPage}
+            />
+            <Route exact path="/store/:id" component={StoreHomePage} />
+            <Route
+              exact
+              path="/store/:id/search/:category"
+              component={ItemListingPage}
+            />
+            <Route exact path="/store/:id/cart" component={ViewCartPage} />
+            <Route component={ErrorPage} />
+          </Switch>
+        </div>
+      </Router>
     );
   }
 }
 
 export default App;
+export const userManager = new UserManager();

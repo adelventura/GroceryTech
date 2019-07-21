@@ -1,7 +1,7 @@
 import React from 'react';
 import backArrows from '../Images/chevrons-left.svg';
 import { withRouter } from 'react-router-dom';
-import { AccountContext } from '../App';
+import { AccountContext, userManager } from '../App';
 
 class Navigation extends React.Component {
   constructor(props) {
@@ -15,45 +15,37 @@ class Navigation extends React.Component {
   }
 
   signOut = update => {
-    return () => {
-      update(null);
-    };
+    userManager.update(null);
   };
 
   render() {
     return (
-      <AccountContext.Consumer>
-        {context => {
-          return (
-            <>
-              <div className="nav-bar">
-                <button className="nav-link btn-clear" onClick={this.goBack}>
-                  <img src={backArrows} alt="<<" />
-                  <span style={{ fontSize: '16px' }}> Back </span>
-                </button>
+      <>
+        <div className="nav-bar">
+          <button className="nav-link btn-clear" onClick={this.goBack}>
+            <img src={backArrows} alt="<<" />
+            <span style={{ fontSize: '16px' }}> Back </span>
+          </button>
 
-                <span
-                  style={{
-                    fontSize: '30px',
-                    color: '#767676'
-                  }}
-                >
-                  GroceryTech
-                </span>
-                <button
-                  className="nav-link btn-clear"
-                  style={{
-                    fontSize: '16px'
-                  }}
-                  onClick={this.signOut(context.update)}
-                >
-                  Sign Out
-                </button>
-              </div>
-            </>
-          );
-        }}
-      </AccountContext.Consumer>
+          <span
+            style={{
+              fontSize: '30px',
+              color: '#767676'
+            }}
+          >
+            GroceryTech
+          </span>
+          <button
+            className="nav-link btn-clear"
+            style={{
+              fontSize: '16px'
+            }}
+            onClick={this.signOut}
+          >
+            Sign Out
+          </button>
+        </div>
+      </>
     );
   }
 }
