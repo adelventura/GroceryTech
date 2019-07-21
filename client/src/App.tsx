@@ -38,9 +38,11 @@ class UserManager {
     type: String;
   } | null = null;
 
-  init() {
+  constructor() {
     const token = Cookies.get("token");
     const type = Cookies.get("type");
+
+    console.log("got: " + token + " " + type);
 
     if (token && type) {
       this.user = {
@@ -58,6 +60,8 @@ class UserManager {
     if (user != null) {
       Cookies.set("token", user.token);
       Cookies.set("type", user.type);
+
+      console.log("update: " + JSON.stringify(user));
     } else {
       Cookies.remove("token");
       Cookies.remove("type");

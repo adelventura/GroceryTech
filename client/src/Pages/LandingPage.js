@@ -33,6 +33,7 @@ export default class LandingPage extends React.Component {
           token: data.token,
           type: data.type
         });
+        this.props.history.replace(`/home`);
       })
       .catch(error => {
         alert(error);

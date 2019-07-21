@@ -18,17 +18,9 @@ router.post('/token', function(req, res, next) {
   var username = req.body.username;
   var password = req.body.password;
 
-  var user = users.find(user => {
-    return username == user.username && password == user.password;
-  });
-
-  if (!user) {
-    res.sendStatus(404);
-    return;
-  }
-
   res.json({
-    token
+    token: username,
+    type: 'Buyer'
   });
 });
 
