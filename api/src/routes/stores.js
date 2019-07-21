@@ -81,22 +81,20 @@ router.get('/:id/search/:category', function(req, res, next) {
 });
 
 router.get('/:id/inventory', function(req, res, next) {
-  // TODO: all stores sharing the same inventory for now ...
-  // var storeID = req.params.id;
+  var storeID = req.params.id;
 
-  res.json(inventory);
-});
+  db.query(
+    `SELECT * FROM (Item NATURAL JOIN soldAt) WHERE store_id = ${storeID}`,
+    function(err, results) {
+      if (err) {
+        res.sendStatus(501);
+        console.log(err);
+        return;
+      }
 
-router.get('/:id/orders', function(req, res, next) {
-  // TODO: all stores sharing the same inventory for now ...
-  // var storeID = req.params.id;
-  var id = req.params.id;
-
-  var outstandingOrders = orders.filter(order => {
-    return !order.delivered;
-  });
-
-  res.json(outstandingOrders);
+      res.json(formatItemResult(results));
+    }
+  );
 });
 
 router.get('/:id/cart', function(req, res, next) {
