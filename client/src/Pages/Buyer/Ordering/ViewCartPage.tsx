@@ -12,6 +12,18 @@ interface Props
     React.Props<RouteParams> {}
 
 export default class ViewCartPage extends React.Component<Props> {
+  constructor(props: RouteComponentProps<RouteParams>) {
+    super(props);
+
+    this.state = {
+      storeID: ""
+    };
+  }
+
+  checkout = () => {
+    this.props.history.push(`/checkout`);
+  };
+
   render() {
     const storeID = this.props.match.params.storeID;
 
@@ -91,8 +103,9 @@ export default class ViewCartPage extends React.Component<Props> {
                           marginLeft: "auto",
                           marginRight: "0"
                         }}
+                        onClick={this.checkout}
                       >
-                        Add to cart
+                        Checkout
                       </button>
                     </div>
                   </div>

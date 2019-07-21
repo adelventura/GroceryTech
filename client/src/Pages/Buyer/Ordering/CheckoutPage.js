@@ -17,21 +17,34 @@ export default class CheckoutPage extends React.Component {
                 <div className="header-block">
                   <div className="page-header">Checkout</div>
                 </div>
-                <div className="checkout-card">
-                  <h3
-                    className="card-header"
+                <div
+                  className="card block-centered"
+                  style={{ maxWidth: '700px' }}
+                >
+                  <div
                     style={{
                       height: '100%',
-                      width: '30%',
-                      marginRight: '10px'
+                      width: '100%'
                     }}
                   >
-                    Order Details
-                  </h3>
+                    <div
+                      className="block-centered"
+                      style={{
+                        width: '150px',
+                        fontSize: '20px',
+                        textAlign: 'center'
+                      }}
+                    >
+                      Order Details
+                    </div>
+                  </div>
+                  <br />
+                  <br />
+
                   <div className="flex-col-container">
-                    <div class="block-centered">
-                      <div style={{ float: 'left' }}>
-                        <h3 className="form-input-label">Payment</h3>
+                    <div className="justify-between">
+                      <div>
+                        <div className="form-input-label">Payment</div>
                         <select name="payment-method" className="select">
                           {paymentMethods.map(paymentMethod => {
                             return (
@@ -47,8 +60,8 @@ export default class CheckoutPage extends React.Component {
                         </select>
                       </div>
 
-                      <div style={{ float: 'right', clear: 'right' }}>
-                        <h3 className="form-input-label">Delivery Time</h3>
+                      <div>
+                        <div className="form-input-label">Delivery Time</div>
                         <select name="delivery-time" className="select">
                           <option value="asap">ASAP</option>
                           <option value="1 hour">In 1 hour</option>
@@ -60,10 +73,12 @@ export default class CheckoutPage extends React.Component {
                         </select>
                       </div>
                     </div>
+                    <br />
 
-                    <div class="block-centered">
-                      <div style={{ float: 'right' }}>
-                        <h3 className="form-input-label">Total Price</h3>
+                    <div className="justify-between">
+                      <div> </div>
+                      <div>
+                        <div className="form-input-label">Total Price</div>
                         <input
                           className="total-price"
                           name="total-price"
@@ -74,11 +89,11 @@ export default class CheckoutPage extends React.Component {
                       </div>
                     </div>
 
-                    <div class="block-centered">
+                    <div class="block-centered" style={{ width: '100%' }}>
                       <div>
-                        <h3 className="form-input-label">
+                        <div className="form-input-label">
                           Delivery Instructions
-                        </h3>
+                        </div>
                         <textarea
                           className="delivery-instruc"
                           placeholder="Instructions for delivery"

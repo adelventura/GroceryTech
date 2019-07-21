@@ -37,10 +37,12 @@ export default class ViewAssignmentPage extends React.Component {
           content={assignment => {
             return (
               <div>
-                <div className="page-header">Assignment Details</div>
+                <div className="header-block">
+                  <div className="page-header">Assignment Details</div>
+                </div>{' '}
                 <div
                   className="card block-centered"
-                  style={{ width: '70%', maxWidth: '700px' }}
+                  style={{ width: '70%', maxWidth: '700px', marginTop: '25px' }}
                 >
                   <div
                     style={{

@@ -9,8 +9,10 @@ export default class AssignmentsListPage extends React.Component {
           return (
             <div>
               <br />
-              <div className="page-header">Order History </div>
-              <div className="tbl-card">
+              <div className="header-block">
+                <div className="page-header">Assignments</div>
+              </div>{' '}
+              <div className="tbl-card" style={{ marginTop: '25px' }}>
                 <table className="tbl">
                   <thead>
                     <tr className="table-header">

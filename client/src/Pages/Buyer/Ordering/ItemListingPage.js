@@ -41,6 +41,7 @@ export default class ItemListingPage extends React.Component {
     return (
       <RequiresAuthentication>
         <CartProvider
+          storeId={id}
           content={(cart, updater) => {
             return (
               <FetchItems
@@ -83,16 +84,14 @@ export default class ItemListingPage extends React.Component {
                               </th>
                             </tr>
                           </thead>
-                          {items.map(stock => {
+                          {items.map(item => {
                             return (
                               <tbody>
                                 <tr>
                                   <td style={{ textAlign: 'left' }}>
                                     <input
                                       type="number"
-                                      onChange={this.quantityHandler(
-                                        stock.item
-                                      )}
+                                      onChange={this.quantityHandler(item)}
                                       id="quatity"
                                       name="quantity"
                                       min="0"
@@ -105,12 +104,12 @@ export default class ItemListingPage extends React.Component {
                                         outline: 'none'
                                       }}
                                     />
-                                    {stock.item.name}
+                                    {item.name}
                                   </td>
-                                  <td>{stock.item.description}</td>
-                                  <td>{stock.item.expiration}</td>
-                                  <td>{stock.item.retailPrice}</td>
-                                  <td>{stock.quantity > 0 ? 'Yes' : 'NO!'}</td>
+                                  <td>{item.description}</td>
+                                  <td>{item.expiration}</td>
+                                  <td>{item.retailPrice}</td>
+                                  <td>{item.quantity > 0 ? 'Yes' : 'NO!'}</td>
                                 </tr>
                               </tbody>
                             );

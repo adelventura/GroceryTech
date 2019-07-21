@@ -8,6 +8,9 @@ var storesRouter = require('./src/routes/stores');
 var accountRouter = require('./src/routes/account');
 var assignmentRouter = require('./src/routes/assignment');
 
+// db
+var connection = require('./src/db/db');
+
 var app = express();
 
 app.use(cors());

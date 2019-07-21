@@ -6,39 +6,40 @@ import Loading from '../../Components/Loading';
 //store/:id/inventory
 
 export default class StoreInventoryPage extends React.Component {
-  state = {
-    storeName: undefined,
-    storeID: undefined
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      selected: '',
+      selectedId: '',
+      storeID: ''
+    };
+  }
+
+  selectHandler = id => {
+    return event => {
+      this.setState({
+        selected: event.target.value,
+        selectedId: id
+      });
+    };
   };
 
-  // quantityHandler = item => {
-  //   return event => {
-  //     let { selection } = this.state;
-  //     selection[item.id] = {
-  //       item: item,
-  //       quantity: event.target.value
-  //     };
-
-  //     this.setState({ selection });
-  //   };
-  // };
-
-  // updateCart = updater => {
-  //   return () => {
-  //     Object.keys(this.state.selection).forEach(key => {
-  //       const selection = this.state.selection[key];
-
-  //       updater({
-  //         type: 'add',
-  //         quantity: selection.quantity,
-  //         item: selection.item
-  //       });
-  //     });
-  //   };
-  // };
+  handleChoose = event => {
+    if (this.state.selected === '') {
+      alert('Must select item to continue');
+    } else {
+      const { selectedId } = this.state;
+      //this.props.history.push(`store/${selectedId}`);
+      this.props.history.push('/home');
+    }
+  };
 
   render() {
     const id = this.props.match.params;
+    this.setState.storeID = id;
+    const selectedId = this.state.selectedId;
+
     return (
       <div>
         <FetchInventory
@@ -50,7 +51,9 @@ export default class StoreInventoryPage extends React.Component {
             return (
               <div>
                 <br />
-                <span className="page-header">Inventory > </span>
+                <div className="page-header" style={{ marginBottom: '25px' }}>
+                  Inventory >{' '}
+                </div>
                 <div className="tbl-card">
                   <table className="tbl">
                     <thead>
@@ -67,22 +70,18 @@ export default class StoreInventoryPage extends React.Component {
                       return (
                         <tbody>
                           <tr>
-                            <td>
-                              <input
-                                type="number"
-                                // onChange={this.quantityHandler(stock.item)}
-                                id="quatity"
-                                name="quantity"
-                                min="0"
-                                max="100"
-                                placeholder="0"
-                                style={{
-                                  marginRight: '8px',
-                                  borderColor: 'coral',
-                                  borderWidth: '.5px',
-                                  outline: 'none'
-                                }}
-                              />
+                            <td style={{ textAlign: 'left' }}>
+                              <form style={{ display: 'inline' }}>
+                                <input
+                                  type="radio"
+                                  name="item"
+                                  value={stock.item.id}
+                                  checked={selectedId === stock.item.id}
+                                  onChange={this.selectHandler(stock.item.id)}
+                                  onClick={this.selectHandler(stock.item.id)}
+                                  style={{ marginRight: '10px' }}
+                                />
+                              </form>
                               {stock.item.name}
                             </td>
                             <td>{stock.item.description}</td>
