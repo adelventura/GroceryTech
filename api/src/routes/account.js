@@ -81,13 +81,30 @@ router.post('/payment_methods', function(req, res, next) {
   var routingNumber = req.body.routingNumber;
   var isDefault = req.body.isDefault;
 
-  // db.query(``, function(err, results) {
-  //   if (err) {
-  //     res.sendStatus(400);
-  //   } else {
-  //     res.sendStatus(200);
-  //   }
-  // });
+  db.query(
+    `INSERT INTO Payments(username, payment_name, account_number, routing_number) VALUES ('${token}', '${name}', '${accountNumber}', '${routingNumber}')`,
+    function(err, results) {
+      if (err) {
+        res.sendStatus(400);
+        console.log(err);
+        return;
+      }
+
+      if (isDefault) {
+        db.query(
+          `UPDATE Buyer SET default_payment = '${name}' WHERE username = '${token}'`,
+          function(err, results) {
+            console.log('DONE!');
+            if (err) {
+              res.sendStatus(400);
+            } else {
+              res.sendStatus(200);
+            }
+          }
+        );
+      }
+    }
+  );
 });
 
 router.get('/order_history', function(req, res, next) {
