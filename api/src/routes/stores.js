@@ -16,7 +16,8 @@ function formatStoresResult(results) {
         store.zip_code
       }`,
       hours: `${store.opening_time} - ${store.closing_time}`,
-      phone: store.phone
+      phone: store.phone,
+      addressID: store.address_id
     };
   });
 }

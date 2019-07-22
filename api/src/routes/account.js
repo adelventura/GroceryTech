@@ -57,6 +57,7 @@ router.post('/token', function(req, res, next) {
   );
 });
 
+//PAYMENT METHODS
 router.get('/payment_methods', function(req, res, next) {
   var token = req.headers['authorization'];
 
@@ -120,16 +121,6 @@ router.get('/order_history', function(req, res, next) {
         console.log(err);
         return;
       }
-
-      // db.query(
-      // `SELECT * FROM (Payments p JOIN Buyer b on p.username = b.username) WHERE b.username ='${token}'AND p.payment_name = b.default_payment`,
-      // function(err, user) {
-      //   if (err) {
-      //     res.sendStatus(501);
-      //     console.log(err);
-      //     return;
-      //   }
-
       res.json(formatOrderHistoryResult(results));
     }
   );

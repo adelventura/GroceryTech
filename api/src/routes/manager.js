@@ -29,4 +29,42 @@ router.get('/orders', function(req, res, next) {
   );
 });
 
+// REGISTER ACCOUNT / ACCOUNT INFO
+router.post('/register', function(req, res, next) {
+  var userType = 'manager';
+  var firstName = req.body.firstName;
+  var lastName = req.body.lastName;
+  var username = req.body.username;
+  var password = req.body.password;
+  var email = req.body.email;
+  var store = req.body.store;
+  var confirmationCode = req.body.confirmationCode;
+
+  db.query(
+    `SELECT * FROM SystemInformation WHERE user_codes = ${confirmationCode}`,
+    function(err, results) {
+      if (results.length == 0) {
+        res.sendStatus(401);
+        return;
+      }
+
+      db.query(
+        `INSERT INTO Userr(username, password, user_type, email, first_name, last_name) VALUES ('${username}', '${password}', '${userType}', '${email}', '${firstName}', '${lastName}')`,
+        function(err, results) {
+          db.query(
+            `INSERT INTO manages(username, store_address) VALUES ('${username}', '${store}')`,
+            function(err, results) {
+              if (err) {
+                res.sendStatus(400);
+              } else {
+                res.sendStatus(200);
+              }
+            }
+          );
+        }
+      );
+    }
+  );
+});
+
 module.exports = router;

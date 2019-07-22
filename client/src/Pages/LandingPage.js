@@ -33,7 +33,13 @@ export default class LandingPage extends React.Component {
           token: data.token,
           type: data.type
         });
-        this.props.history.replace(`/home`);
+        if (data.type == 'buyer') {
+          this.props.history.replace(`/home`);
+        } else if (data.type == 'manager') {
+          this.props.history.replace(`/manager/home`);
+        } else if (data.type == 'deliverer') {
+          this.props.history.replace(`/deliverer/home`);
+        }
       })
       .catch(error => {
         alert(error);
