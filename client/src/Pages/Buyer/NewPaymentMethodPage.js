@@ -1,6 +1,64 @@
 import React from 'react';
+import Config from '../../Config/Config';
+import { userManager } from '../../App';
 
 export default class NewPaymentMethodPage extends React.Component {
+  state = {
+    isDefault: true
+  };
+
+  create = () => {
+    if (!this.state.name) {
+      alert('enter a name');
+      return;
+    }
+
+    if (!this.state.accountNumber) {
+      alert('enter an account number');
+      return;
+    }
+
+    if (!this.state.routingNumber) {
+      alert('enter a routing number');
+      return;
+    }
+
+    fetch(`${Config.baseUrl}/account/payment_methods`, {
+      method: 'POST',
+      headers: {
+        Authorization: userManager.user.token,
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(this.state)
+    })
+      .then(response => response.json())
+      .then(data => this.setState({ paymentMethods: data }));
+  };
+
+  onNameChange = event => {
+    this.setState({
+      name: event.target.value
+    });
+  };
+
+  onAccountNumberChange = event => {
+    this.setState({
+      accountNumber: event.target.value
+    });
+  };
+
+  onRoutingNumberChange = event => {
+    this.setState({
+      routingNumber: event.target.value
+    });
+  };
+
+  onIsDefaultChange = event => {
+    this.setState({
+      isDefault: event.target.value
+    });
+  };
+
   render() {
     return (
       <React.Fragment>
@@ -30,8 +88,8 @@ export default class NewPaymentMethodPage extends React.Component {
                 name="paymentName"
                 type="text"
                 placeholder="Payment name"
-                // value={this.state.firstName}
-                // onChange={this.handleChange}
+                value={this.state.name}
+                onChange={this.onNameChange}
               />
             </div>
             <br />
@@ -49,8 +107,8 @@ export default class NewPaymentMethodPage extends React.Component {
                 name="accountNumber"
                 type="text"
                 placeholder="Account number"
-                //value={this.state.firstName}
-                //onChange={this.handleChange}
+                value={this.state.accountNumber}
+                onChange={this.onAccountNumberChange}
               />
             </div>
             <br />
@@ -69,8 +127,8 @@ export default class NewPaymentMethodPage extends React.Component {
                 name="routingNumber"
                 type="text"
                 placeholder="Routing number"
-                // value={this.state.firstName}
-                // onChange={this.handleChange}
+                value={this.state.routingNumber}
+                onChange={this.onRoutingNumberChange}
               />
             </div>
             <br />
@@ -86,9 +144,14 @@ export default class NewPaymentMethodPage extends React.Component {
               >
                 <h3 className="form-input-label">Default?</h3>
 
-                <select name="default" className="select">
-                  <option value="default">Yes</option>
-                  <option value="not default">No</option>
+                <select
+                  name="default"
+                  className="select"
+                  value={this.state.isDefault}
+                  onChange={this.onIsDefaultChange}
+                >
+                  <option value="true">Yes</option>
+                  <option value="false">No</option>
                 </select>
               </div>
             </div>
@@ -107,7 +170,7 @@ export default class NewPaymentMethodPage extends React.Component {
                   float: 'right',
                   width: '100px'
                 }}
-                //onClick={this.handleNewPayment}
+                onClick={this.create}
               >
                 Add Payment
               </button>

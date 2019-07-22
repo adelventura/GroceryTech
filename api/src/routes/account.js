@@ -9,7 +9,24 @@ function formatPaymentResult(results) {
     return {
       name: paymentMethod.payment_name,
       accountNumber: paymentMethod.account_number,
-      routingNumber: paymentMethod.routing_number
+      routingNumber: paymentMethod.routing_number,
+      default:
+        paymentMethod.payment_name == paymentMethod.default_payment
+          ? true
+          : false
+    };
+  });
+}
+
+function formatOrderHistoryResult(results) {
+  return results.map(function(orderHistory) {
+    return {
+      storeName: 'missing',
+      orderID: orderHistory.order_id,
+      date: orderHistory.date,
+      totalPrice: 'missing',
+      totalItems: 'missing',
+      delivered: 'missing'
     };
   });
 }
@@ -44,7 +61,7 @@ router.get('/payment_methods', function(req, res, next) {
   var token = req.headers['authorization'];
 
   db.query(
-    `SELECT payment_name, account_number, routing_number FROM (Payments NATURAL JOIN Buyer) WHERE username = '${token}'`,
+    `SELECT payment_name, account_number, routing_number, default_payment FROM (Payments p JOIN Buyer b on p.username = b.username) WHERE b.username = '${token}'`,
     function(err, results) {
       if (err) {
         res.sendStatus(501);
@@ -57,12 +74,64 @@ router.get('/payment_methods', function(req, res, next) {
   );
 });
 
-router.get('/order_history', function(req, res, next) {
-  // var history = orders.find(order => {
-  //   return order.buyerID === id;
-  // });
+router.post('/payment_methods', function(req, res, next) {
+  var token = req.headers['authorization'];
+  var name = req.body.name;
+  var accountNumber = req.body.accountNumber;
+  var routingNumber = req.body.routingNumber;
+  var isDefault = req.body.isDefault;
 
-  res.json(orderHistory);
+  // db.query(``, function(err, results) {
+  //   if (err) {
+  //     res.sendStatus(400);
+  //   } else {
+  //     res.sendStatus(200);
+  //   }
+  // });
+});
+
+router.get('/order_history', function(req, res, next) {
+  var token = req.headers['authorization'];
+
+  db.query(
+    `SELECT y.order_id, o.date FROM orderedBy y JOIN Buyer b ON y.buyer_username = b.username
+    JOIN Orderr o ON  o.order_id = y.order_id
+    WHERE buyer_username = '${token}'`,
+    function(err, results) {
+      if (err) {
+        res.sendStatus(501);
+        console.log(err);
+        return;
+      }
+
+      // db.query(
+      // `SELECT * FROM (Payments p JOIN Buyer b on p.username = b.username) WHERE b.username ='${token}'AND p.payment_name = b.default_payment`,
+      // function(err, user) {
+      //   if (err) {
+      //     res.sendStatus(501);
+      //     console.log(err);
+      //     return;
+      //   }
+
+      res.json(formatOrderHistoryResult(results));
+    }
+  );
 });
 
 module.exports = router;
+
+//   db.query(
+//     `SELECT * FROM (Payments p JOIN Buyer b on p.username = b.username) WHERE b.username ='${token}'AND p.payment_name = b.default_payment`,
+//     function(err, user) {
+//       if (err) {
+//         res.sendStatus(501);
+//         console.log(err);
+//         return;
+//       }
+
+//       res.json({
+//         payments: formatPaymentResult(results),
+//         default: user[0].default_payment
+//       });
+//     }
+// }
