@@ -159,7 +159,7 @@ class App extends Component {
               component={StoreInventoryPage}
             />
             <Route exact path="/buyer/register" component={RegisterBuyerPage} />
-            <Route exact path="/account" component={AccountInfoPage} />
+            <Route exact path="/buyer/account" component={AccountInfoPage} />
             <Route
               exact
               path="/account/order_history"

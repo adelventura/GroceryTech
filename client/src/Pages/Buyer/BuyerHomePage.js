@@ -37,7 +37,7 @@ export default class BuyerHomePage extends React.Component {
 
         <div className="grid-container-row">
           {this.button(
-            '/account',
+            '/buyer/account',
             'Account Information',
             FaUserEdit,
             '#247BA0'

@@ -51,9 +51,7 @@ export default class CheckoutPage extends React.Component {
                             return (
                               <option>
                                 {paymentMethod.default
-                                  ? 'Default (' +
-                                    paymentMethod.paymentName +
-                                    ')'
+                                  ? 'Default (' + paymentMethod.name + ')'
                                   : paymentMethod.paymentName}
                               </option>
                             );
