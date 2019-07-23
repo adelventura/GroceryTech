@@ -12,6 +12,7 @@ import NewPaymentMethodPage from "./Pages/Buyer/NewPaymentMethodPage";
 import ItemCategoriesPage from "./Pages/Buyer/Ordering/ItemCategoriesPage";
 import RegistrationNavPage from "./Pages/Buyer/RegistrationNavPage";
 import AccountInfoPage from "./Pages/Buyer/AccountInfoPage";
+import EditAccountInfoPage from "./Pages/Buyer/EditAccountInfoPage";
 import ViewCartPage from "./Pages/Buyer/Ordering/ViewCartPage";
 import CheckoutPage from "./Pages/Buyer/Ordering/CheckoutPage";
 import Navigation from "./Components/Navigation";
@@ -19,6 +20,7 @@ import ErrorPage from "./Pages/ErrorPage.js";
 import ReceiptPage from "./Pages/Buyer/Ordering/ReceiptPage";
 import RegisterManagerPage from "./Pages/Manager/RegisterManagerPage";
 import ManagerAccountInfoPage from "./Pages/Manager/ManagerAccountInfoPage";
+import EditManagerAccountInfoPage from "./Pages/Manager/EditManagerAccountInfoPage";
 import ManagerHomePage from "./Pages/Manager/ManagerHomePage";
 import OutstandingOrdersPage from "./Pages/Manager/OutstandingOrdersPage";
 import RevenueReportPage from "./Pages/Manager/RevenueReportPage";
@@ -27,6 +29,7 @@ import DelivererHomePage from "./Pages/Deliverer/DelivererHomePage";
 import RegisterDelivererPage from "./Pages/Deliverer/RegisterDelivererPage";
 import AssignmentsListPage from "./Pages/Deliverer/AssignmentsListPage";
 import DelivererAccountInfoPage from "./Pages/Deliverer/DelivererAccountInfoPage";
+import EditDelivererAccountInfoPage from "./Pages/Deliverer/EditDelivererAccountInfo";
 import ViewAssignmentPage from "./Pages/Deliverer/ViewAssignmentPage";
 
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
@@ -126,6 +129,11 @@ class App extends Component {
               path="/deliverer/account"
               component={DelivererAccountInfoPage}
             />
+            <Route
+              exact
+              path="/deliverer/account/update"
+              component={EditDelivererAccountInfoPage}
+            />
             <Route exact path="/assignments" component={AssignmentsListPage} />
             <Route
               exact
@@ -145,6 +153,11 @@ class App extends Component {
             />
             <Route
               exact
+              path="/manager/account/update"
+              component={EditManagerAccountInfoPage}
+            />
+            <Route
+              exact
               path="/manager/orders"
               component={OutstandingOrdersPage}
             />
@@ -160,6 +173,11 @@ class App extends Component {
             />
             <Route exact path="/buyer/register" component={RegisterBuyerPage} />
             <Route exact path="/buyer/account" component={AccountInfoPage} />
+            <Route
+              exact
+              path="/buyer/account/update"
+              component={EditAccountInfoPage}
+            />
             <Route
               exact
               path="/account/order_history"

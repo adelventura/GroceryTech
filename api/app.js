@@ -6,7 +6,7 @@ var logger = require('morgan');
 // routers
 var storesRouter = require('./src/routes/stores');
 var accountRouter = require('./src/routes/account');
-var assignmentRouter = require('./src/routes/assignment');
+var assignmentsRouter = require('./src/routes/assignments');
 var buyerRouter = require('./src/routes/buyer');
 var managerRouter = require('./src/routes/manager');
 var delivererRouter = require('./src/routes/deliverer');
@@ -20,7 +20,7 @@ app.use(cookieParser());
 
 app.use('/store', storesRouter);
 app.use('/account', accountRouter);
-app.use('/assignments', assignmentRouter);
+app.use('/assignments', assignmentsRouter);
 app.use('/buyer', buyerRouter);
 app.use('/manager', managerRouter);
 app.use('/deliverer', delivererRouter);
@@ -33,6 +33,7 @@ app.use(function(req, res, next) {
 // error handler
 app.use(function(err, req, res, next) {
   res.sendStatus(500);
+  console.log(err);
 });
 
 module.exports = app;

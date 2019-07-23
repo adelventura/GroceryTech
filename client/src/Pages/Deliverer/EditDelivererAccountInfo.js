@@ -3,7 +3,7 @@ import Loading from '../../Components/Loading';
 import FetchDelivererAccount from '../../Model/FetchDelivererAccount';
 import AccountInfoPage from '../Buyer/AccountInfoPage';
 
-export default class DelivererAccountInfoPage extends React.Component {
+export default class EditDelivererAccountInfoPage extends React.Component {
   constructor(props) {
     super(props);
 
@@ -16,7 +16,7 @@ export default class DelivererAccountInfoPage extends React.Component {
     };
   }
 
-  update = () => {
+  save = () => {
     this.props.history.replace(`/deliverer/account/update`);
   };
 
@@ -48,6 +48,7 @@ export default class DelivererAccountInfoPage extends React.Component {
                               className="form-input"
                               name="firstName"
                               type="text"
+                              style={{ backgroundColor: '#F6F6F6' }}
                               placeholder={account.firstName}
                               value={this.state.firstName}
                               onChange={this.handleChange}
@@ -60,6 +61,7 @@ export default class DelivererAccountInfoPage extends React.Component {
                               className="form-input"
                               name="lastName"
                               type="text"
+                              style={{ backgroundColor: '#F6F6F6' }}
                               placeholder={account.lastName}
                               value={this.state.lastName}
                               onChange={this.handleChange}
@@ -74,6 +76,7 @@ export default class DelivererAccountInfoPage extends React.Component {
                               className="form-input"
                               name="username"
                               type="text"
+                              style={{ backgroundColor: '#F6F6F6' }}
                               placeholder={account.username}
                               value={this.state.username}
                               onChange={this.handleChange}
@@ -89,7 +92,6 @@ export default class DelivererAccountInfoPage extends React.Component {
                               placeholder={account.email}
                               value={this.state.email}
                               onChange={this.handleChange}
-                              disabled
                             />
                           </span>
                         </div>
@@ -118,9 +120,9 @@ export default class DelivererAccountInfoPage extends React.Component {
             <button
               className="btn"
               style={{ marginRight: '0px', marginLeft: 'auto' }}
-              onClick={this.update}
+              onClick={this.save}
             >
-              Update Account
+              Save Changes
             </button>
           </div>
         </div>

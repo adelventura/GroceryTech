@@ -104,30 +104,31 @@ function formatAccountResult(results) {
       zipcode: account.zip_code,
       defaultPaymentName: account.default_payment,
       routingNumber: account.routing_number,
-      accountNumber: account.account_number
+      accountNumber: account.account_number,
+      defaultStoreID: account.default_store_id
     };
   });
 }
 
-function formatDefaultStoreResult(results) {
-  return results.map(function(store) {
-    return {
-      defaultStoreName: store.store_name,
-      storeStreetNumber: store.house_number,
-      storeStreet: store.street,
-      storeCity: store.city,
-      storeState: store.state,
-      storeZipcode: store.zip_code
-    };
-  });
-}
+// function formatDefaultStoreResult(results) {
+//   return results.map(function(store) {
+//     return {
+//       defaultStoreName: store.store_name,
+//       storeStreetNumber: store.house_number,
+//       storeStreet: store.street,
+//       storeCity: store.city,
+//       storeState: store.state,
+//       storeZipcode: store.zip_code
+//     };
+//   });
+// }
 
 router.get('/account', function(req, res, next) {
   var token = req.headers['authorization'];
 
   console.log('entering get');
   db.query(
-    `SELECT username, email, first_name, last_name, phone, house_number, street, city, state, zip_code, default_payment, routing_number, account_number,   payment_name FROM Userr NATURAL JOIN Buyer NATURAL JOIN Payments JOIN Address ON Buyer.address_id = Address.id WHERE username = '${token}' AND Buyer.default_payment = Payments.payment_name`,
+    `SELECT username, email, first_name, last_name, phone, house_number, street, city, state, zip_code, default_payment, routing_number, account_number,   payment_name, default_store_id FROM Userr NATURAL JOIN Buyer NATURAL JOIN Payments JOIN Address ON Buyer.address_id = Address.id WHERE username = '${token}' AND Buyer.default_payment = Payments.payment_name`,
     function(err, results) {
       if (err) {
         res.sendStatus(501);
@@ -136,49 +137,30 @@ router.get('/account', function(req, res, next) {
         return;
       }
       console.log('completed first query');
-      db.query(
-        `SELECT store_name, house_number, street, city, state, zip_code
-        FROM Buyer JOIN GroceryStore ON default_store_id = store_id JOIN Address ON GroceryStore.address_id = id
-        WHERE username = '${token}'`,
-        function(err, defaultStore) {
-          if (err) {
-            res.sendStatus(501);
-            console.log('error in second query');
-            console.log(err);
-            return;
-          }
-          console.log('completed second query');
-          res.json({
-            accountInfo: formatAccountResult(results),
-            storeInfo: formatDefaultStoreResult(defaultStore)
-          });
-        }
-      );
+
+      res.json(formatAccountResult(results));
     }
   );
 });
 
-// UPDATE BUYER ACCOUNT INFO
-function formatAccountResult(results) {
-  return results.map(function(item) {
-    return {
-      email: item.description,
-      phone: item.listed_price,
-      streetNumber: item.wholesale_price,
-      street: item.exp_date,
-      city: item.quantity,
-      stateUS: item.wholesale_price,
-      zipcode: item.exp_date,
-      defaultStoreName: item.quantity,
-      storeStreetNumber: item.exp_date,
-      storeStreet: item.quantity,
-      storeCity: item.quantity,
-      storeState: item.exp_date,
-      storeZipcode: item.quantity,
-      defaultPaymentName: item.quantity,
-      routingNumber: item.exp_date,
-      accountNumber: item.quantity
-    };
-  });
-}
+router.get('/account/update', function(req, res, next) {
+  var token = req.headers['authorization'];
+
+  console.log('entering get');
+  db.query(
+    `SELECT username, email, first_name, last_name, phone, house_number, street, city, state, zip_code, default_payment, routing_number, account_number,   payment_name, default_store_id FROM Userr NATURAL JOIN Buyer NATURAL JOIN Payments JOIN Address ON Buyer.address_id = Address.id WHERE username = '${token}' AND Buyer.default_payment = Payments.payment_name`,
+    function(err, results) {
+      if (err) {
+        res.sendStatus(501);
+        console.log('error in second query');
+        console.log(err);
+        return;
+      }
+      console.log('completed first query');
+
+      res.json(formatAccountResult(results));
+    }
+  );
+});
+
 module.exports = router;

@@ -1,10 +1,43 @@
 import React from 'react';
 import FetchAssignments from '../../Model/FetchAssignments';
+import Loading from '../../Components/Loading';
 
 export default class AssignmentsListPage extends React.Component {
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      selected: '',
+      selectedId: ''
+    };
+  }
+
+  selectHandler = id => {
+    return event => {
+      this.setState({
+        selected: event.target.value,
+        selectedId: id
+      });
+    };
+  };
+
+  handleChoose = event => {
+    if (this.state.selected === '') {
+      alert('Must select assignment to continue');
+    } else {
+      const { selectedId } = this.state;
+      this.props.history.push(`assignments/${selectedId}`);
+    }
+  };
+
   render() {
+    const selectedId = this.state.selectedId;
+
     return (
       <FetchAssignments
+        placeholder={() => {
+          return <Loading />;
+        }}
         content={assignments => {
           return (
             <div>
@@ -27,13 +60,32 @@ export default class AssignmentsListPage extends React.Component {
                   </thead>
                   {assignments.map(assignment => {
                     return (
-                      <tbody>
+                      <tbody key={assignment.orderID}>
                         <tr>
-                          <td>{assignment.storeName}</td>
+                          <td style={{ textAlign: 'left' }}>
+                            <form
+                              style={{
+                                display: 'inline'
+                              }}
+                            >
+                              <input
+                                type="radio"
+                                name="assignment"
+                                value={assignment.orderID}
+                                checked={selectedId === assignment.orderID}
+                                onChange={this.selectHandler(
+                                  assignment.orderID
+                                )}
+                                onClick={this.selectHandler(assignment.orderID)}
+                                style={{ marginRight: '5px' }}
+                              />
+                            </form>
+                            {assignment.storeName}
+                          </td>
                           <td>{assignment.orderID}</td>
                           <td>{assignment.date}</td>
-                          <td>{assignment.orderTime}</td>
-                          <td>{assignment.deliveryTime}</td>
+                          <td>{assignment.timeOrderMade}</td>
+                          <td>{assignment.timeDelivered}</td>
                           <td>{assignment.totalPrice}</td>
                           <td>{assignment.totalItems}</td>
                         </tr>
@@ -81,8 +133,9 @@ export default class AssignmentsListPage extends React.Component {
                         marginLeft: 'auto',
                         marginRight: '0'
                       }}
+                      onClick={this.handleChoose}
                     >
-                      Add to cart
+                      View Details
                     </button>
                   </div>
                 </div>

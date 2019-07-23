@@ -1,9 +1,24 @@
 import React from 'react';
 import FetchStores from '../../Model/FetchStores';
 import FetchBuyerAccount from '../../Model/FetchBuyerAccount';
+import Config from '../../Config/Config';
 import Loading from '../../Components/Loading';
 
-export default class AccountInfoPage extends React.Component {
+function disableEdits(inputs) {
+  var length = inputs.length;
+  while (length--) {
+    inputs[length].disabled = true;
+  }
+}
+
+function enableEdits(inputs) {
+  var length = inputs.length;
+  while (length--) {
+    inputs[length].disabled = false;
+  }
+}
+
+export default class EditAccountInfoPage extends React.Component {
   constructor(props) {
     super(props);
 
@@ -26,12 +41,155 @@ export default class AccountInfoPage extends React.Component {
     };
   }
 
-  update = () => {
-    this.props.history.replace(`/buyer/account/update`);
+  handleUpdate() {
+    let inputs = document.getElementsByTagName('input');
+    return enableEdits(inputs);
+  }
+
+  save = () => {
+    if (!this.state.email) {
+      alert('enter an email');
+      return;
+    }
+
+    if (!(this.state.password === this.state.confirmPassword)) {
+      alert('password and confirm password must match');
+      return;
+    }
+
+    if (!this.state.streetNumber) {
+      alert('enter a street number');
+      return;
+    }
+    if (!this.state.city) {
+      alert('enter a city');
+      return;
+    }
+    if (!this.state.stateUS) {
+      alert('enter a state');
+      return;
+    }
+    if (!this.state.zipcode) {
+      alert('enter a zipcode');
+      return;
+    }
+    if (!this.state.phone) {
+      alert('enter a phone number');
+      return;
+    }
+    if (!this.state.defaultPaymentName) {
+      alert('enter a payment name');
+      return;
+    }
+    if (!this.state.accountNumber) {
+      alert('enter an account number');
+      return;
+    }
+    if (!this.state.routingNumber) {
+      alert('enter a routing number');
+      return;
+    }
+    if (!this.state.defaultStoreID) {
+      alert('select a default store');
+      return;
+    }
+
+    fetch(`${Config.baseUrl}/buyer/account`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(this.state)
+    })
+      .then(() => {
+        this.props.history.replace(`/buyer/account`);
+      })
+      .catch(error => {
+        alert(error);
+      });
   };
 
-  delete = () => {
-    alert('not available');
+  onEmailChange = event => {
+    this.setState({
+      email: event.target.value
+    });
+  };
+
+  onStreetNumberChange = event => {
+    this.setState({
+      streetNumber: event.target.value
+    });
+  };
+
+  onStreetChange = event => {
+    this.setState({
+      street: event.target.value
+    });
+  };
+
+  onCityChange = event => {
+    this.setState({
+      city: event.target.value
+    });
+  };
+
+  onStateChange = event => {
+    this.setState({
+      stateUS: event.target.value
+    });
+  };
+
+  onZipcodeChange = event => {
+    this.setState({
+      zipcode: event.target.value
+    });
+  };
+
+  onPhoneChange = event => {
+    this.setState({
+      phone: event.target.value
+    });
+  };
+
+  onDefaultPaymentNameChange = event => {
+    this.setState({
+      defaultPaymentName: event.target.value
+    });
+  };
+
+  onAccountNumberChange = event => {
+    this.setState({
+      accountNumber: event.target.value
+    });
+  };
+
+  onRoutingNumberChange = event => {
+    this.setState({
+      routingNumber: event.target.value
+    });
+  };
+
+  onDefaultStoreIDChange = event => {
+    this.setState({
+      defaultStoreID: event.target.value
+    });
+  };
+
+  formItem = (name, label) => {
+    return (
+      <div>
+        <h3 className="form-input-label">{label}</h3>
+        <input
+          className="form-input"
+          name={name}
+          type="text"
+          placeholder={label}
+          value={this.state.label}
+          onChange={this.handleChange}
+          disabled
+        />
+      </div>
+    );
   };
 
   render() {
@@ -45,7 +203,9 @@ export default class AccountInfoPage extends React.Component {
             return (
               <div>
                 <div className="header-block">
-                  <div className="page-header">Your Account</div>
+                  <div className="page-header">
+                    Edit Your Account Information
+                  </div>
                 </div>
                 <div
                   className="card block-centered"
@@ -61,6 +221,7 @@ export default class AccountInfoPage extends React.Component {
                               className="form-input"
                               name="firstName"
                               type="text"
+                              style={{ backgroundColor: '#F6F6F6' }}
                               placeholder={account.firstName}
                               value={this.state.firstName}
                               disabled
@@ -72,6 +233,7 @@ export default class AccountInfoPage extends React.Component {
                               className="form-input"
                               name="lastName"
                               type="text"
+                              style={{ backgroundColor: '#F6F6F6' }}
                               placeholder={account.lastName}
                               value={this.state.lastName}
                               disabled
@@ -86,6 +248,7 @@ export default class AccountInfoPage extends React.Component {
                               className="form-input"
                               name="username"
                               type="text"
+                              style={{ backgroundColor: '#F6F6F6' }}
                               placeholder={account.username}
                               value={this.state.username}
                               disabled
@@ -100,7 +263,6 @@ export default class AccountInfoPage extends React.Component {
                               placeholder={account.email}
                               value={this.state.email}
                               onChange={this.onEmailChange}
-                              disabled
                             />
                           </span>
                         </div>
@@ -120,7 +282,6 @@ export default class AccountInfoPage extends React.Component {
                               placeholder={account.streetNumber}
                               value={this.state.streetNumber}
                               onChange={this.onStreetNumberChange}
-                              disabled
                             />
                           </span>
                           <span style={{ float: 'right', width: '46%' }}>
@@ -132,7 +293,6 @@ export default class AccountInfoPage extends React.Component {
                               placeholder={account.street}
                               value={this.state.street}
                               onChange={this.onStreetChange}
-                              disabled
                             />
                           </span>
                         </div>
@@ -147,7 +307,6 @@ export default class AccountInfoPage extends React.Component {
                               placeholder={account.city}
                               value={this.state.city}
                               onChange={this.onCityChange}
-                              disabled
                             />
                           </span>
                           <span style={{ float: 'right', width: '46%' }}>
@@ -159,7 +318,6 @@ export default class AccountInfoPage extends React.Component {
                               placeholder={account.stateUS}
                               value={this.state.stateUS}
                               onChange={this.onStateChange}
-                              disabled
                             />
                           </span>
                         </div>
@@ -177,7 +335,6 @@ export default class AccountInfoPage extends React.Component {
                               placeholder={account.zipcode}
                               value={this.state.zipcode}
                               onChange={this.onZipcodeChange}
-                              disabled
                             />
                           </span>
                           <span style={{ float: 'right', width: '46%' }}>
@@ -189,7 +346,6 @@ export default class AccountInfoPage extends React.Component {
                               placeholder={account.phone}
                               value={this.state.phoneNumber}
                               onChange={this.onPhoneChange}
-                              disabled
                             />
                           </span>
                         </div>
@@ -214,7 +370,6 @@ export default class AccountInfoPage extends React.Component {
                               placeholder={account.defaultPaymentName}
                               value={this.state.defaultPaymentName}
                               onChange={this.onDefaultPaymentNameChange}
-                              disabled
                             />
                           </span>
                           <span style={{ float: 'right', width: '46%' }}>
@@ -226,7 +381,6 @@ export default class AccountInfoPage extends React.Component {
                               placeholder={account.accountNumber}
                               value={this.state.accountNumber}
                               onChange={this.onAccountNumberChange}
-                              disabled
                             />
                           </span>
                         </div>
@@ -244,7 +398,6 @@ export default class AccountInfoPage extends React.Component {
                               placeholder={account.routingNumber}
                               value={this.state.routingNumber}
                               onChange={this.onRoutingNumberChange}
-                              disabled
                             />
                           </div>
                         </div>
@@ -268,7 +421,6 @@ export default class AccountInfoPage extends React.Component {
                                     placeholder="default"
                                     value={this.state.defaultStoreID}
                                     onChange={this.onDefaultStoreIDChange}
-                                    disabled
                                   >
                                     {stores.map(store => {
                                       return (
@@ -294,12 +446,13 @@ export default class AccountInfoPage extends React.Component {
                     >
                       Delete Account
                     </button>
+
                     <button
                       className="btn"
-                      onClick={this.update}
+                      onClick={this.save}
                       style={{ margin: '25px' }}
                     >
-                      Update Account
+                      Save Changes
                     </button>
                   </div>
                 </div>

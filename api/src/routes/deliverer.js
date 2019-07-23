@@ -35,4 +35,36 @@ router.post('/register', function(req, res, next) {
   );
 });
 
+// DELIVERER ACCOUNT INFO
+function formatAccountResult(results) {
+  return results.map(function(account) {
+    return {
+      username: account.username,
+      firstName: account.first_name,
+      lastName: account.last_name,
+      email: account.email
+    };
+  });
+}
+
+router.get('/account', function(req, res, next) {
+  var token = req.headers['authorization'];
+
+  console.log('entering get');
+  db.query(
+    `SELECT username, email, first_name, last_name FROM Userr WHERE username = '${token}'`,
+    function(err, results) {
+      if (err) {
+        res.sendStatus(501);
+        console.log('error in query');
+        console.log(err);
+        return;
+      }
+      console.log('completed query');
+
+      res.json(formatAccountResult(results));
+    }
+  );
+});
+
 module.exports = router;

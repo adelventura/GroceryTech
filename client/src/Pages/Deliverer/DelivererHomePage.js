@@ -16,13 +16,18 @@ export default class DelivererHomePage extends React.Component {
   render() {
     return (
       <React.Fragment>
-        <p className="page-header">
-          Your Deliverer Homepage <br />
-        </p>
+        <div className="header-block">
+          <div className="page-header">Your Deliverer Homepage</div>
+        </div>
         <div className="grid-container-row">
-          {this.button('/store', 'Assignments', FaClipboardList, '#a9eec2')}
           {this.button(
-            '/order_history',
+            '/assignments',
+            'Assignments',
+            FaClipboardList,
+            '#a9eec2'
+          )}
+          {this.button(
+            '/deliverer/account',
             'Account Information',
             FaUserEdit,
             '#705772'

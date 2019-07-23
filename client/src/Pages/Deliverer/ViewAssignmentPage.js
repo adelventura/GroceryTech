@@ -1,5 +1,6 @@
 import React from 'react';
 import FetchAssignment from '../../Model/FetchAssignment';
+import Loading from '../../Components/Loading';
 
 export default class ViewAssignmentPage extends React.Component {
   constructor(props) {
@@ -33,13 +34,15 @@ export default class ViewAssignmentPage extends React.Component {
     return (
       <React.Fragment>
         <FetchAssignment
-          id={orderID}
+          placeholder={() => {
+            return <Loading />;
+          }}
           content={assignment => {
             return (
               <div>
                 <div className="header-block">
                   <div className="page-header">Assignment Details</div>
-                </div>{' '}
+                </div>
                 <div
                   className="card block-centered"
                   style={{ width: '70%', maxWidth: '700px', marginTop: '25px' }}
@@ -56,7 +59,7 @@ export default class ViewAssignmentPage extends React.Component {
                       {this.cell(
                         'Order Placed',
                         'orderTime',
-                        `${assignment.orderTime}`
+                        `${assignment.orderPlacedTime}`
                       )}
                       {this.cell(
                         'Delivery Time',
@@ -86,7 +89,7 @@ export default class ViewAssignmentPage extends React.Component {
                         className="mini-tbl"
                         style={{ paddingTop: '5px', marginBottom: '40px' }}
                       >
-                        <thead className="form-input-label">
+                        <div className="form-input-label">
                           <th
                             style={{
                               width: '30%',
@@ -103,8 +106,8 @@ export default class ViewAssignmentPage extends React.Component {
                           >
                             Item
                           </th>
-                        </thead>
-                        {assignment.items.map(item => {
+                        </div>
+                        {assignment.map(item => {
                           return (
                             <tbody>
                               <tr>
@@ -114,14 +117,14 @@ export default class ViewAssignmentPage extends React.Component {
                                     border: '.5px solid #70C18C'
                                   }}
                                 >
-                                  {item.quantity}
+                                  {item.itemQuantity}
                                 </td>
                                 <td
                                   style={{
                                     border: '.5px solid #70C18C'
                                   }}
                                 >
-                                  {item.item.name}
+                                  {item.itemName}
                                 </td>
                               </tr>
                             </tbody>
