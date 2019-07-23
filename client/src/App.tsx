@@ -34,9 +34,10 @@ import Cookies from "js-cookie";
 
 interface CartItem {
   item: {
-    name: String;
-    description: String;
-    price: number;
+    id: string;
+    name: string;
+    description: string;
+    retailPrice: number;
     inStock: boolean;
   };
   quantity: number;
@@ -44,9 +45,9 @@ interface CartItem {
 
 class UserManager {
   user: {
-    token: String;
-    type: String;
-    cart: { [index: number]: CartItem } | null;
+    token: string;
+    type: string;
+    cart: { [index: number]: CartItem };
   } | null = null;
 
   constructor() {
@@ -66,7 +67,7 @@ class UserManager {
     }
   }
 
-  update = (user: { token: String; type: String } | null) => {
+  update = (user: { token: string; type: string } | null) => {
     if (user != null) {
       Cookies.set("token", user.token);
       Cookies.set("type", user.type);

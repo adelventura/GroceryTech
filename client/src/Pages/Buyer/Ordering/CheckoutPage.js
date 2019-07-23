@@ -1,6 +1,7 @@
 import React from 'react';
 import FetchPaymentMethods from '../../../Model/FetchPaymentMethods';
 import RequiresAuthentication from '../../../Components/RequiresAuthentication';
+import { userManager } from '../../../App';
 
 export default class CheckoutPage extends React.Component {
   handleOrder = event => {
@@ -83,7 +84,11 @@ export default class CheckoutPage extends React.Component {
                           className="total-price"
                           name="total-price"
                           type="text"
-                          placeholder="$50.21"
+                          value={`$${Object.values(
+                            userManager.user.cart
+                          ).reduce((sum, item) => {
+                            return sum + item.quantity * item.item.retailPrice;
+                          }, 0)}`}
                           disabled
                         />
                       </div>

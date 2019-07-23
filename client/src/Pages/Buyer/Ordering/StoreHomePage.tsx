@@ -5,6 +5,7 @@ import Loading from "../../../Components/Loading.js";
 import { RouteComponentProps } from "react-router";
 import { FaShoppingCart, FaCarrot, FaTimesCircle } from "react-icons/fa";
 import RequiresAuthentication from "../../../Components/RequiresAuthentication.js";
+import { userManager } from "../../../App";
 
 interface StoreRouteProps {
   id: string;
@@ -22,7 +23,7 @@ export default class StoreHomePage extends React.Component<
   }
 
   cancel = () => {
-    // TODO: clear cart
+    userManager.clearCart();
     this.props.history.push(`/home`);
   };
 
