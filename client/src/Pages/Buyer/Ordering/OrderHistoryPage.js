@@ -12,7 +12,7 @@ export default class OrderHistoryPage extends React.Component {
               <div>
                 <br />
                 <div className="header-block">
-                  <div className="page-header">Checkout</div>
+                  <div className="page-header">Order History</div>
                 </div>
                 <div className="tbl-card">
                   <table className="tbl">
@@ -56,22 +56,12 @@ export default class OrderHistoryPage extends React.Component {
                         width: '15%'
                       }}
                     />
+
                     <div
                       style={{
                         display: 'inline-flex',
-                        justifyContent: 'center',
-                        width: '70%'
-                      }}
-                    >
-                      <button className="btn">Previous</button>
-                      <button className="btn">Next</button>
-                    </div>
-                    <div
-                      style={{
-                        display: 'inline-flex',
-                        alignContent: 'end',
-                        justifyContent: 'end',
-                        width: '15%'
+                        marginBottom: '25px',
+                        width: '100%'
                       }}
                     >
                       <button
@@ -82,7 +72,7 @@ export default class OrderHistoryPage extends React.Component {
                           marginRight: '0'
                         }}
                       >
-                        Add to cart
+                        View Order Details
                       </button>
                     </div>
                   </div>

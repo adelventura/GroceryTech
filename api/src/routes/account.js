@@ -21,12 +21,12 @@ function formatPaymentResult(results) {
 function formatOrderHistoryResult(results) {
   return results.map(function(orderHistory) {
     return {
-      storeName: 'missing',
+      storeName: orderHistory.store_name,
       orderID: orderHistory.order_id,
-      date: orderHistory.date,
-      totalPrice: 'missing',
-      totalItems: 'missing',
-      delivered: 'missing'
+      date: orderHistory.order_placed_date,
+      totalPrice: orderHistory.TotPrice,
+      totalItems: orderHistory.TotQuantity,
+      delivered: orderHistory.is_delivered == 1 ? 1 : 0
     };
   });
 }
@@ -112,9 +112,10 @@ router.get('/order_history', function(req, res, next) {
   var token = req.headers['authorization'];
 
   db.query(
-    `SELECT y.order_id, o.date FROM orderedBy y JOIN Buyer b ON y.buyer_username = b.username
-    JOIN Orderr o ON  o.order_id = y.order_id
-    WHERE buyer_username = '${token}'`,
+    `SELECT store_name, selectItem.order_id, Orderr.order_placed_date, SUM(selectItem.quantity*listed_price) AS TotPrice,SUM(selectItem.quantity) AS TotQuantity,deliveredBy.is_delivered
+    FROM selectItem JOIN Item JOIN Orderr JOIN orderedBy JOIN Buyer JOIN Address JOIN orderFrom JOIN GroceryStore JOIN deliveredBy
+    WHERE selectItem.item_id = Item.item_id AND selectItem.order_id = Orderr.order_id AND selectItem.order_id = orderedBy.order_id AND Buyer.username=orderedBy.buyer_username AND Buyer.address_id = Address.id AND orderFrom.order_id = selectItem.order_id AND GroceryStore.store_id=orderFrom.store_address_id AND deliveredBy.order_id = selectItem.order_id AND buyer_username = '${token}'
+    GROUP BY selectItem.order_id`,
     function(err, results) {
       if (err) {
         res.sendStatus(501);

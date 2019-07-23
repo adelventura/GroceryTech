@@ -96,25 +96,9 @@ export default class StartNewOrderPage extends React.Component {
                     <div
                       style={{
                         display: 'inline-flex',
-                        width: '15%'
-                      }}
-                    />
-                    <div
-                      style={{
-                        display: 'inline-flex',
-                        justifyContent: 'center',
-                        width: '70%'
-                      }}
-                    >
-                      <button className="btn">Previous</button>
-                      <button className="btn">Next</button>
-                    </div>
-                    <div
-                      style={{
-                        display: 'inline-flex',
                         alignContent: 'end',
                         justifyContent: 'end',
-                        width: '15%'
+                        width: '100%'
                       }}
                     >
                       <button
