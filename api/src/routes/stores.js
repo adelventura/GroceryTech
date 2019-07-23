@@ -22,21 +22,6 @@ function formatStoresResult(results) {
   });
 }
 
-function formatItemResult(results) {
-  return results.map(function(item) {
-    return {
-      id: item.item_id,
-      type: item.food_group,
-      name: item.item_name,
-      description: item.description,
-      retailPrice: item.listed_price,
-      wholesalePrice: item.wholesale_price,
-      expiration: item.exp_date,
-      quantity: item.quantity
-    };
-  });
-}
-
 router.get('/', function(req, res, next) {
   db.query(
     'SELECT * FROM (GroceryStore JOIN Address ON address_id = id)',
@@ -81,11 +66,29 @@ router.get('/:id/search/:category', function(req, res, next) {
   );
 });
 
+function formatItemResult(results) {
+  return results.map(function(item) {
+    return {
+      id: item.item_id,
+      type: item.food_group,
+      name: item.item_name,
+      description: item.description,
+      retailPrice: item.listed_price,
+      wholesalePrice: item.wholesale_price,
+      expiration: item.exp_date,
+      quantity: item.quantity
+    };
+  });
+}
+
 router.get('/:id/inventory', function(req, res, next) {
-  var storeID = req.params.id;
+  var token = req.headers['authorization'];
 
   db.query(
-    `SELECT * FROM (Item NATURAL JOIN soldAt) WHERE store_id = ${storeID}`,
+    `SELECT item_name,description,quantity,listed_price,wholesale_price,exp_date
+    FROM soldAt NATURAL JOIN Item NATURAL JOIN GroceryStore JOIN manages
+    WHERE GroceryStore.address_id = manages.store_address
+    AND username = '${token}';`,
     function(err, results) {
       if (err) {
         res.sendStatus(501);

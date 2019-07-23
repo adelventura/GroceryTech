@@ -99,6 +99,7 @@ export default class AssignmentsListPage extends React.Component {
                     width: '90%',
                     display: 'block',
                     marginLeft: 'auto',
+                    marginBottom: '25px',
                     marginRight: 'auto'
                   }}
                 >

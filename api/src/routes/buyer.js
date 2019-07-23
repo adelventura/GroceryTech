@@ -125,19 +125,19 @@ function formatAccountResult(results) {
 
 router.get('/account', function(req, res, next) {
   var token = req.headers['authorization'];
-
+  console.log(token);
   console.log('entering get');
   db.query(
     `SELECT username, email, first_name, last_name, phone, house_number, street, city, state, zip_code, default_payment, routing_number, account_number,   payment_name, default_store_id FROM Userr NATURAL JOIN Buyer NATURAL JOIN Payments JOIN Address ON Buyer.address_id = Address.id WHERE username = '${token}' AND Buyer.default_payment = Payments.payment_name`,
     function(err, results) {
       if (err) {
         res.sendStatus(501);
-        console.log('error in second query');
+        console.log('error in first query');
         console.log(err);
         return;
       }
       console.log('completed first query');
-
+      console.log(JSON.stringify(formatAccountResult(results)));
       res.json(formatAccountResult(results));
     }
   );

@@ -64,7 +64,7 @@ export default class OutstandingOrdersPage extends React.Component {
                           <td>{order.storeName}</td>
                           <td>{order.storeAddress}</td>
                           <td>{order.orderID}</td>
-                          <td>{order.date}</td>
+                          <td>{order.orderDate}</td>
                           <td>{order.totalPrice}</td>
                           <td>{order.totalItems}</td>
                           <td>{order.deliveryAddress}</td>
@@ -105,18 +105,7 @@ export default class OutstandingOrdersPage extends React.Component {
                       justifyContent: 'end',
                       width: '15%'
                     }}
-                  >
-                    <button
-                      className="btn"
-                      style={{
-                        display: 'inline-block',
-                        marginLeft: 'auto',
-                        marginRight: '0'
-                      }}
-                    >
-                      Add to cart
-                    </button>
-                  </div>
+                  />
                 </div>
               </div>
             </div>

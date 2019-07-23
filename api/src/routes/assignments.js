@@ -43,13 +43,13 @@ router.get('/', function(req, res, next) {
 function formatAssignmentDetailResult(results) {
   return results.map(function(assignment) {
     return {
-      orderPlacedTime: assignment.store_name,
-      deliveryTime: assignment.order_id,
-      status: assignment.order_placed_date,
-      buyerAddress: assignment.order_placed_time,
-      storeName: assignment.delivery_time,
-      itemName: assignment.TotalPrice,
-      itemQuantity: assignment.NumItems
+      orderPlacedTime: assignment.order_placed_time,
+      deliveryTime: assignment.delivery_time,
+      status: assignment.IsDelivered,
+      buyerAddress: assignment.BuyAddress,
+      storeName: assignment.store_name,
+      itemName: assignment.item_name,
+      itemQuantity: assignment.quantity
     };
   });
 }
@@ -58,6 +58,7 @@ router.get('/:id', function(req, res, next) {
   console.log('entered get');
   var token = req.headers['authorization'];
   var orderID = req.params.id;
+  console.log('order: ' + orderID);
   console.log('token retrieved' + token);
 
   db.query(
@@ -70,7 +71,7 @@ router.get('/:id', function(req, res, next) {
         return;
       }
       console.log('exited query ');
-      console.log(JSON.stringify(results));
+      console.log(JSON.stringify(formatAssignmentDetailResult(results)));
 
       res.json(formatAssignmentDetailResult(results));
     }

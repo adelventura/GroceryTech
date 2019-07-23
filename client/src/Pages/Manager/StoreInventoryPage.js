@@ -50,8 +50,8 @@ export default class StoreInventoryPage extends React.Component {
             return (
               <div>
                 <br />
-                <div className="page-header" style={{ marginBottom: '25px' }}>
-                  Inventory >{' '}
+                <div className="header-block">
+                  <div className="page-header">Inventory</div>
                 </div>
                 <div className="tbl-card">
                   <table className="tbl">
@@ -69,20 +69,7 @@ export default class StoreInventoryPage extends React.Component {
                       return (
                         <tbody>
                           <tr>
-                            <td style={{ textAlign: 'left' }}>
-                              <form style={{ display: 'inline' }}>
-                                <input
-                                  type="radio"
-                                  name="item"
-                                  value={item.id}
-                                  checked={selectedId === item.id}
-                                  onChange={this.selectHandler(item.id)}
-                                  onClick={this.selectHandler(item.id)}
-                                  style={{ marginRight: '10px' }}
-                                />
-                              </form>
-                              {item.name}
-                            </td>
+                            <td style={{ textAlign: 'left' }}>{item.name}</td>
                             <td>{item.description}</td>
                             <td>{item.quantity}</td>
                             <td>{item.retailPrice}</td>
@@ -126,7 +113,7 @@ export default class StoreInventoryPage extends React.Component {
                         width: '15%'
                       }}
                     >
-                      <button
+                      {/* <button
                         className="btn"
                         //onClick={this.updateCart(updater)}
                         style={{
@@ -136,7 +123,7 @@ export default class StoreInventoryPage extends React.Component {
                         }}
                       >
                         View Item
-                      </button>
+                      </button> */}
                     </div>
                   </div>
                 </div>

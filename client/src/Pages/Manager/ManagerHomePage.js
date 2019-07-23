@@ -22,9 +22,9 @@ export default class ManagerHomePage extends React.Component {
   render() {
     return (
       <React.Fragment>
-        <p className="page-header">
-          Your Manager Homepage <br />
-        </p>
+        <div className="header-block">
+          <div className="page-header"> Your Manager Homepage</div>
+        </div>
         <div className="grid-container-row">
           {this.button(
             '/manager/store/revenue',
@@ -42,7 +42,7 @@ export default class ManagerHomePage extends React.Component {
         <div className="grid-container-row">
           {this.button('/store/inventory', 'Inventory', FaBoxes, '#247BA0')}
           {this.button(
-            '/store/:id/orders',
+            '/manager/orders',
             'Outstanding Orders',
             FaCashRegister,
             '#FFE066'

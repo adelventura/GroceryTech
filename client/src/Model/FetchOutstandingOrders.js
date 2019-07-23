@@ -1,6 +1,7 @@
 import React from 'react';
 import Config from '../Config/Config';
 import Loading from '../Components/Loading';
+import { userManager } from '../App';
 
 export default class FetchOutstandingOrders extends React.Component {
   constructor(props) {
@@ -13,7 +14,7 @@ export default class FetchOutstandingOrders extends React.Component {
 
   componentDidMount() {
     fetch(`${Config.baseUrl}/manager/orders`, {
-      headers: { Authorization: this.props.token }
+      headers: { Authorization: userManager.user.token }
     })
       .then(response => response.json())
       .then(data => this.setState({ outstandingOrders: data }));

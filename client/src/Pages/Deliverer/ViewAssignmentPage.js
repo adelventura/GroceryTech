@@ -34,6 +34,7 @@ export default class ViewAssignmentPage extends React.Component {
     return (
       <React.Fragment>
         <FetchAssignment
+          id={orderID}
           placeholder={() => {
             return <Loading />;
           }}
@@ -59,22 +60,22 @@ export default class ViewAssignmentPage extends React.Component {
                       {this.cell(
                         'Order Placed',
                         'orderTime',
-                        `${assignment.orderPlacedTime}`
+                        `${assignment[0].orderPlacedTime}`
                       )}
                       {this.cell(
                         'Delivery Time',
                         'deliveryTime',
-                        `${assignment.deliveryTime}`
+                        `${assignment[0].deliveryTime}`
                       )}
                       {this.cell(
                         'Buyer Address',
                         'buyerAddress',
-                        `${assignment.buyerAddress}`
+                        `${assignment[0].buyerAddress}`
                       )}
                       {this.cell(
                         'Store Name',
                         'storeName',
-                        `${assignment.storeName}`
+                        `${assignment[0].storeName}`
                       )}
                       {this.cell('Status', 'status', 'Pending')}
                     </div>
@@ -89,7 +90,10 @@ export default class ViewAssignmentPage extends React.Component {
                         className="mini-tbl"
                         style={{ paddingTop: '5px', marginBottom: '40px' }}
                       >
-                        <div className="form-input-label">
+                        <div
+                          className="form-input-label"
+                          style={{ marginBottom: '0px' }}
+                        >
                           <th
                             style={{
                               width: '30%',

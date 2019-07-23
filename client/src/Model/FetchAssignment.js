@@ -13,7 +13,7 @@ export default class FetchAssignment extends React.Component {
   }
 
   componentDidMount() {
-    fetch(`${Config.baseUrl}/assignments/:id`, {
+    fetch(`${Config.baseUrl}/assignments/${this.props.id}`, {
       headers: { Authorization: userManager.user.token }
     })
       .then(response => response.json())

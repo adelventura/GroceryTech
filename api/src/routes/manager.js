@@ -8,26 +8,42 @@ function formatAddress(on) {
 }
 
 router.get('/orders', function(req, res, next) {
-  var username = 'colorlessabbey';
+  var token = req.headers['authorization'];
 
   db.query(
-    `SELECT * FROM ((manages JOIN Address ON store_address = id) JOIN GroceryStore ON id = address_id) WHERE username = '${username}'`,
+    `SELECT store_name, concat(Address.house_number,' ',Address.street,', ',Address.city,', ',Address.state,' ',Address.zip_code) as StoreAddress,deliveredBy.order_id,Orderr.order_placed_date,SUM(selectItem.quantity*listed_price) AS TotalPrice,SUM(selectItem.quantity) AS NumItems,concat(A.house_number,' ',A.street,', ',A.city,', ',A.state,' ',A.zip_code) AS DeliveryAddress
+    FROM deliveredBy NATURAL JOIN orderFrom JOIN GroceryStore JOIN manages Join Address JOIN selectItem JOIN Item JOIN orderedBy JOIN Buyer JOIN Address AS A JOIN Orderr
+    WHERE store_address_id=store_id AND GroceryStore.address_id = store_address AND GroceryStore.address_id = Address.id AND selectItem.order_id = deliveredBy.order_id AND selectItem.item_id = ITEM.item_id AND orderedBy.order_id=deliveredBy.order_id AND Buyer.username = buyer_username AND buyer.address_id=A.id and Orderr.order_id=deliveredBy.order_id
+    AND is_delivered = 0
+    AND manages.username = '${token}'
+    GROUP BY deliveredBy.order_id, manages.username`,
     function(err, results) {
-      var managedStore = results[0];
-      var fromAddress = formatAddress(managedStore);
+      if (err) {
+        res.sendStatus(501);
+        console.log('error in query');
+        console.log(err);
+        return;
+      }
+      console.log('completed query');
 
-      // How to get the orders for the store??
-      // db.query(
-      //   `SELECT * FROM orderFrom WHERE store_address_id = ${
-      //     managedStore.address_id
-      //   }`,
-      //   function(err, results) {
-      //     console.log(results);
-      //   }
-      // );
+      res.json(formatOrdersResult(results));
     }
   );
 });
+
+function formatOrdersResult(results) {
+  return results.map(function(order) {
+    return {
+      storeName: order.store_name,
+      storeAddress: order.StoreAddress,
+      orderID: order.order_id,
+      orderDate: order.order_placed_date,
+      totalPrice: order.TotalPrice,
+      totalItems: order.NumItems,
+      deliveryAddress: order.DeliveryAddress
+    };
+  });
+}
 
 // REGISTER MANAGER ACCOUNT / MANAGER ACCOUNT INFO
 router.post('/register', function(req, res, next) {
@@ -89,6 +105,41 @@ router.post('/account', function(req, res, next) {
           }
         }
       );
+    }
+  );
+});
+
+// MANAGER ACCOUNT INFO
+function formatAccountResult(results) {
+  return results.map(function(account) {
+    return {
+      username: account.username,
+      firstName: account.first_name,
+      lastName: account.last_name,
+      email: account.email,
+      storeName: account.store_name,
+      storeAddress: account.StoreAddress
+    };
+  });
+}
+
+router.get('/account', function(req, res, next) {
+  var token = req.headers['authorization'];
+
+  console.log('entering get');
+  db.query(
+    `SELECT username, email, first_name, last_name, store_name, concat(Address.house_number,' ',Address.street,', ',Address.city,', ',Address.state,' ',Address.zip_code) AS StoreAddress FROM Userr NATURAL JOIN manages JOIN Address ON store_address = id JOIN GroceryStore ON store_address = address_id
+    WHERE username = '${token}'`,
+    function(err, results) {
+      if (err) {
+        res.sendStatus(501);
+        console.log('error in query');
+        console.log(err);
+        return;
+      }
+      console.log('completed query');
+
+      res.json(formatAccountResult(results));
     }
   );
 });

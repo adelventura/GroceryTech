@@ -21,7 +21,9 @@ export default class RevenueReportPage extends React.Component {
           content={revenueReport => {
             return (
               <div>
-                <div className="page-header">Revenue Report</div>
+                <div className="header-block">
+                  <div className="page-header"> Revenue Report</div>
+                </div>
                 <div
                   className="card block-centered"
                   style={{
