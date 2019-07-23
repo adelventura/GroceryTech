@@ -1,4 +1,6 @@
 import React from 'react';
+import FetchStores from '../../Model/FetchStores';
+import Config from '../../Config/Config';
 
 export default class RegisterBuyerPage extends React.Component {
   constructor(props) {
@@ -10,26 +12,204 @@ export default class RegisterBuyerPage extends React.Component {
       username: '',
       email: '',
       password: '',
-      address: '',
+      confirmPassword: '',
+      streetNumber: '',
+      street: '',
       city: '',
-      state: '',
+      stateUS: '',
       zipcode: '',
-      phoneNumber: ''
+      phone: '',
+      addressID: '',
+      defaultPaymentName: '',
+      accountNumber: '',
+      routingNumber: '',
+      defaultStoreID: ''
     };
-
-    this.handleChange = this.handleChange.bind(this);
-    this.handleSubmit = this.handleSubmit.bind(this);
   }
 
-  handleSubmit() {
-    return this.props.history.push('/home');
-  }
+  create = () => {
+    if (!this.state.firstName) {
+      alert('enter a first name');
+      return;
+    }
 
-  handleChange(event) {
+    if (!this.state.lastName) {
+      alert('enter a last name ');
+      return;
+    }
+
+    if (!this.state.username) {
+      alert('enter a username');
+      return;
+    }
+
+    if (!this.state.email) {
+      alert('enter an email');
+      return;
+    }
+
+    if (!this.state.password) {
+      alert('enter a password');
+      return;
+    }
+
+    if (!this.state.confirmPassword) {
+      alert('confirm your password');
+      return;
+    }
+
+    if (!(this.state.password === this.state.confirmPassword)) {
+      alert('password and confirm password must match');
+      return;
+    }
+
+    if (!this.state.streetNumber) {
+      alert('enter a street number');
+      return;
+    }
+    if (!this.state.city) {
+      alert('enter a city');
+      return;
+    }
+    if (!this.state.stateUS) {
+      alert('enter a state');
+      return;
+    }
+    if (!this.state.zipcode) {
+      alert('enter a zipcode');
+      return;
+    }
+    if (!this.state.phone) {
+      alert('enter a phone number');
+      return;
+    }
+    if (!this.state.defaultPaymentName) {
+      alert('enter a payment name');
+      return;
+    }
+    if (!this.state.accountNumber) {
+      alert('enter an account number');
+      return;
+    }
+    if (!this.state.routingNumber) {
+      alert('enter a routing number');
+      return;
+    }
+    if (!this.state.defaultStoreID) {
+      alert('select a default store');
+      return;
+    }
+
+    fetch(`${Config.baseUrl}/buyer/register`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(this.state)
+    })
+      .then(() => {
+        this.props.history.replace(`/`);
+      })
+      .catch(error => {
+        alert(error);
+      });
+  };
+
+  onFirstNameChange = event => {
     this.setState({
-      [event.target.name]: event.target.value
+      firstName: event.target.value
     });
-  }
+  };
+
+  onLastNameChange = event => {
+    this.setState({
+      lastName: event.target.value
+    });
+  };
+
+  onUsernameChange = event => {
+    this.setState({
+      username: event.target.value
+    });
+  };
+
+  onPasswordChange = event => {
+    this.setState({
+      password: event.target.value
+    });
+  };
+
+  onConfirmPasswordChange = event => {
+    this.setState({
+      confirmPassword: event.target.value
+    });
+  };
+
+  onEmailChange = event => {
+    this.setState({
+      email: event.target.value
+    });
+  };
+
+  onStreetNumberChange = event => {
+    this.setState({
+      streetNumber: event.target.value
+    });
+  };
+
+  onStreetChange = event => {
+    this.setState({
+      street: event.target.value
+    });
+  };
+
+  onCityChange = event => {
+    this.setState({
+      city: event.target.value
+    });
+  };
+
+  onStateChange = event => {
+    this.setState({
+      stateUS: event.target.value
+    });
+  };
+
+  onZipcodeChange = event => {
+    this.setState({
+      zipcode: event.target.value
+    });
+  };
+
+  onPhoneChange = event => {
+    this.setState({
+      phone: event.target.value
+    });
+  };
+
+  onDefaultPaymentNameChange = event => {
+    this.setState({
+      defaultPaymentName: event.target.value
+    });
+  };
+
+  onAccountNumberChange = event => {
+    this.setState({
+      accountNumber: event.target.value
+    });
+  };
+
+  onRoutingNumberChange = event => {
+    this.setState({
+      routingNumber: event.target.value
+    });
+  };
+
+  onDefaultStoreIDChange = event => {
+    this.setState({
+      defaultStoreID: event.target.value
+    });
+  };
 
   render() {
     return (
@@ -38,9 +218,6 @@ export default class RegisterBuyerPage extends React.Component {
           <div className="page-header">Register New Account</div>
         </div>
         <div className="card block-centered" style={{ marginTop: '25px' }}>
-          <div className="card-header">Tell us about yourself</div>
-          <br />
-          <br />
           <div className="flex-col">
             <div className="form-row">
               <span style={{ float: 'left', width: '46%' }}>
@@ -51,7 +228,7 @@ export default class RegisterBuyerPage extends React.Component {
                   type="text"
                   placeholder="First Name"
                   value={this.state.firstName}
-                  onChange={this.handleChange}
+                  onChange={this.onFirstNameChange}
                 />
               </span>
               <span style={{ float: 'right', width: '46%' }}>
@@ -62,7 +239,7 @@ export default class RegisterBuyerPage extends React.Component {
                   type="text"
                   placeholder="Last Name"
                   value={this.state.lastName}
-                  onChange={this.handleChange}
+                  onChange={this.onLastNameChange}
                 />
               </span>
             </div>
@@ -75,7 +252,7 @@ export default class RegisterBuyerPage extends React.Component {
                   type="text"
                   placeholder="Username"
                   value={this.state.username}
-                  onChange={this.handleChange}
+                  onChange={this.onUsernameChange}
                 />
               </span>
               <span style={{ float: 'right', width: '46%' }}>
@@ -86,7 +263,7 @@ export default class RegisterBuyerPage extends React.Component {
                   type="text"
                   placeholder="Email"
                   value={this.state.email}
-                  onChange={this.handleChange}
+                  onChange={this.onEmailChange}
                 />
               </span>
             </div>
@@ -100,7 +277,7 @@ export default class RegisterBuyerPage extends React.Component {
                   type="password"
                   placeholder="Password"
                   value={this.state.password}
-                  onChange={this.handleChange}
+                  onChange={this.onPasswordChange}
                 />
               </span>
               <span style={{ float: 'right', width: '46%' }}>
@@ -110,25 +287,39 @@ export default class RegisterBuyerPage extends React.Component {
                   name="confirmPassword"
                   type="password"
                   placeholder="Confim password"
-                  /* value={this.state.password}
-            onChange={this.handleChange} */
+                  value={this.state.confirmPassword}
+                  onChange={this.onConfirmPasswordChange}
                 />
               </span>
             </div>
+            <div className="form-row" style={{ marginBottom: '30px' }} />
 
             <div className="form-row">
               <span style={{ float: 'left', width: '46%' }}>
-                <h3 className="form-input-label">Address</h3>
+                <h3 className="form-input-label">Street Number</h3>
                 <input
                   className="form-input"
-                  name="address"
+                  name="streetNumber"
                   type="text"
-                  placeholder="Address"
-                  value={this.state.address}
-                  onChange={this.handleChange}
+                  placeholder="Street number"
+                  value={this.state.streetNumber}
+                  onChange={this.onStreetNumberChange}
                 />
               </span>
               <span style={{ float: 'right', width: '46%' }}>
+                <h3 className="form-input-label">Street</h3>
+                <input
+                  className="form-input"
+                  name="street"
+                  type="text"
+                  placeholder="Street"
+                  value={this.state.street}
+                  onChange={this.onStreetChange}
+                />
+              </span>
+            </div>
+            <div className="form-row">
+              <span style={{ float: 'left', width: '46%' }}>
                 <h3 className="form-input-label">City</h3>
                 <input
                   className="form-input"
@@ -136,23 +327,23 @@ export default class RegisterBuyerPage extends React.Component {
                   type="text"
                   placeholder="City"
                   value={this.state.city}
-                  onChange={this.handleChange}
-                />
-              </span>
-            </div>
-            <div className="form-row">
-              <span style={{ float: 'left', width: '46%' }}>
-                <h3 className="form-input-label">State</h3>
-                <input
-                  className="form-input"
-                  name="state"
-                  type="text"
-                  placeholder="State"
-                  value={this.state.state}
-                  onChange={this.handleChange}
+                  onChange={this.onCityChange}
                 />
               </span>
               <span style={{ float: 'right', width: '46%' }}>
+                <h3 className="form-input-label">State</h3>
+                <input
+                  className="form-input"
+                  name="stateUS"
+                  type="text"
+                  placeholder="State"
+                  value={this.state.stateUS}
+                  onChange={this.onStateChange}
+                />
+              </span>
+            </div>
+            <div className="form-row" style={{ marginBottom: '20px' }}>
+              <span style={{ float: 'left', width: '46%' }}>
                 <h3 className="form-input-label">Zipcode</h3>
                 <input
                   className="form-input"
@@ -160,31 +351,97 @@ export default class RegisterBuyerPage extends React.Component {
                   type="text"
                   placeholder="Zipcode"
                   value={this.state.zipcode}
-                  onChange={this.handleChange}
+                  onChange={this.onZipcodeChange}
                 />
               </span>
-            </div>
-            <div className="form-row" style={{ marginBottom: '20px' }}>
-              <div style={{ float: 'left', width: '46%' }}>
+              <span style={{ float: 'right', width: '46%' }}>
                 <h3 className="form-input-label">Phone Number</h3>
                 <input
                   className="form-input"
-                  name="phoneNumber"
+                  name="phone"
                   type="text"
                   placeholder="Phone number"
                   value={this.state.phoneNumber}
-                  onChange={this.handleChange}
+                  onChange={this.onPhoneChange}
+                />
+              </span>
+            </div>
+            <div className="form-row" style={{ marginBottom: '30px' }} />
+
+            <div className="form-row" style={{ marginBottom: '20px' }}>
+              <span style={{ float: 'left', width: '46%' }}>
+                <h3 className="form-input-label">Default Payment Name</h3>
+                <input
+                  className="form-input"
+                  name="defaultPaymentName"
+                  type="text"
+                  placeholder="Default payment name"
+                  value={this.state.defaultPaymentName}
+                  onChange={this.onDefaultPaymentNameChange}
+                />
+              </span>
+              <span style={{ float: 'right', width: '46%' }}>
+                <h3 className="form-input-label">Account Number</h3>
+                <input
+                  className="form-input"
+                  name="accountNumber"
+                  type="text"
+                  placeholder="Account number"
+                  value={this.state.accountNumber}
+                  onChange={this.onAccountNumberChange}
+                />
+              </span>
+            </div>
+
+            <div className="form-row" style={{ marginBottom: '20px' }}>
+              <div style={{ float: 'left', width: '46%' }}>
+                <h3 className="form-input-label">Routing Number</h3>
+                <input
+                  className="form-input"
+                  name="routingNumber"
+                  type="text"
+                  placeholder="Routing number"
+                  value={this.state.routingNumber}
+                  onChange={this.onRoutingNumberChange}
                 />
               </div>
             </div>
+            <div className="form-row" style={{ marginBottom: '30px' }} />
+
+            <div className="form-row" style={{ marginBottom: '25px' }}>
+              <div style={{ float: 'left', width: '46%' }}>
+                <h3 className="form-input-label">Default Store</h3>
+                <FetchStores
+                  content={stores => {
+                    return (
+                      <select
+                        name="defaultStore"
+                        className="select"
+                        value={this.state.defaultStoreID}
+                        onChange={this.onDefaultStoreIDChange}
+                      >
+                        {stores.map(store => {
+                          return (
+                            <option value={store.addressID}>{`${store.name} - ${
+                              store.address
+                            }`}</option>
+                          );
+                        })}
+                      </select>
+                    );
+                  }}
+                />
+              </div>
+            </div>
+
+            <button
+              className="btn"
+              onClick={this.create}
+              style={{ float: 'right' }}
+            >
+              Create Account
+            </button>
           </div>
-          <button
-            className="btn"
-            onClick={this.handleSubmit}
-            style={{ float: 'right' }}
-          >
-            Create Account
-          </button>
         </div>
       </React.Fragment>
     );

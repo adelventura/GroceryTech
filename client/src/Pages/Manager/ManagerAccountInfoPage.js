@@ -45,8 +45,9 @@ export default class ManagerAccountInfoPage extends React.Component {
   render() {
     return (
       <React.Fragment>
-        <div className="page-header"> Your Account Information</div>
-
+        <div className="header-block">
+          <div className="page-header"> Your Account Information</div>
+        </div>
         <div className="card block-centered">
           <div className="flex-col">
             <div className="form-row">

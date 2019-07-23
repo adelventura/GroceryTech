@@ -29,7 +29,7 @@ router.get('/orders', function(req, res, next) {
   );
 });
 
-// REGISTER ACCOUNT / ACCOUNT INFO
+// REGISTER MANAGER ACCOUNT / MANAGER ACCOUNT INFO
 router.post('/register', function(req, res, next) {
   var userType = 'manager';
   var firstName = req.body.firstName;
@@ -65,6 +65,71 @@ router.post('/register', function(req, res, next) {
       );
     }
   );
+});
+
+router.post('/account', function(req, res, next) {
+  var userType = 'manager';
+  var firstName = req.body.firstName;
+  var lastName = req.body.lastName;
+  var username = req.body.username;
+  var password = req.body.password;
+  var email = req.body.email;
+  var store = req.body.store;
+
+  db.query(
+    `INSERT INTO Userr(username, password, user_type, email, first_name, last_name) VALUES ('${username}', '${password}', '${userType}', '${email}', '${firstName}', '${lastName}')`,
+    function(err, results) {
+      db.query(
+        `INSERT INTO manages(username, store_address) VALUES ('${username}', '${store}')`,
+        function(err, results) {
+          if (err) {
+            res.sendStatus(400);
+          } else {
+            res.sendStatus(200);
+          }
+        }
+      );
+    }
+  );
+});
+
+// REVENUE REPORT
+router.get('/store/revenue', function(req, res, next) {
+  var token = req.headers['authorization'];
+
+  var query = `SELECT username, store_name, SUM(selectItem.quantity*listed_price) AS Revenue, SUM(selectItem.quantity) AS Total_Items_Sold
+
+  FROM (Userr NATURAL JOIN manages
+         JOIN GroceryStore
+         JOIN orderFrom
+         JOIN selectItem
+         JOIN Item
+         JOIN Orderr)
+
+  WHERE (Item.item_id = selectItem.item_id)
+    AND (selectItem.order_id = orderFrom.order_id)
+    AND (store_id = store_address_id)
+    AND (store_address = Address_id)
+    AND (selectItem.order_id = Orderr.order_id)
+    AND (DATEDIFF(CURRENT_DATE,Orderr.order_placed_date)<365)
+    AND (DATEDIFF(CURRENT_DATE,Orderr.order_placed_date)>0)
+    AND (username = '${token}')
+
+  GROUP BY store_name`;
+
+  db.query(query, function(err, results) {
+    if (err) {
+      res.sendStatus(400);
+    } else {
+      var revenue = results[0];
+
+      res.json({
+        name: revenue.store_name,
+        revenue: revenue.Revenue,
+        itemsSold: revenue.Total_Items_Sold
+      });
+    }
+  });
 });
 
 module.exports = router;

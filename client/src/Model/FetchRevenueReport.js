@@ -3,28 +3,28 @@ import Config from '../Config/Config';
 import Loading from '../Components/Loading';
 import { userManager } from '../App';
 
-export default class FetchAccount extends React.Component {
+export default class FetchRevenueReport extends React.Component {
   constructor(props) {
     super(props);
 
     this.state = {
-      accountInformation: undefined
+      report: undefined
     };
   }
 
   componentDidMount() {
-    fetch(`${Config.baseUrl}/manager/register`, {
+    fetch(`${Config.baseUrl}/manager/store/revenue`, {
       headers: { Authorization: userManager.user.token }
     })
       .then(response => response.json())
-      .then(data => this.setState({ accountInformation: data }));
+      .then(data => this.setState({ report: data }));
   }
 
   render() {
-    const { accountInformation } = this.state;
+    const { report } = this.state;
 
-    if (accountInformation) {
-      return this.props.content(accountInformation);
+    if (report) {
+      return this.props.content(report);
     } else {
       return <Loading />;
     }

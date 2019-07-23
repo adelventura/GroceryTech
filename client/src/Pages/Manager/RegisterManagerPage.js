@@ -61,7 +61,7 @@ export default class RegisterManagerPage extends React.Component {
       return;
     }
     if (!this.state.store) {
-      alert('enter an assigned store');
+      alert('select an assigned store');
       return;
     }
 

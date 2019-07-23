@@ -24,7 +24,7 @@ export default class RegistrationNavPage extends React.Component {
               <div className="card-header">Are you a...</div>
               <br />
               <Link
-                to="/register/buyer"
+                to="/buyer/register"
                 style={{
                   display: 'flex',
                   flexDirection: 'row',

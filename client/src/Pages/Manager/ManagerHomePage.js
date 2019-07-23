@@ -27,7 +27,7 @@ export default class ManagerHomePage extends React.Component {
         </p>
         <div className="grid-container-row">
           {this.button(
-            'manager/store/:id/revenue',
+            '/manager/store/revenue',
             'Revenue Report',
             FaCalculator,
             '#70C18C'
@@ -40,7 +40,7 @@ export default class ManagerHomePage extends React.Component {
           )}
         </div>
         <div className="grid-container-row">
-          {this.button('/store/:id/inventory', 'Inventory', FaBoxes, '#247BA0')}
+          {this.button('/store/inventory', 'Inventory', FaBoxes, '#247BA0')}
           {this.button(
             '/store/:id/orders',
             'Outstanding Orders',

@@ -125,15 +125,15 @@ class App extends Component {
             />
             <Route
               exact
-              path="/manager/store/:id/revenue"
+              path="/manager/store/revenue"
               component={RevenueReportPage}
             />
             <Route
               exact
-              path="/store/:id/inventory"
+              path="/store/inventory"
               component={StoreInventoryPage}
             />
-            <Route exact path="/register/buyer" component={RegisterBuyerPage} />
+            <Route exact path="/buyer/register" component={RegisterBuyerPage} />
             <Route exact path="/account" component={AccountInfoPage} />
             <Route
               exact
