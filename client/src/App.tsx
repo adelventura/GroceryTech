@@ -32,10 +32,21 @@ import ViewAssignmentPage from "./Pages/Deliverer/ViewAssignmentPage";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import Cookies from "js-cookie";
 
+interface CartItem {
+  item: {
+    name: String;
+    description: String;
+    price: number;
+    inStock: boolean;
+  };
+  quantity: number;
+}
+
 class UserManager {
   user: {
     token: String;
     type: String;
+    cart: { [index: number]: CartItem } | null;
   } | null = null;
 
   constructor() {
@@ -47,7 +58,8 @@ class UserManager {
     if (token && type) {
       this.user = {
         token,
-        type
+        type,
+        cart: {}
       };
     } else {
       this.user = null;
@@ -55,16 +67,28 @@ class UserManager {
   }
 
   update = (user: { token: String; type: String } | null) => {
-    this.user = user;
-
     if (user != null) {
       Cookies.set("token", user.token);
       Cookies.set("type", user.type);
 
-      console.log("update: " + JSON.stringify(user));
+      this.user = {
+        ...user,
+        cart: {}
+      };
     } else {
       Cookies.remove("token");
       Cookies.remove("type");
+
+      this.user = null;
+    }
+  };
+
+  clearCart = () => {
+    if (this.user != null) {
+      this.user = {
+        ...this.user,
+        cart: {}
+      };
     }
   };
 }
