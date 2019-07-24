@@ -11,7 +11,7 @@
 
 ## Setup
 
-'''open DBngin and click the plus button in the top right. Name the new server "GroceryTech" and change the service to "mysql", then hit create. Once it is created, hit start next to its name. Once it turns green, double click on the GroceryTech line, and a new window should open in TablePlus. Once in tableplus, click the "sql" button near the top left, and input the GroceryTech.sql file containing all the table statements. Then, where it says "Run Current" click the drop down next to it and run all. Next hit "Command K" and open "Grocery Tech". Now, hit "Command K" again and open mysql. In the SQL tab of TablePlus, click on the sql button in the top left again, and enter the following commands:
+Open DBngin and click the plus button in the top right. Name the new server "GroceryTech" and change the service to "mysql", then hit create. Once it is created, hit start next to its name. Once it turns green, double click on the GroceryTech line, and a new window should open in TablePlus. Once in tableplus, click the "sql" button near the top left, and input the GroceryTech.sql file containing all the table statements. Then, where it says "Run Current" click the drop down next to it and run all. Next hit "Command K" and open "Grocery Tech". Now, hit "Command K" again and open mysql. In the SQL tab of TablePlus, click on the sql button in the top left again, and enter the following commands:
 
 update user set 
 plugin='mysql_native_password' where user='root';
@@ -20,10 +20,11 @@ quit;
 
 Now you can click run all again, and the sql server should be set up.
 
-Next, create a folder on your desktop and locate this folder in terminal and enter the following commands in order to open our repository on github.
+Next, create a folder on your desktop and locate this folder in terminal and enter the following command in order to open our repository on github:
 
 git clone  --- PUT LINK HERE---
-'''
+
+Now navigate into the GroceryTech folder, and run the following commands.
 
 ```bash
 cd api
