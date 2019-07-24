@@ -6,8 +6,8 @@
 
 - node.js
 - DBngin
--TablePlus
--mysql
+- TablePlus
+- mysql
 
 ## Setup
 
