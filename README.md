@@ -22,7 +22,7 @@ Now you can click run all again, and the sql server should be set up.
 
 Next, create a folder on your desktop and locate this folder in terminal and enter the following command in order to open our repository on github:
 
-git clone  --- PUT LINK HERE---
+git clone  https://github.com/adelventura/GroceryTech.git
 
 Now navigate into the GroceryTech folder, and run the following commands.
 
