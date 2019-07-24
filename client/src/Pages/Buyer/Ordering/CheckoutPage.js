@@ -2,10 +2,67 @@ import React from 'react';
 import FetchPaymentMethods from '../../../Model/FetchPaymentMethods';
 import RequiresAuthentication from '../../../Components/RequiresAuthentication';
 import { userManager } from '../../../App';
+import Config from '../../../Config/Config';
 
 export default class CheckoutPage extends React.Component {
+  state = {
+    deliveryTime: 'ASAP'
+  };
+
+  onPaymentMethodChange = event => {
+    this.setState({
+      paymentMethod: event.target.value
+    });
+  };
+
+  onDeliveryTimeChange = event => {
+    this.setState({
+      deliveryTime: event.target.value
+    });
+  };
+
+  onDeliveryInstructionsChange = event => {
+    this.setState({
+      deliveryInstructions: event.target.value
+    });
+  };
+
   handleOrder = event => {
-    this.props.history.push('/checkout/receipt');
+    if (!this.state.paymentMethod) {
+      alert('select a payment method');
+      return;
+    }
+    console.log('test');
+
+    console.log(userManager.user.store);
+
+    var request = {
+      ...this.state,
+      storeId: userManager.user.store,
+      items: Object.values(userManager.user.cart).map(item => {
+        return {
+          id: item.item.id,
+          quantity: item.quantity
+        };
+      })
+    };
+
+    fetch(`${Config.baseUrl}/checkout`, {
+      method: 'POST',
+      body: JSON.stringify(request),
+      headers: {
+        Authorization: userManager.user.token,
+        'Content-Type': 'application/json'
+      }
+    })
+      .then(response => response.json())
+      .then(data => {
+        userManager.clearCart();
+        this.props.history.push(`/checkout/receipt/${data.orderID}`);
+      })
+      .catch(error => {
+        alert(error);
+      });
   };
 
   render() {
@@ -46,10 +103,15 @@ export default class CheckoutPage extends React.Component {
                     <div className="justify-between">
                       <div>
                         <div className="form-input-label">Payment</div>
-                        <select name="payment-method" className="select">
+                        <select
+                          name="payment-method"
+                          className="select"
+                          value={this.state.paymentMethod}
+                          onChange={this.onPaymentMethodChange}
+                        >
                           {paymentMethods.map(paymentMethod => {
                             return (
-                              <option>
+                              <option value={paymentMethod.name}>
                                 {paymentMethod.default
                                   ? 'Default (' + paymentMethod.name + ')'
                                   : paymentMethod.paymentName}
@@ -61,7 +123,12 @@ export default class CheckoutPage extends React.Component {
 
                       <div>
                         <div className="form-input-label">Delivery Time</div>
-                        <select name="delivery-time" className="select">
+                        <select
+                          name="delivery-time"
+                          className="select"
+                          value={this.state.deliveryTime}
+                          onChange={this.onDeliveryTimeChange}
+                        >
                           <option value="asap">ASAP</option>
                           <option value="1 hour">In 1 hour</option>
                           <option value="2 hours">In 2 hours</option>
@@ -100,6 +167,8 @@ export default class CheckoutPage extends React.Component {
                         <textarea
                           className="delivery-instruc"
                           placeholder="Instructions for delivery"
+                          value={this.state.deliveryInstructions}
+                          onChange={this.onDeliveryInstructionsChange}
                         />
                       </div>
                     </div>

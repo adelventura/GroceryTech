@@ -110,30 +110,30 @@ export default class ViewAssignmentPage extends React.Component {
                           >
                             Item
                           </th>
+                          <tbody>
+                            {assignment.map(item => {
+                              return (
+                                <tr>
+                                  <td
+                                    style={{
+                                      textAlign: 'center',
+                                      border: '.5px solid #70C18C'
+                                    }}
+                                  >
+                                    {item.itemQuantity}
+                                  </td>
+                                  <td
+                                    style={{
+                                      border: '.5px solid #70C18C'
+                                    }}
+                                  >
+                                    {item.itemName}
+                                  </td>
+                                </tr>
+                              );
+                            })}
+                          </tbody>
                         </div>
-                        {assignment.map(item => {
-                          return (
-                            <tbody>
-                              <tr>
-                                <td
-                                  style={{
-                                    textAlign: 'center',
-                                    border: '.5px solid #70C18C'
-                                  }}
-                                >
-                                  {item.itemQuantity}
-                                </td>
-                                <td
-                                  style={{
-                                    border: '.5px solid #70C18C'
-                                  }}
-                                >
-                                  {item.itemName}
-                                </td>
-                              </tr>
-                            </tbody>
-                          );
-                        })}
                       </table>
                     </div>
                   </div>

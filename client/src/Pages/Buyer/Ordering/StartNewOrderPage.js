@@ -2,6 +2,7 @@ import React from 'react';
 import FetchStores from '../../../Model/FetchStores';
 import Loading from '../../../Components/Loading';
 import RequiresAuthentication from '../../../Components/RequiresAuthentication';
+import { userManager } from '../../../App';
 
 export default class StartNewOrderPage extends React.Component {
   constructor(props) {
@@ -27,6 +28,13 @@ export default class StartNewOrderPage extends React.Component {
       alert('Must select store to continue');
     } else {
       const { selectedId } = this.state;
+
+      // reset the cart when choosing new store
+      userManager.clearCart();
+      userManager.user.store = selectedId;
+
+      console.log(userManager.user.store);
+
       this.props.history.push(`store/${selectedId}`);
     }
   };

@@ -2,6 +2,7 @@ import React from "react";
 import { RouteComponentProps } from "react-router";
 import RequiresAuthentication from "../../../Components/RequiresAuthentication";
 import { userManager } from "../../../App";
+import CartBadge from "../../../Components/CartBadge";
 
 type RouteParams = {};
 
@@ -57,7 +58,7 @@ export default class ViewCartPage extends React.Component<
           <br />
           <div className="header-block">
             <div className="page-header">Your Cart</div>
-          </div>{" "}
+          </div>
           <div className="tbl-card">
             <table className="tbl">
               <thead>

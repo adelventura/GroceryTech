@@ -10,6 +10,7 @@ var assignmentsRouter = require('./src/routes/assignments');
 var buyerRouter = require('./src/routes/buyer');
 var managerRouter = require('./src/routes/manager');
 var delivererRouter = require('./src/routes/deliverer');
+var checkoutRouter = require('./src/routes/checkout');
 
 var app = express();
 
@@ -24,6 +25,7 @@ app.use('/assignments', assignmentsRouter);
 app.use('/buyer', buyerRouter);
 app.use('/manager', managerRouter);
 app.use('/deliverer', delivererRouter);
+app.use('/checkout', checkoutRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
