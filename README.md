@@ -22,14 +22,14 @@ The client and api are run as seperate servers. In two terminal windows run:
 
 ```bash
 cd api
-node run start
+npm run start
 ```
 
 #### Client:
 
 ```bash
 cd client
-node run start
+npm run start
 ```
 
 ## Configuring Database
