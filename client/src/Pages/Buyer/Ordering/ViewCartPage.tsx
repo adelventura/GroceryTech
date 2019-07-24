@@ -58,6 +58,7 @@ export default class ViewCartPage extends React.Component<
           <br />
           <div className="header-block">
             <div className="page-header">Your Cart</div>
+            <div style={{ display: "block", float: "right" }}>{} items</div>
           </div>
           <div className="tbl-card">
             <table className="tbl">

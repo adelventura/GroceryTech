@@ -3,6 +3,7 @@ var router = express.Router();
 
 var db = require('../db/db');
 
+//CHECKOUT ORDER
 router.post('/', function(req, res, next) {
   var token = req.headers['authorization'];
   console.log(req.body);
@@ -116,6 +117,43 @@ router.post('/', function(req, res, next) {
       }
     );
   });
+});
+
+// RECEIPT
+function formatReceiptResult(results) {
+  return results.map(function(receipt) {
+    return {
+      orderID: receipt.order_id,
+      paymentName: receipt.req.body.paymentName,
+      delivererName: receipt.deliverer_username,
+      totalItems: receipt.email,
+      orderTime: receipt.order_placed_time,
+      deliveryTime: receipt.delivery_time
+    };
+  });
+}
+
+router.get('/receipt/:id', function(req, res, next) {
+  var id = req.params.id;
+  var token = req.headers['authorization'];
+  console.log(token);
+  console.log('entering get');
+  db.query(
+    `SELECT Orderr.order_id, Orderr.delivery_time, Orderr.order_placed_time, deliveredBy.deliverer_username, concat(first_name,' ',last_name) AS delivererName, SUM(selectItem.quantity) AS totalItems
+    FROM Orderr JOIN deliveredBy ON (Orderr.order_id = deliveredBy.order_id) JOIN Userr ON (deliveredBy.deliverer_username = Userr.username) JOIN selectItem ON (Orderr.order_id = selectItem.order_id)
+    WHERE Orderr.order_id = '${id}'`,
+    function(err, results) {
+      if (err) {
+        res.sendStatus(501);
+        console.log('error in first query');
+        console.log(err);
+        return;
+      }
+      console.log('completed first query');
+      console.log(JSON.stringify(formatReceiptResult(results)));
+      res.json(formatReceiptResult(results));
+    }
+  );
 });
 
 module.exports = router;
