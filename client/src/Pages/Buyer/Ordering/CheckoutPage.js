@@ -110,11 +110,14 @@ export default class CheckoutPage extends React.Component {
                           onChange={this.onPaymentMethodChange}
                         >
                           {paymentMethods.map(paymentMethod => {
+                            {
+                              console.log(JSON.stringify(paymentMethods));
+                            }
                             return (
                               <option value={paymentMethod.name}>
                                 {paymentMethod.default
                                   ? 'Default (' + paymentMethod.name + ')'
-                                  : paymentMethod.paymentName}
+                                  : '' + paymentMethod.name}
                               </option>
                             );
                           })}
@@ -159,7 +162,7 @@ export default class CheckoutPage extends React.Component {
                       </div>
                     </div>
 
-                    <div class="block-centered" style={{ width: '100%' }}>
+                    <div className="block-centered" style={{ width: '100%' }}>
                       <div>
                         <div className="form-input-label">
                           Delivery Instructions
