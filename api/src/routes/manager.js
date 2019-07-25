@@ -88,6 +88,7 @@ router.post('/account/update', function(req, res, next) {
   var email = req.body.email;
   var storeAddressID = req.body.storeAddressID;
 
+  console.log(JSON.stringify(req.body));
   db.query(
     `UPDATE Userr SET  Userr.email = '${email}' WHERE username = '${token}'`,
     function(err, results) {

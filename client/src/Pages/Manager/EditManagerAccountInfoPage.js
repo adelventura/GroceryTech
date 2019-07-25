@@ -58,7 +58,9 @@ export default class ManagerAccountInfoPage extends React.Component {
     }
     fetch(`${Config.baseUrl}/manager/account/update`, {
       method: 'POST',
-      headers: { Authorization: userManager.user.token },
+      headers: {
+        'Content-Type': 'application/json'
+      },
       body: JSON.stringify(this.state)
     })
       .then(() => {
@@ -159,9 +161,11 @@ export default class ManagerAccountInfoPage extends React.Component {
                                     value={this.state.value}
                                     onChange={this.onStoreIDChange}
                                   >
-                                    <option value={account.storeAddressID}>{`${
-                                      account.storeName
-                                    } - ${account.storeAddress}`}</option>
+                                    <option
+                                      value={this.state.storeAddressID}
+                                    >{`${account.storeName} - ${
+                                      account.storeAddress
+                                    }`}</option>
                                     {stores.map(store => {
                                       return (
                                         <option value={store.addressID}>{`${
