@@ -9,12 +9,39 @@ export default class EditAccountInfoPage extends React.Component {
   constructor(props) {
     super(props);
 
-    this.state = null;
+    this.state = {
+      firstName: '',
+      lastName: '',
+      username: '',
+      email: '',
+      streetNumber: '',
+      street: '',
+      city: '',
+      stateUS: '',
+      zipcode: '',
+      phone: '',
+      addressID: '',
+      defaultPaymentName: '',
+      accountNumber: '',
+      routingNumber: '',
+      storeAddress: '',
+      storeAddressID: '',
+      storeID: ''
+    };
   }
+
+  testEmail = email => {
+    var pattern = /\w+([-+.']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*/;
+    return pattern.test(email);
+  };
 
   save = () => {
     if (!this.state.email) {
       alert('enter an email');
+      return;
+    }
+    if (!this.testEmail(this.state.email)) {
+      alert('Please enter a valid email');
       return;
     }
 
@@ -72,6 +99,37 @@ export default class EditAccountInfoPage extends React.Component {
       })
       .catch(error => {
         alert(error);
+      });
+  };
+
+  componentDidMount = () => {
+    fetch(`${Config.baseUrl}/buyer/account`, {
+      headers: { Authorization: userManager.user.token }
+    })
+      .then(response => response.json())
+      .then(response => {
+        var data = response;
+
+        this.setState({
+          firstName: data.account[0].firstName,
+          lastName: data.account[0].lastName,
+          username: data.account[0].username,
+          email: data.account[0].email,
+          streetNumber: data.account[0].streetNumber,
+          street: data.account[0].street,
+          city: data.account[0].city,
+          stateUS: data.account[0].stateUS,
+          zipcode: data.account[0].zipcode,
+          phone: data.account[0].phone,
+          addressID: data.account[0].addressID,
+          defaultPaymentName: data.account[0].defaultPaymentName,
+          accountNumber: data.account[0].accountNumber,
+          routingNumber: data.account[0].routingNumber,
+          storeName: data.store[0].storeName,
+          storeAddress: data.store[0].storeAddress,
+          storeAddressID: data.store[0].storeAddressID,
+          storeID: data.store[0].storeID
+        });
       });
   };
 
@@ -141,39 +199,7 @@ export default class EditAccountInfoPage extends React.Component {
     });
   };
 
-  componentDidMount = () => {
-    fetch(`${Config.baseUrl}/buyer/account`, {
-      headers: { Authorization: userManager.user.token }
-    })
-      .then(response => response.json())
-      .then(response => {
-        var data = response[0];
-
-        this.setState({
-          firstName: data.firstName,
-          lastName: data.lastName,
-          username: data.username,
-          email: data.email,
-          streetNumber: data.streetNumber,
-          street: data.street,
-          city: data.city,
-          stateUS: data.stateUS,
-          zipcode: data.zipcode,
-          phone: data.phone,
-          addressID: data.addressID,
-          defaultPaymentName: data.defaultPaymentName,
-          accountNumber: data.accountNumber,
-          routingNumber: data.routingNumber,
-          defaultStoreID: data.defaultStoreID
-        });
-      });
-  };
-
   render() {
-    if (!this.state) {
-      return <div>Loading</div>;
-    }
-    console.log(JSON.stringify(this.state));
     return (
       <React.Fragment>
         <FetchBuyerAccount
@@ -184,249 +210,223 @@ export default class EditAccountInfoPage extends React.Component {
             return (
               <div>
                 <div className="header-block">
-                  <div className="page-header">
-                    Edit Your Account Information
-                  </div>
+                  <div className="page-header">Your Account</div>
                 </div>
                 <div
                   className="card block-centered"
                   style={{ marginTop: '25px' }}
                 >
-                  {accountInformation.map(account => {
-                    return (
-                      <div className="flex-col">
-                        <div className="form-row">
-                          <span style={{ float: 'left', width: '46%' }}>
-                            <h3 className="form-input-label">First Name</h3>
-                            <input
-                              className="form-input"
-                              name="firstName"
-                              type="text"
-                              style={{ backgroundColor: '#F6F6F6' }}
-                              //   placeholder={account.firstName}
-                              value={this.state.firstName}
-                              disabled
-                            />
-                          </span>
-                          <span style={{ float: 'right', width: '46%' }}>
-                            <h3 className="form-input-label">Last Name</h3>
-                            <input
-                              className="form-input"
-                              name="lastName"
-                              type="text"
-                              style={{ backgroundColor: '#F6F6F6' }}
-                              //   placeholder={account.lastName}
-                              value={this.state.lastName}
-                              disabled
-                            />
-                          </span>
-                        </div>
-
-                        <div className="form-row">
-                          <span style={{ float: 'left', width: '46%' }}>
-                            <h3 className="form-input-label">Username</h3>
-                            <input
-                              className="form-input"
-                              name="username"
-                              type="text"
-                              style={{ backgroundColor: '#F6F6F6' }}
-                              //   placeholder={account.username}
-                              value={this.state.username}
-                              disabled
-                            />
-                          </span>
-                          <span style={{ float: 'right', width: '46%' }}>
-                            <h3 className="form-input-label">Email</h3>
-                            <input
-                              className="form-input"
-                              name="email"
-                              type="text"
-                              //  placeholder={account.email}
-                              value={this.state.email}
-                              onChange={this.onEmailChange}
-                            />
-                          </span>
-                        </div>
-
-                        <div
-                          className="form-row"
-                          style={{ marginBottom: '30px' }}
+                  <div className="flex-col">
+                    <div className="form-row">
+                      <span style={{ float: 'left', width: '46%' }}>
+                        <h3 className="form-input-label">First Name</h3>
+                        <input
+                          className="form-input"
+                          name="firstName"
+                          style={{ backgroundColor: '#F6F6F6' }}
+                          type="text"
+                          value={this.state.firstName}
+                          disabled
                         />
-
-                        <div className="form-row">
-                          <span style={{ float: 'left', width: '46%' }}>
-                            <h3 className="form-input-label">Street Number</h3>
-                            <input
-                              className="form-input"
-                              name="streetNumber"
-                              type="text"
-                              // placeholder={account.streetNumber}
-                              value={this.state.streetNumber}
-                              onChange={this.onStreetNumberChange}
-                            />
-                          </span>
-                          <span style={{ float: 'right', width: '46%' }}>
-                            <h3 className="form-input-label">Street</h3>
-                            <input
-                              className="form-input"
-                              name="street"
-                              type="text"
-                              //  placeholder={account.street}
-                              value={this.state.street}
-                              onChange={this.onStreetChange}
-                            />
-                          </span>
-                        </div>
-
-                        <div className="form-row">
-                          <span style={{ float: 'left', width: '46%' }}>
-                            <h3 className="form-input-label">City</h3>
-                            <input
-                              className="form-input"
-                              name="city"
-                              type="text"
-                              //  placeholder={account.city}
-                              value={this.state.city}
-                              onChange={this.onCityChange}
-                            />
-                          </span>
-                          <span style={{ float: 'right', width: '46%' }}>
-                            <h3 className="form-input-label">State</h3>
-                            <input
-                              className="form-input"
-                              name="stateUS"
-                              type="text"
-                              //   placeholder={account.stateUS}
-                              value={this.state.stateUS}
-                              onChange={this.onStateChange}
-                            />
-                          </span>
-                        </div>
-
-                        <div
-                          className="form-row"
-                          style={{ marginBottom: '20px' }}
-                        >
-                          <span style={{ float: 'left', width: '46%' }}>
-                            <h3 className="form-input-label">Zipcode</h3>
-                            <input
-                              className="form-input"
-                              name="zipcode"
-                              type="text"
-                              //  placeholder={account.zipcode}
-                              value={this.state.zipcode}
-                              onChange={this.onZipcodeChange}
-                            />
-                          </span>
-                          <span style={{ float: 'right', width: '46%' }}>
-                            <h3 className="form-input-label">Phone Number</h3>
-                            <input
-                              className="form-input"
-                              name="phone"
-                              type="text"
-                              //  placeholder={account.phone}
-                              value={this.state.phone}
-                              onChange={this.onPhoneChange}
-                            />
-                          </span>
-                        </div>
-
-                        <div
-                          className="form-row"
-                          style={{ marginBottom: '30px' }}
+                      </span>
+                      <span style={{ float: 'right', width: '46%' }}>
+                        <h3 className="form-input-label">Last Name</h3>
+                        <input
+                          className="form-input"
+                          name="lastName"
+                          style={{ backgroundColor: '#F6F6F6' }}
+                          type="text"
+                          value={this.state.lastName}
+                          disabled
                         />
+                      </span>
+                    </div>
 
-                        <div
-                          className="form-row"
-                          style={{ marginBottom: '20px' }}
-                        >
-                          <span style={{ float: 'left', width: '46%' }}>
-                            <h3 className="form-input-label">
-                              Default Payment Name
-                            </h3>
-                            <input
-                              className="form-input"
-                              name="defaultPaymentName"
-                              type="text"
-                              //  placeholder={account.defaultPaymentName}
-                              value={this.state.defaultPaymentName}
-                              onChange={this.onDefaultPaymentNameChange}
-                            />
-                          </span>
-                          <span style={{ float: 'right', width: '46%' }}>
-                            <h3 className="form-input-label">Account Number</h3>
-                            <input
-                              className="form-input"
-                              name="accountNumber"
-                              type="text"
-                              //  placeholder={account.accountNumber}
-                              value={this.state.accountNumber}
-                              onChange={this.onAccountNumberChange}
-                            />
-                          </span>
-                        </div>
-
-                        <div
-                          className="form-row"
-                          style={{ marginBottom: '20px' }}
-                        >
-                          <div style={{ float: 'left', width: '46%' }}>
-                            <h3 className="form-input-label">Routing Number</h3>
-                            <input
-                              className="form-input"
-                              name="routingNumber"
-                              type="text"
-                              // placeholder={account.routingNumber}
-                              value={this.state.routingNumber}
-                              onChange={this.onRoutingNumberChange}
-                            />
-                          </div>
-                        </div>
-                        <div
-                          className="form-row"
-                          style={{ marginBottom: '30px' }}
+                    <div className="form-row">
+                      <span style={{ float: 'left', width: '46%' }}>
+                        <h3 className="form-input-label">Username</h3>
+                        <input
+                          className="form-input"
+                          name="username"
+                          style={{ backgroundColor: '#F6F6F6' }}
+                          type="text"
+                          value={this.state.username}
+                          disabled
                         />
+                      </span>
+                      <span style={{ float: 'right', width: '46%' }}>
+                        <h3 className="form-input-label">Email</h3>
+                        <input
+                          className="form-input"
+                          name="email"
+                          type="text"
+                          value={this.state.email}
+                          onChange={this.onEmailChange}
+                        />
+                      </span>
+                    </div>
 
-                        <div
-                          className="form-row"
-                          style={{ marginBottom: '25px' }}
-                        >
-                          <div style={{ float: 'left', width: '46%' }}>
-                            <h3 className="form-input-label">Default Store</h3>
-                            <FetchStores
-                              content={stores => {
-                                return (
-                                  <select
-                                    name="defaultStore"
-                                    className="select"
-                                    value={this.state.defaultStoreID}
-                                    onChange={this.onDefaultStoreIDChange}
-                                  >
-                                    {stores.map(store => {
-                                      return (
-                                        <option value={store.addressID}>{`${
-                                          store.name
-                                        } - ${store.address}`}</option>
-                                      );
-                                    })}
-                                  </select>
-                                );
-                              }}
-                            />
-                          </div>
+                    <div
+                      className="form-row"
+                      style={{ marginBottom: '30px' }}
+                    />
+
+                    <div className="form-row">
+                      <span style={{ float: 'left', width: '46%' }}>
+                        <h3 className="form-input-label">Street Number</h3>
+                        <input
+                          className="form-input"
+                          name="streetNumber"
+                          type="text"
+                          value={this.state.streetNumber}
+                          onChange={this.onStreetNumberChange}
+                        />
+                      </span>
+                      <span style={{ float: 'right', width: '46%' }}>
+                        <h3 className="form-input-label">Street</h3>
+                        <input
+                          className="form-input"
+                          name="street"
+                          type="text"
+                          value={this.state.street}
+                          onChange={this.onStreetChange}
+                        />
+                      </span>
+                    </div>
+
+                    <div className="form-row">
+                      <span style={{ float: 'left', width: '46%' }}>
+                        <h3 className="form-input-label">City</h3>
+                        <input
+                          className="form-input"
+                          name="city"
+                          type="text"
+                          value={this.state.city}
+                          onChange={this.onCityChange}
+                        />
+                      </span>
+                      <span style={{ float: 'right', width: '46%' }}>
+                        <h3 className="form-input-label">State</h3>
+                        <input
+                          className="form-input"
+                          name="stateUS"
+                          type="text"
+                          value={this.state.stateUS}
+                          onChange={this.onStateChange}
+                        />
+                      </span>
+                    </div>
+
+                    <div className="form-row" style={{ marginBottom: '20px' }}>
+                      <span style={{ float: 'left', width: '46%' }}>
+                        <h3 className="form-input-label">Zipcode</h3>
+                        <input
+                          className="form-input"
+                          name="zipcode"
+                          type="text"
+                          value={this.state.zipcode}
+                          onChange={this.onZipcodeChange}
+                        />
+                      </span>
+                      <span style={{ float: 'right', width: '46%' }}>
+                        <h3 className="form-input-label">Phone Number</h3>
+                        <input
+                          className="form-input"
+                          name="phone"
+                          type="text"
+                          value={this.state.phone}
+                          onChange={this.onPhoneChange}
+                        />
+                      </span>
+                    </div>
+
+                    <div
+                      className="form-row"
+                      style={{ marginBottom: '30px' }}
+                    />
+
+                    <div className="form-row" style={{ marginBottom: '20px' }}>
+                      <span style={{ float: 'left', width: '46%' }}>
+                        <h3 className="form-input-label">
+                          Default Payment Name
+                        </h3>
+                        <input
+                          className="form-input"
+                          name="defaultPaymentName"
+                          type="text"
+                          value={this.state.defaultPaymentName}
+                          onChange={this.onDefaultPaymentNameChange}
+                        />
+                      </span>
+                      <span style={{ float: 'right', width: '46%' }}>
+                        <h3 className="form-input-label">Account Number</h3>
+                        <input
+                          className="form-input"
+                          name="accountNumber"
+                          type="text"
+                          value={this.state.accountNumber}
+                          onChange={this.onAccountNumberChange}
+                        />
+                      </span>
+                    </div>
+
+                    <div className="form-row" style={{ marginBottom: '20px' }}>
+                      <div style={{ float: 'left', width: '46%' }}>
+                        <h3 className="form-input-label">Routing Number</h3>
+                        <input
+                          className="form-input"
+                          name="routingNumber"
+                          type="text"
+                          value={this.state.routingNumber}
+                          onChange={this.onRoutingNumberChange}
+                        />
+                      </div>
+                    </div>
+                    <div
+                      className="form-row"
+                      style={{ marginBottom: '30px' }}
+                    />
+
+                    <div className="form-row" style={{ marginBottom: '25px' }}>
+                      <div
+                        className="form-row"
+                        style={{ marginBottom: '25px' }}
+                      >
+                        <div style={{ float: 'left', width: '46%' }}>
+                          <h3 className="form-input-label">Default Store</h3>
+                          <FetchStores
+                            content={stores => {
+                              return (
+                                <select
+                                  name="defaultStore"
+                                  className="select"
+                                  value={this.state.value}
+                                  onChange={this.onDefaultStoreIDChange}
+                                >
+                                  <option
+                                    value={accountInformation.store[0].storeID}
+                                  >{`${
+                                    accountInformation.store[0].storeName
+                                  } - ${
+                                    accountInformation.store[0].storeAddress
+                                  }`}</option>
+                                  {stores.map(store => {
+                                    return (
+                                      <option value={store.id}>{`${
+                                        store.name
+                                      } - ${store.address}`}</option>
+                                    );
+                                  })}
+                                </select>
+                              );
+                            }}
+                          />
                         </div>
                       </div>
-                    );
-                  })}
-                  <div className="flex-row justify-between">
-                    <button
-                      className="btn"
-                      onClick={this.delete}
-                      style={{ margin: '25px' }}
-                    >
-                      Delete Account
-                    </button>
+                    </div>
+                  </div>
 
+                  <div className="flex-row justify-between">
                     <button
                       className="btn"
                       onClick={this.save}

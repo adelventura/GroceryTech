@@ -115,10 +115,7 @@ export default class AssignmentsListPage extends React.Component {
                       justifyContent: 'center',
                       width: '70%'
                     }}
-                  >
-                    <button className="btn">Previous</button>
-                    <button className="btn">Next</button>
-                  </div>
+                  />
                   <div
                     style={{
                       display: 'inline-flex',

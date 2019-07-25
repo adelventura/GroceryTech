@@ -34,12 +34,21 @@ export default class EditDelivererAccountInfoPage extends React.Component {
       });
   };
 
+  testEmail = email => {
+    var pattern = /\w+([-+.']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*/;
+    return pattern.test(email);
+  };
+
   save = () => {
     if (!this.state.email) {
       alert('enter an email');
       return;
     }
 
+    if (!this.testEmail(this.state.email)) {
+      alert('Please enter a valid email');
+      return;
+    }
     fetch(`${Config.baseUrl}/deliverer/account/update`, {
       method: 'POST',
       headers: {
@@ -144,13 +153,6 @@ export default class EditDelivererAccountInfoPage extends React.Component {
               marginTop: '30px'
             }}
           >
-            <button
-              className="btn"
-              style={{ marginLeft: '0px', marginRight: 'auto' }}
-              onClick={this.delete}
-            >
-              Delete Account
-            </button>
             <button
               className="btn"
               style={{ marginRight: '0px', marginLeft: 'auto' }}

@@ -1,6 +1,7 @@
 import React from 'react';
 import Loading from '../../Components/Loading';
 import FetchManagerAccount from '../../Model/FetchManagerAccount';
+import FetchStores from '../../Model/FetchStores';
 import { userManager } from '../../App';
 import Config from '../../Config/Config';
 
@@ -13,8 +14,10 @@ export default class ManagerAccountInfoPage extends React.Component {
       lastName: '',
       username: '',
       email: '',
-      store: '',
-      storeAddress: ''
+      storeID: '',
+      storeAddressID: '',
+      address: '',
+      storeName: ''
     };
   }
 
@@ -98,29 +101,36 @@ export default class ManagerAccountInfoPage extends React.Component {
                           </span>
                         </div>
 
-                        <div className="form-row">
-                          <span style={{ float: 'left', width: '46%' }}>
-                            <h3 className="form-input-label">Assigned Store</h3>
-                            <input
-                              className="form-input"
-                              name="storeName"
-                              type="text"
-                              placeholder={account.storeName}
-                              disabled
+                        <div
+                          className="form-row"
+                          style={{ marginBottom: '25px' }}
+                        >
+                          <div style={{ float: 'left', width: '46%' }}>
+                            <h3 className="form-input-label">Default Store</h3>
+                            <FetchStores
+                              content={stores => {
+                                return (
+                                  <select
+                                    name="defaultStore"
+                                    className="select"
+                                    value={this.state.storeID}
+                                    disabled
+                                  >
+                                    <option value={account.storeID}>{`${
+                                      account.storeName
+                                    } -- ${account.storeAddress}`}</option>
+                                    {stores.map(store => {
+                                      return (
+                                        <option value={store.storeID}>{`${
+                                          store.name
+                                        } -- ${store.address}`}</option>
+                                      );
+                                    })}
+                                  </select>
+                                );
+                              }}
                             />
-                          </span>
-                          <span style={{ float: 'right', width: '46%' }}>
-                            <h3 className="form-input-label">Store Address</h3>
-                            <input
-                              className="form-input"
-                              name="storeAddress"
-                              type="text"
-                              placeholder={account.storeAddress}
-                              value={this.state.email}
-                              onChange={this.handleChange}
-                              disabled
-                            />
-                          </span>
+                          </div>
                         </div>
                       </div>
                     );

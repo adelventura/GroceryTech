@@ -77,4 +77,27 @@ router.get('/:id', function(req, res, next) {
   );
 });
 
+router.post('/:id', function(req, res, next) {
+  console.log('entered get');
+  var token = req.headers['authorization'];
+  var orderID = req.params.id;
+  var status = req.body.status;
+  console.log('order: ' + orderID);
+  console.log('token retrieved: ' + token);
+  console.log('status: ' + status);
+
+  db.query(
+    `UPDATE deliveredBy SET deliveredBy.is_delivered = 1 WHERE deliveredBy.order_id = '${orderID}'`,
+    function(err, results) {
+      if (err) {
+        res.sendStatus(501);
+        console.log('failed in query');
+        console.log(err);
+        return;
+      }
+      res.sendStatus(200);
+    }
+  );
+});
+
 module.exports = router;

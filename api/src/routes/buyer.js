@@ -110,6 +110,17 @@ function formatAccountResult(results) {
   });
 }
 
+function formatStoreResult(results) {
+  return results.map(function(store) {
+    return {
+      storeName: store.store_name,
+      storeAddress: store.storeAddress,
+      storeAddressID: store.address_id,
+      storeID: store.store_id
+    };
+  });
+}
+
 router.get('/account', function(req, res, next) {
   var token = req.headers['authorization'];
   db.query(
@@ -121,7 +132,21 @@ router.get('/account', function(req, res, next) {
         console.log(err);
         return;
       }
-      res.json(formatAccountResult(results));
+      db.query(
+        `SELECT store_name, concat(Address.house_number,' ',Address.street,', ',Address.city,', ',Address.state,' ',Address.zip_code) AS storeAddress, GroceryStore.address_id, GroceryStore.store_id FROM GroceryStore JOIN Address ON address_id = id JOIN Buyer ON default_store_id = store_id  WHERE username = '${token}'`,
+        function(err, store) {
+          if (err) {
+            res.sendStatus(501);
+            console.log('error in first query');
+            console.log(err);
+            return;
+          }
+          res.json({
+            account: formatAccountResult(results),
+            store: formatStoreResult(store)
+          });
+        }
+      );
     }
   );
 });

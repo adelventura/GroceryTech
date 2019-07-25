@@ -18,6 +18,11 @@ export default class RegisterDelivererPage extends React.Component {
     };
   }
 
+  testEmail = email => {
+    var pattern = /\w+([-+.']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*/;
+    return pattern.test(email);
+  };
+
   create = () => {
     if (!this.state.firstName) {
       alert('enter a first name');
@@ -38,7 +43,10 @@ export default class RegisterDelivererPage extends React.Component {
       alert('enter an email');
       return;
     }
-
+    if (!this.testEmail(this.state.email)) {
+      alert('Please enter a valid email');
+      return;
+    }
     if (!this.state.password) {
       alert('enter a password');
       return;

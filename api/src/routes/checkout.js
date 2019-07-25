@@ -1,6 +1,6 @@
 var express = require('express');
 var router = express.Router();
-
+var moment = require('moment'); // date formatter
 var db = require('../db/db');
 
 //CHECKOUT ORDER
@@ -10,14 +10,12 @@ router.post('/', function(req, res, next) {
   var paymentMethod = req.body.paymentMethod;
   var deliveryInstructions = req.body.deliveryInstructions;
   var deliveryTime = req.body.deliveryTime;
-  var orderDate = new Date()
-    .toISOString()
-    .replace('T', ' ')
-    .substr(0, 10);
-  var orderTime = new Date()
-    .toISOString()
-    .slice(11, 16)
-    .replace('T', ' ');
+  var orderDate = moment().format('YYYY-MM-DD');
+  var orderTime = moment().format('hh:mm');
+  // new Date()
+  //   .toISOString()
+  //   .slice(11, 16)
+  //   .replace('T', ' ');
   var storeID = req.body.storeId;
   var items = req.body.items;
   var orderID;
@@ -124,9 +122,7 @@ function formatReceiptResult(results) {
   return results.map(function(receipt) {
     return {
       orderID: receipt.order_id,
-      // no association in database
-      paymentName: 'default',
-      delivererName: receipt.deliverer_username,
+      delivererName: receipt.delivererName,
       totalItems: receipt.totalItems,
       orderTime: receipt.order_placed_time,
       deliveryTime: receipt.delivery_time
@@ -137,8 +133,6 @@ function formatReceiptResult(results) {
 router.get('/receipt/:id', function(req, res, next) {
   var id = req.params.id;
   var token = req.headers['authorization'];
-  console.log(token);
-  console.log('entering get');
   db.query(
     `SELECT Orderr.order_id, Orderr.delivery_time, Orderr.order_placed_time, deliveredBy.deliverer_username, concat(first_name,' ',last_name) AS delivererName, SUM(selectItem.quantity) AS totalItems
     FROM Orderr JOIN deliveredBy ON (Orderr.order_id = deliveredBy.order_id) JOIN Userr ON (deliveredBy.deliverer_username = Userr.username) JOIN selectItem ON (Orderr.order_id = selectItem.order_id)
@@ -146,13 +140,26 @@ router.get('/receipt/:id', function(req, res, next) {
     function(err, results) {
       if (err) {
         res.sendStatus(501);
-        console.log('error in first query');
+        console.log('error in 1st query');
         console.log(err);
         return;
       }
-      console.log('completed first query');
-      console.log(JSON.stringify(formatReceiptResult(results)));
-      res.json(formatReceiptResult(results));
+      db.query(
+        `SELECT default_payment FROM Buyer WHERE username = '${token}'`,
+        function(err, payment) {
+          if (err) {
+            res.sendStatus(501);
+            console.log('error in 2nd query');
+            console.log(err);
+            return;
+          }
+          res.json({
+            orderDetails: formatReceiptResult(results),
+            // no payment-order association in db
+            paymentMethod: payment
+          });
+        }
+      );
     }
   );
 });
