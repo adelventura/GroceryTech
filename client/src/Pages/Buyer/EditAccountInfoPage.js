@@ -91,10 +91,12 @@ export default class EditAccountInfoPage extends React.Component {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'
+        // headers: { Authorization: userManager.user.token }
       },
       body: JSON.stringify(this.state)
     })
       .then(() => {
+        console.log(JSON.stringify(this.state));
         this.props.history.replace(`/buyer/account`);
       })
       .catch(error => {

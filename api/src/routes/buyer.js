@@ -190,7 +190,7 @@ router.post('/account/update', function(req, res, next) {
               console.log(err);
               return;
             }
-            var buyerAddressID = addressID;
+            var buyerAddressID = Object.values(addressID[0])[0];
             console.log('buyer address id: ' + buyerAddressID);
 
             db.query(
