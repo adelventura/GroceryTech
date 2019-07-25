@@ -183,4 +183,22 @@ router.get('/store/revenue', function(req, res, next) {
   });
 });
 
+// DELETE ACCOUNT
+router.post('/account/delete', function(req, res, next) {
+  var token = req.headers['authorization'];
+
+  db.query(`DELETE FROM Userr WHERE username = '${token}'`, function(
+    err,
+    results
+  ) {
+    if (err) {
+      res.sendStatus(501);
+      console.log('error in query');
+      console.log(err);
+      return;
+    }
+    res.sendStatus(200);
+  });
+});
+
 module.exports = router;

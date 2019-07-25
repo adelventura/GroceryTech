@@ -144,8 +144,9 @@ router.post('/account/update', function(req, res, next) {
   console.log(
     'entering get -- username: ' + token + ' paymentName: ' + paymentName
   );
+
   db.query(
-    `INSERT INTO Payments(username, payment_name, account_number, routing_number) VALUES ('${token}', '${paymentName}', '${accountNumber}', '${routingNumber}')`,
+    `SELECT payment_name, account_number, routing_number FROM Payments WHERE username = '${token}'`,
     function(err, results) {
       if (err) {
         res.sendStatus(501);
@@ -154,63 +155,120 @@ router.post('/account/update', function(req, res, next) {
         return;
       }
 
-      db.query(
-        `SELECT buyer_address_id FROM Buyer WHERE username = '${token}'`,
-        function(err, addressID) {
-          if (err) {
-            res.sendStatus(501);
-            console.log('error in 2nd query');
-            console.log(err);
-            return;
-          }
-          var buyerAddressID = addressID;
-          console.log('buyer address id: ' + buyerAddressID);
-
-          db.query(
-            `UPDATE Address SET Address.house_number = '${streetNumber}' Address.street = '${street}'
-            Address.city = '${city}'
-            Address.state = '${stateUS}'
-            Address.zip_code = '${zipcode}' WHERE Address.id = '${buyerAddressID}'`,
-            function(err, results) {
-              if (err) {
-                res.sendStatus(501);
-                console.log('error in 3rd query');
-                console.log(err);
-                return;
-              }
-
-              db.query(
-                `UPDATE Userr SET Userr.email = '${email}' WHERE username='${token}'`,
-                function(err, results) {
-                  if (err) {
-                    res.sendStatus(501);
-                    console.log('error in 4th query');
-                    console.log(err);
-                    return;
-                  }
-
-                  db.query(
-                    `UPDATE Buyer SET Buyer.phone = '${phone}',Buyer.default_store_id = '${defaultStoreID}',Buyer.default_payment = '${paymentName}', WHERE username = '${token}'`,
-                    function(err, results) {
-                      if (err) {
-                        res.sendStatus(501);
-                        console.log('error in 5th query');
-                        console.log(err);
-                        return;
-                      } else {
-                        console.log('completed final query');
-                        res.sendStatus(200);
-                      }
-                    }
-                  );
-                }
-              );
+      var finishQuery = () => {
+        db.query(
+          `SELECT address_id FROM Buyer WHERE username = '${token}'`,
+          function(err, addressID) {
+            if (err) {
+              res.sendStatus(501);
+              console.log('error in 2nd query');
+              console.log(err);
+              return;
             }
-          );
-        }
-      );
+            var buyerAddressID = addressID;
+            console.log('buyer address id: ' + buyerAddressID);
+
+            db.query(
+              `UPDATE Address SET Address.house_number = '${streetNumber}', Address.street = '${street}',
+              Address.city = '${city}',
+              Address.state = '${stateUS}',
+              Address.zip_code = '${zipcode}' WHERE Address.id = '${buyerAddressID}'`,
+              function(err, results) {
+                if (err) {
+                  res.sendStatus(501);
+                  console.log('error in 3rd query');
+                  console.log(err);
+                  return;
+                }
+
+                db.query(
+                  `UPDATE Userr SET Userr.email = '${email}' WHERE username='${token}'`,
+                  function(err, results) {
+                    if (err) {
+                      res.sendStatus(501);
+                      console.log('error in 4th query');
+                      console.log(err);
+                      return;
+                    }
+
+                    db.query(
+                      `UPDATE Buyer SET Buyer.phone = '${phone}',Buyer.default_store_id = '${defaultStoreID}',Buyer.default_payment = '${paymentName}' WHERE username = '${token}'`,
+                      function(err, results) {
+                        if (err) {
+                          res.sendStatus(501);
+                          console.log('error in 5th query');
+                          console.log(err);
+                          return;
+                        } else {
+                          console.log('completed final query');
+                          res.sendStatus(200);
+                        }
+                      }
+                    );
+                  }
+                );
+              }
+            );
+          }
+        );
+      };
+
+      var match = Object.values(results).filter(method => {
+        console.log(`${method.payment_name} == ${paymentName}`);
+        return method.payment_name == paymentName;
+      });
+
+      if (match.length > 0) {
+        db.query(
+          `UPDATE Payments SET Payments.account_number = '${accountNumber}', Payments.routing_number = '${routingNumber}' WHERE payment_name = '${paymentName}' AND username = '${token}'`,
+          function(err, results) {
+            if (err) {
+              res.sendStatus(501);
+              console.log('error in 1st query');
+              console.log(err);
+              return;
+            }
+
+            finishQuery();
+          }
+        );
+      } else {
+        db.query(
+          `INSERT INTO Payments(username, payment_name, account_number, routing_number) VALUES ('${token}', '${paymentName}', '${accountNumber}', '${routingNumber}')`,
+          function(err, results) {
+            if (err) {
+              res.sendStatus(501);
+              console.log('error in 1st query');
+              console.log(err);
+              return;
+            }
+
+            finishQuery();
+          }
+        );
+      }
     }
   );
+});
+
+// DELETE ACCOUNT
+router.post('/account/delete', function(req, res, next) {
+  var token = req.headers['authorization'];
+
+  console.log('username to delete: ' + token);
+
+  db.query(`DELETE FROM Userr WHERE username = '${token}'`, function(
+    err,
+    results
+  ) {
+    if (err) {
+      res.sendStatus(501);
+      console.log('error in query');
+      console.log(err);
+      return;
+    }
+    res.sendStatus(200);
+  });
 });
 
 module.exports = router;

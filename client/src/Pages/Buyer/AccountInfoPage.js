@@ -2,6 +2,8 @@ import React from 'react';
 import FetchStores from '../../Model/FetchStores';
 import FetchBuyerAccount from '../../Model/FetchBuyerAccount';
 import Loading from '../../Components/Loading';
+import { userManager } from '../../App';
+import Config from '../../Config/Config';
 
 export default class AccountInfoPage extends React.Component {
   constructor(props) {
@@ -31,7 +33,14 @@ export default class AccountInfoPage extends React.Component {
   };
 
   delete = () => {
-    alert('not available');
+    fetch(`${Config.baseUrl}/buyer/account/delete`, {
+      method: 'POST',
+      body: JSON.stringify(this.state),
+      headers: { Authorization: userManager.user.token }
+    }).then(() => {
+      userManager.update(null);
+      this.props.history.replace('/');
+    });
   };
 
   render() {
