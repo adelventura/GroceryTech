@@ -124,9 +124,10 @@ function formatReceiptResult(results) {
   return results.map(function(receipt) {
     return {
       orderID: receipt.order_id,
-      paymentName: receipt.req.body.paymentName,
+      // no association in database
+      paymentName: 'default',
       delivererName: receipt.deliverer_username,
-      totalItems: receipt.email,
+      totalItems: receipt.totalItems,
       orderTime: receipt.order_placed_time,
       deliveryTime: receipt.delivery_time
     };

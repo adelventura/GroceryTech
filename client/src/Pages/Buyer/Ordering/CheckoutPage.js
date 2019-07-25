@@ -58,7 +58,7 @@ export default class CheckoutPage extends React.Component {
       .then(response => response.json())
       .then(data => {
         userManager.clearCart();
-        this.props.history.push(`/checkout/receipt/${data.orderID}`);
+        this.props.history.replace(`/checkout/receipt/${data.orderID}`);
       })
       .catch(error => {
         alert(error);

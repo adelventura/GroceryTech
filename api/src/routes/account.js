@@ -1,7 +1,6 @@
 var express = require('express');
 var router = express.Router();
 
-var orderHistory = require('../mock_data/mock_orders');
 var db = require('../db/db');
 
 function formatPaymentResult(results) {

@@ -1,7 +1,6 @@
 var express = require('express');
 var router = express.Router();
 
-var assignments = require('../mock_data/mock_assignments').ASSIGNMENTS;
 var db = require('../db/db');
 
 // ASSIGNMENTS LISTING

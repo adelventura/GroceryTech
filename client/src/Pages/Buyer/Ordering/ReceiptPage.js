@@ -5,8 +5,8 @@ import FetchReceipt from '../../../Model/FetchReceipt';
 import Loading from '../../../Components/Loading';
 
 export default class ReceiptPage extends React.Component {
-  onClick = event => {
-    this.props.history.push('/home');
+  onClick = () => {
+    this.props.history.replace('/home');
   };
   render() {
     const { id } = this.props.match.params;
@@ -29,77 +29,89 @@ export default class ReceiptPage extends React.Component {
               return (
                 <div>
                   <div className="flex-col">
-                    <div style={{ width: '100%', float: 'left' }}>
-                      <h3 className="form-input-label">Order Number</h3>
-                      <input
-                        className="form-input"
-                        name="order-number"
-                        type="text"
-                        placeholder={receipt.orderID}
-                        disabled
-                      />
-                    </div>
+                    {receipt.map(data => {
+                      return (
+                        <div>
+                          <div style={{ width: '100%', float: 'left' }}>
+                            <h3 className="form-input-label">Order Number</h3>
+                            <input
+                              className="form-input"
+                              name="order-number"
+                              type="text"
+                              placeholder={data.orderID}
+                              disabled
+                            />
+                          </div>
 
-                    <div style={{ width: '100%', float: 'left' }}>
-                      <h3 className="form-input-label">Payment Name</h3>
-                      <input
-                        className="form-input"
-                        name="payment-name"
-                        type="text"
-                        placeholder="Payment Name"
-                        disabled
-                      />
-                    </div>
+                          <div style={{ width: '100%', float: 'left' }}>
+                            <h3 className="form-input-label">Payment Name</h3>
+                            <input
+                              className="form-input"
+                              name="payment-name"
+                              type="text"
+                              placeholder={data.paymentName}
+                              disabled
+                            />
+                          </div>
 
-                    <div style={{ width: '100%', float: 'left' }}>
-                      <h3 className="form-input-label">Deliverer's Name</h3>
-                      <input
-                        className="form-input"
-                        name="deliverer"
-                        type="text"
-                        placeholder={receipt.delivererName}
-                        disabled
-                      />
-                    </div>
+                          <div style={{ width: '100%', float: 'left' }}>
+                            <h3 className="form-input-label">
+                              Deliverer's Name
+                            </h3>
+                            <input
+                              className="form-input"
+                              name="deliverer"
+                              type="text"
+                              placeholder={data.delivererName}
+                              disabled
+                            />
+                          </div>
 
-                    <div style={{ width: '100%', float: 'left' }}>
-                      <h3 className="form-input-label">Number of Items</h3>
-                      <input
-                        className="form-input"
-                        name="number-items"
-                        type="text"
-                        placeholder={receipt.totalItems}
-                        disabled
-                      />
-                    </div>
+                          <div style={{ width: '100%', float: 'left' }}>
+                            <h3 className="form-input-label">
+                              Number of Items
+                            </h3>
+                            <input
+                              className="form-input"
+                              name="number-items"
+                              type="text"
+                              placeholder={data.totalItems}
+                              disabled
+                            />
+                          </div>
 
-                    <div style={{ width: '100%', float: 'left' }}>
-                      <h3 className="form-input-label">Time Order Placed</h3>
-                      <input
-                        className="form-input"
-                        name="order-time"
-                        type="text"
-                        placeholder={receipt.orderTime}
-                        disabled
-                      />
-                    </div>
+                          <div style={{ width: '100%', float: 'left' }}>
+                            <h3 className="form-input-label">
+                              Time Order Placed
+                            </h3>
+                            <input
+                              className="form-input"
+                              name="order-time"
+                              type="text"
+                              placeholder={data.orderTime}
+                              disabled
+                            />
+                          </div>
 
-                    <div
-                      style={{
-                        width: '100%',
-                        float: 'left',
-                        marginBottom: '25px'
-                      }}
-                    >
-                      <h3 className="form-input-label">Delivery Time</h3>
-                      <input
-                        className="form-input"
-                        name="delivery-time"
-                        type="text"
-                        placeholder={receipt.deliveryTime}
-                        disabled
-                      />
-                    </div>
+                          <div
+                            style={{
+                              width: '100%',
+                              float: 'left',
+                              marginBottom: '25px'
+                            }}
+                          >
+                            <h3 className="form-input-label">Delivery Time</h3>
+                            <input
+                              className="form-input"
+                              name="delivery-time"
+                              type="text"
+                              placeholder={data.deliveryTime}
+                              disabled
+                            />
+                          </div>
+                        </div>
+                      );
+                    })}
                   </div>
                   <button
                     className="btn"

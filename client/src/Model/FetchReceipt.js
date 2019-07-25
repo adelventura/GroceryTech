@@ -19,7 +19,7 @@ export default class FetchReceipt extends React.Component {
       headers: { Authorization: userManager.user.token }
     })
       .then(response => response.json())
-      .then(data => this.setState({ paymentMethods: data }));
+      .then(data => this.setState({ receipt: data }));
   }
 
   render() {
