@@ -77,21 +77,24 @@ router.post('/', function(req, res, next) {
                       console.log(err);
                       return;
                     }
+                    console.log(JSON.stringify(items));
+                    console.log('items : ' + items[0].quantity);
 
                     db.query(
-                      `SELECT username FROM Userr WHERE user_type = 'deliverer' ORDER BY RAND() LIMIT 1`,
+                      `UPDATE Item SET Item.quantity = Item.quantity -
+                      '${items[0].quantity}' WHERE Item.item_id = '${
+                        items[0].id
+                      }'`,
                       function(err, results) {
                         if (err) {
                           res.sendStatus(501);
-                          console.log('error in 6th query');
+                          console.log('error in 6thth query');
                           console.log(err);
                           return;
                         }
 
-                        var deliverName = results[0].username;
-
                         db.query(
-                          `INSERT INTO deliveredBy (order_id, deliverer_username, is_delivered, delivery_time, delivery_date) VALUES (${orderID}, '${deliverName}', 0, NULL, NULL)`,
+                          `SELECT username FROM Userr WHERE user_type = 'deliverer' ORDER BY RAND() LIMIT 1`,
                           function(err, results) {
                             if (err) {
                               res.sendStatus(501);
@@ -99,9 +102,23 @@ router.post('/', function(req, res, next) {
                               console.log(err);
                               return;
                             }
-                            res.json({
-                              orderID
-                            });
+
+                            var deliverName = results[0].username;
+
+                            db.query(
+                              `INSERT INTO deliveredBy (order_id, deliverer_username, is_delivered, delivery_time, delivery_date) VALUES (${orderID}, '${deliverName}', 0, NULL, NULL)`,
+                              function(err, results) {
+                                if (err) {
+                                  res.sendStatus(501);
+                                  console.log('error in 7th query');
+                                  console.log(err);
+                                  return;
+                                }
+                                res.json({
+                                  orderID
+                                });
+                              }
+                            );
                           }
                         );
                       }
