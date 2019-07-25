@@ -61,7 +61,7 @@ router.get('/:id', function(req, res, next) {
   console.log('token retrieved' + token);
 
   db.query(
-    `SELECT Orderr.order_placed_time, Orderr.delivery_time, deliveredBy.is_delivered AS IsDelivered, concat(Address.house_number,' ',Address.street,', ',Address.city,', ',Address.state,' ',Address.zip_code) AS BuyAddress, store_name, item.item_name,item.quantity FROM selectItem JOIN Item JOIN Orderr JOIN orderedBy JOIN Buyer JOIN Address JOIN orderFrom JOIN GroceryStore JOIN deliveredBy WHERE selectItem.item_id = Item.item_id AND selectItem.order_id = Orderr.order_id AND selectItem.order_id = orderedBy.order_id AND Buyer.username=orderedBy.buyer_username AND Buyer.address_id = Address.id AND orderFrom.order_id = selectItem.order_id AND GroceryStore.store_id=orderFrom.store_address_id AND deliveredBy.order_id = selectItem.order_id AND selectItem.order_id = '${orderID}'`,
+    `SELECT Orderr.order_placed_time, Orderr.delivery_time, deliveredBy.is_delivered AS IsDelivered, concat(Address.house_number,' ',Address.street,', ',Address.city,', ',Address.state,' ',Address.zip_code) AS BuyAddress, store_name, item.item_name,selectItem.quantity FROM selectItem JOIN Item JOIN Orderr JOIN orderedBy JOIN Buyer JOIN Address JOIN orderFrom JOIN GroceryStore JOIN deliveredBy WHERE selectItem.item_id = Item.item_id AND selectItem.order_id = Orderr.order_id AND selectItem.order_id = orderedBy.order_id AND Buyer.username=orderedBy.buyer_username AND Buyer.address_id = Address.id AND orderFrom.order_id = selectItem.order_id AND GroceryStore.store_id=orderFrom.store_address_id AND deliveredBy.order_id = selectItem.order_id AND selectItem.order_id = '${orderID}'`,
     function(err, results) {
       if (err) {
         res.sendStatus(501);
