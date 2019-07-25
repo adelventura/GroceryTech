@@ -3,47 +3,13 @@ import FetchStores from '../../Model/FetchStores';
 import FetchBuyerAccount from '../../Model/FetchBuyerAccount';
 import Config from '../../Config/Config';
 import Loading from '../../Components/Loading';
-
-function disableEdits(inputs) {
-  var length = inputs.length;
-  while (length--) {
-    inputs[length].disabled = true;
-  }
-}
-
-function enableEdits(inputs) {
-  var length = inputs.length;
-  while (length--) {
-    inputs[length].disabled = false;
-  }
-}
+import { userManager } from '../../App';
 
 export default class EditAccountInfoPage extends React.Component {
   constructor(props) {
     super(props);
 
-    this.state = {
-      firstName: '',
-      lastName: '',
-      username: '',
-      email: '',
-      streetNumber: '',
-      street: '',
-      city: '',
-      stateUS: '',
-      zipcode: '',
-      phone: '',
-      addressID: '',
-      defaultPaymentName: '',
-      accountNumber: '',
-      routingNumber: '',
-      defaultStoreID: ''
-    };
-  }
-
-  handleUpdate() {
-    let inputs = document.getElementsByTagName('input');
-    return enableEdits(inputs);
+    this.state = null;
   }
 
   save = () => {
@@ -94,7 +60,7 @@ export default class EditAccountInfoPage extends React.Component {
       return;
     }
 
-    fetch(`${Config.baseUrl}/buyer/account`, {
+    fetch(`${Config.baseUrl}/buyer/account/update`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'
@@ -175,24 +141,39 @@ export default class EditAccountInfoPage extends React.Component {
     });
   };
 
-  formItem = (name, label) => {
-    return (
-      <div>
-        <h3 className="form-input-label">{label}</h3>
-        <input
-          className="form-input"
-          name={name}
-          type="text"
-          placeholder={label}
-          value={this.state.label}
-          onChange={this.handleChange}
-          disabled
-        />
-      </div>
-    );
+  componentDidMount = () => {
+    fetch(`${Config.baseUrl}/buyer/account`, {
+      headers: { Authorization: userManager.user.token }
+    })
+      .then(response => response.json())
+      .then(response => {
+        var data = response[0];
+
+        this.setState({
+          firstName: data.firstName,
+          lastName: data.lastName,
+          username: data.username,
+          email: data.email,
+          streetNumber: data.streetNumber,
+          street: data.street,
+          city: data.city,
+          stateUS: data.stateUS,
+          zipcode: data.zipcode,
+          phone: data.phone,
+          addressID: data.addressID,
+          defaultPaymentName: data.defaultPaymentName,
+          accountNumber: data.accountNumber,
+          routingNumber: data.routingNumber,
+          defaultStoreID: data.defaultStoreID
+        });
+      });
   };
 
   render() {
+    if (!this.state) {
+      return <div>Loading</div>;
+    }
+    console.log(JSON.stringify(this.state));
     return (
       <React.Fragment>
         <FetchBuyerAccount
@@ -222,7 +203,7 @@ export default class EditAccountInfoPage extends React.Component {
                               name="firstName"
                               type="text"
                               style={{ backgroundColor: '#F6F6F6' }}
-                              placeholder={account.firstName}
+                              //   placeholder={account.firstName}
                               value={this.state.firstName}
                               disabled
                             />
@@ -234,7 +215,7 @@ export default class EditAccountInfoPage extends React.Component {
                               name="lastName"
                               type="text"
                               style={{ backgroundColor: '#F6F6F6' }}
-                              placeholder={account.lastName}
+                              //   placeholder={account.lastName}
                               value={this.state.lastName}
                               disabled
                             />
@@ -249,7 +230,7 @@ export default class EditAccountInfoPage extends React.Component {
                               name="username"
                               type="text"
                               style={{ backgroundColor: '#F6F6F6' }}
-                              placeholder={account.username}
+                              //   placeholder={account.username}
                               value={this.state.username}
                               disabled
                             />
@@ -260,7 +241,7 @@ export default class EditAccountInfoPage extends React.Component {
                               className="form-input"
                               name="email"
                               type="text"
-                              placeholder={account.email}
+                              //  placeholder={account.email}
                               value={this.state.email}
                               onChange={this.onEmailChange}
                             />
@@ -279,7 +260,7 @@ export default class EditAccountInfoPage extends React.Component {
                               className="form-input"
                               name="streetNumber"
                               type="text"
-                              placeholder={account.streetNumber}
+                              // placeholder={account.streetNumber}
                               value={this.state.streetNumber}
                               onChange={this.onStreetNumberChange}
                             />
@@ -290,7 +271,7 @@ export default class EditAccountInfoPage extends React.Component {
                               className="form-input"
                               name="street"
                               type="text"
-                              placeholder={account.street}
+                              //  placeholder={account.street}
                               value={this.state.street}
                               onChange={this.onStreetChange}
                             />
@@ -304,7 +285,7 @@ export default class EditAccountInfoPage extends React.Component {
                               className="form-input"
                               name="city"
                               type="text"
-                              placeholder={account.city}
+                              //  placeholder={account.city}
                               value={this.state.city}
                               onChange={this.onCityChange}
                             />
@@ -315,7 +296,7 @@ export default class EditAccountInfoPage extends React.Component {
                               className="form-input"
                               name="stateUS"
                               type="text"
-                              placeholder={account.stateUS}
+                              //   placeholder={account.stateUS}
                               value={this.state.stateUS}
                               onChange={this.onStateChange}
                             />
@@ -332,7 +313,7 @@ export default class EditAccountInfoPage extends React.Component {
                               className="form-input"
                               name="zipcode"
                               type="text"
-                              placeholder={account.zipcode}
+                              //  placeholder={account.zipcode}
                               value={this.state.zipcode}
                               onChange={this.onZipcodeChange}
                             />
@@ -343,8 +324,8 @@ export default class EditAccountInfoPage extends React.Component {
                               className="form-input"
                               name="phone"
                               type="text"
-                              placeholder={account.phone}
-                              value={this.state.phoneNumber}
+                              //  placeholder={account.phone}
+                              value={this.state.phone}
                               onChange={this.onPhoneChange}
                             />
                           </span>
@@ -367,7 +348,7 @@ export default class EditAccountInfoPage extends React.Component {
                               className="form-input"
                               name="defaultPaymentName"
                               type="text"
-                              placeholder={account.defaultPaymentName}
+                              //  placeholder={account.defaultPaymentName}
                               value={this.state.defaultPaymentName}
                               onChange={this.onDefaultPaymentNameChange}
                             />
@@ -378,7 +359,7 @@ export default class EditAccountInfoPage extends React.Component {
                               className="form-input"
                               name="accountNumber"
                               type="text"
-                              placeholder={account.accountNumber}
+                              //  placeholder={account.accountNumber}
                               value={this.state.accountNumber}
                               onChange={this.onAccountNumberChange}
                             />
@@ -395,7 +376,7 @@ export default class EditAccountInfoPage extends React.Component {
                               className="form-input"
                               name="routingNumber"
                               type="text"
-                              placeholder={account.routingNumber}
+                              // placeholder={account.routingNumber}
                               value={this.state.routingNumber}
                               onChange={this.onRoutingNumberChange}
                             />
@@ -418,7 +399,6 @@ export default class EditAccountInfoPage extends React.Component {
                                   <select
                                     name="defaultStore"
                                     className="select"
-                                    placeholder="default"
                                     value={this.state.defaultStoreID}
                                     onChange={this.onDefaultStoreIDChange}
                                   >

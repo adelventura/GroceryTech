@@ -2,6 +2,8 @@ import React from 'react';
 import Loading from '../../Components/Loading';
 import FetchDelivererAccount from '../../Model/FetchDelivererAccount';
 import AccountInfoPage from '../Buyer/AccountInfoPage';
+import { userManager } from '../../App';
+import Config from '../../Config/Config';
 
 export default class EditDelivererAccountInfoPage extends React.Component {
   constructor(props) {
@@ -11,17 +13,56 @@ export default class EditDelivererAccountInfoPage extends React.Component {
       firstName: '',
       lastName: '',
       username: '',
-      email: '',
-      phoneNumber: ''
+      email: ''
     };
   }
 
+  componentDidMount = () => {
+    fetch(`${Config.baseUrl}/deliverer/account`, {
+      headers: { Authorization: userManager.user.token }
+    })
+      .then(response => response.json())
+      .then(response => {
+        var data = response[0];
+
+        this.setState({
+          firstName: data.firstName,
+          lastName: data.lastName,
+          username: data.username,
+          email: data.email
+        });
+      });
+  };
+
   save = () => {
-    this.props.history.replace(`/deliverer/account/update`);
+    if (!this.state.email) {
+      alert('enter an email');
+      return;
+    }
+
+    fetch(`${Config.baseUrl}/deliverer/account/update`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(this.state)
+    })
+      .then(() => {
+        this.props.history.replace(`/deliverer/account`);
+      })
+      .catch(error => {
+        alert(error);
+      });
   };
 
   delete = () => {
     alert('not available');
+  };
+
+  onEmailChange = event => {
+    this.setState({
+      email: event.target.value
+    });
   };
 
   render() {
@@ -49,9 +90,7 @@ export default class EditDelivererAccountInfoPage extends React.Component {
                               name="firstName"
                               type="text"
                               style={{ backgroundColor: '#F6F6F6' }}
-                              placeholder={account.firstName}
                               value={this.state.firstName}
-                              onChange={this.handleChange}
                               disabled
                             />
                           </span>
@@ -62,9 +101,7 @@ export default class EditDelivererAccountInfoPage extends React.Component {
                               name="lastName"
                               type="text"
                               style={{ backgroundColor: '#F6F6F6' }}
-                              placeholder={account.lastName}
                               value={this.state.lastName}
-                              onChange={this.handleChange}
                               disabled
                             />
                           </span>
@@ -77,9 +114,7 @@ export default class EditDelivererAccountInfoPage extends React.Component {
                               name="username"
                               type="text"
                               style={{ backgroundColor: '#F6F6F6' }}
-                              placeholder={account.username}
                               value={this.state.username}
-                              onChange={this.handleChange}
                               disabled
                             />
                           </span>
@@ -89,9 +124,8 @@ export default class EditDelivererAccountInfoPage extends React.Component {
                               className="form-input"
                               name="email"
                               type="text"
-                              placeholder={account.email}
                               value={this.state.email}
-                              onChange={this.handleChange}
+                              onChange={this.onEmailChange}
                             />
                           </span>
                         </div>

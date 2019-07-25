@@ -110,23 +110,8 @@ function formatAccountResult(results) {
   });
 }
 
-// function formatDefaultStoreResult(results) {
-//   return results.map(function(store) {
-//     return {
-//       defaultStoreName: store.store_name,
-//       storeStreetNumber: store.house_number,
-//       storeStreet: store.street,
-//       storeCity: store.city,
-//       storeState: store.state,
-//       storeZipcode: store.zip_code
-//     };
-//   });
-// }
-
 router.get('/account', function(req, res, next) {
   var token = req.headers['authorization'];
-  console.log(token);
-  console.log('entering get');
   db.query(
     `SELECT username, email, first_name, last_name, phone, house_number, street, city, state, zip_code, default_payment, routing_number, account_number,   payment_name, default_store_id FROM Userr NATURAL JOIN Buyer NATURAL JOIN Payments JOIN Address ON Buyer.address_id = Address.id WHERE username = '${token}' AND Buyer.default_payment = Payments.payment_name`,
     function(err, results) {
@@ -136,29 +121,94 @@ router.get('/account', function(req, res, next) {
         console.log(err);
         return;
       }
-      console.log('completed first query');
-      console.log(JSON.stringify(formatAccountResult(results)));
       res.json(formatAccountResult(results));
     }
   );
 });
 
-router.get('/account/update', function(req, res, next) {
-  var token = req.headers['authorization'];
+// UPDATE ACCOUNT INFO
+router.post('/account/update', function(req, res, next) {
+  var token = req.body.username;
+  var phone = req.body.phone;
+  var email = req.body.email;
+  var streetNumber = req.body.streetNumber;
+  var street = req.body.street;
+  var city = req.body.city;
+  var stateUS = req.body.stateUS;
+  var zipcode = req.body.zipcode;
+  var paymentName = req.body.defaultPaymentName;
+  var accountNumber = req.body.accountNumber;
+  var routingNumber = req.body.routingNumber;
+  var defaultStoreID = req.body.defaultStoreID;
 
-  console.log('entering get');
+  console.log(
+    'entering get -- username: ' + token + ' paymentName: ' + paymentName
+  );
   db.query(
-    `SELECT username, email, first_name, last_name, phone, house_number, street, city, state, zip_code, default_payment, routing_number, account_number,   payment_name, default_store_id FROM Userr NATURAL JOIN Buyer NATURAL JOIN Payments JOIN Address ON Buyer.address_id = Address.id WHERE username = '${token}' AND Buyer.default_payment = Payments.payment_name`,
+    `INSERT INTO Payments(username, payment_name, account_number, routing_number) VALUES ('${token}', '${paymentName}', '${accountNumber}', '${routingNumber}')`,
     function(err, results) {
       if (err) {
         res.sendStatus(501);
-        console.log('error in second query');
+        console.log('error in 1st query');
         console.log(err);
         return;
       }
-      console.log('completed first query');
 
-      res.json(formatAccountResult(results));
+      db.query(
+        `SELECT buyer_address_id FROM Buyer WHERE username = '${token}'`,
+        function(err, addressID) {
+          if (err) {
+            res.sendStatus(501);
+            console.log('error in 2nd query');
+            console.log(err);
+            return;
+          }
+          var buyerAddressID = addressID;
+          console.log('buyer address id: ' + buyerAddressID);
+
+          db.query(
+            `UPDATE Address SET Address.house_number = '${streetNumber}' Address.street = '${street}'
+            Address.city = '${city}'
+            Address.state = '${stateUS}'
+            Address.zip_code = '${zipcode}' WHERE Address.id = '${buyerAddressID}'`,
+            function(err, results) {
+              if (err) {
+                res.sendStatus(501);
+                console.log('error in 3rd query');
+                console.log(err);
+                return;
+              }
+
+              db.query(
+                `UPDATE Userr SET Userr.email = '${email}' WHERE username='${token}'`,
+                function(err, results) {
+                  if (err) {
+                    res.sendStatus(501);
+                    console.log('error in 4th query');
+                    console.log(err);
+                    return;
+                  }
+
+                  db.query(
+                    `UPDATE Buyer SET Buyer.phone = '${phone}',Buyer.default_store_id = '${defaultStoreID}',Buyer.default_payment = '${paymentName}', WHERE username = '${token}'`,
+                    function(err, results) {
+                      if (err) {
+                        res.sendStatus(501);
+                        console.log('error in 5th query');
+                        console.log(err);
+                        return;
+                      } else {
+                        console.log('completed final query');
+                        res.sendStatus(200);
+                      }
+                    }
+                  );
+                }
+              );
+            }
+          );
+        }
+      );
     }
   );
 });

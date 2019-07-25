@@ -67,4 +67,22 @@ router.get('/account', function(req, res, next) {
   );
 });
 
+// UPDATE ACCOUNT INFO
+router.post('/account/update', function(req, res, next) {
+  var token = req.body.username;
+  var email = req.body.email;
+  console.log('entering get -- username: ' + token + ' email: ' + email);
+  db.query(
+    `UPDATE Userr SET Userr.email = '${email}' WHERE username = '${token}'`,
+    function(err, results) {
+      if (err) {
+        res.sendStatus(501);
+        console.log('error in query');
+        console.log(err);
+        return;
+      }
+    }
+  );
+});
+
 module.exports = router;
