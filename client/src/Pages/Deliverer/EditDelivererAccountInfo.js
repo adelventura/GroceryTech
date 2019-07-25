@@ -52,7 +52,7 @@ export default class EditDelivererAccountInfoPage extends React.Component {
     fetch(`${Config.baseUrl}/deliverer/account/update`, {
       method: 'POST',
       headers: {
-        'Content-Type': 'application/json'
+        headers: { Authorization: userManager.user.token }
       },
       body: JSON.stringify(this.state)
     })

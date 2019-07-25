@@ -59,7 +59,7 @@ export default class ManagerAccountInfoPage extends React.Component {
     fetch(`${Config.baseUrl}/manager/account/update`, {
       method: 'POST',
       headers: {
-        'Content-Type': 'application/json'
+        headers: { Authorization: userManager.user.token }
       },
       body: JSON.stringify(this.state)
     })

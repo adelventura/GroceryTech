@@ -180,6 +180,10 @@ router.get('/store/revenue', function(req, res, next) {
       res.sendStatus(400);
     } else {
       var revenue = results[0];
+      if (!revenue) {
+        res.json({});
+        return;
+      }
 
       res.json({
         name: revenue.store_name,

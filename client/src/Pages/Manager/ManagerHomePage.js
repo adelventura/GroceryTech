@@ -1,7 +1,6 @@
 import React from 'react';
 import {
   FaUserEdit,
-  FaClipboardList,
   FaCalculator,
   FaCashRegister,
   FaBoxes
