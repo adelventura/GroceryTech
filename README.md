@@ -32,6 +32,7 @@ git clone  https://github.com/adelventura/GroceryTech.git
 Now navigate into the GroceryTech folder, and run the following commands.
 
 ```bash
+npm install
 cd api
 npm install
 cd ../client
