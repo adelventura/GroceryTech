@@ -50,6 +50,7 @@ class UserManager {
   user: {
     token: string;
     type: string;
+    store: number | null;
     cart: { [index: number]: CartItem };
   } | null = null;
 
@@ -63,6 +64,7 @@ class UserManager {
       this.user = {
         token,
         type,
+        store: null,
         cart: {}
       };
     } else {
@@ -77,6 +79,7 @@ class UserManager {
 
       this.user = {
         ...user,
+        store: null,
         cart: {}
       };
     } else {
@@ -91,6 +94,7 @@ class UserManager {
     if (this.user != null) {
       this.user = {
         ...this.user,
+        store: null,
         cart: {}
       };
     }
@@ -184,7 +188,7 @@ class App extends Component {
               component={OrderHistoryPage}
             />
             <Route exact path="/checkout" component={CheckoutPage} />
-            <Route exact path="/checkout/receipt" component={ReceiptPage} />
+            <Route exact path="/checkout/receipt/:id" component={ReceiptPage} />
             <Route
               exact
               path="/account/payment_methods"

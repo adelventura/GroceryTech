@@ -27,6 +27,11 @@ export default class RegisterBuyerPage extends React.Component {
     };
   }
 
+  testEmail = email => {
+    var pattern = /\w+([-+.']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*/;
+    return pattern.test(email);
+  };
+
   create = () => {
     if (!this.state.firstName) {
       alert('enter a first name');
@@ -45,6 +50,11 @@ export default class RegisterBuyerPage extends React.Component {
 
     if (!this.state.email) {
       alert('enter an email');
+      return;
+    }
+
+    if (!this.testEmail(this.state.email)) {
+      alert('Please enter a valid email');
       return;
     }
 
@@ -422,7 +432,7 @@ export default class RegisterBuyerPage extends React.Component {
                       >
                         {stores.map(store => {
                           return (
-                            <option value={store.addressID}>{`${store.name} - ${
+                            <option value={store.id}>{`${store.name} - ${
                               store.address
                             }`}</option>
                           );

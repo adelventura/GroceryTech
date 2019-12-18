@@ -1,10 +1,6 @@
 var express = require('express');
 var router = express.Router();
 
-var inventory = require('../mock_data/mock_inventory');
-var cart = require('../mock_data/mock_cart');
-var orders = require('../mock_data/mock_orders');
-
 var db = require('../db/db');
 
 function formatStoresResult(results) {

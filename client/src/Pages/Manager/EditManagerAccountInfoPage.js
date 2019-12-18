@@ -1,7 +1,9 @@
 import React from 'react';
 import Loading from '../../Components/Loading';
 import FetchManagerAccount from '../../Model/FetchManagerAccount';
-import AccountInfoPage from '../Buyer/AccountInfoPage';
+import FetchStores from '../../Model/FetchStores';
+import Config from '../../Config/Config';
+import { userManager } from '../../App';
 
 export default class ManagerAccountInfoPage extends React.Component {
   constructor(props) {
@@ -12,19 +14,74 @@ export default class ManagerAccountInfoPage extends React.Component {
       lastName: '',
       username: '',
       email: '',
-      store: '',
-      storeAddress: ''
+      storeName: '',
+      storeAddress: '',
+      storeAddressID: '',
+      storeID: ''
     };
   }
+  componentDidMount = () => {
+    fetch(`${Config.baseUrl}/manager/account`, {
+      headers: { Authorization: userManager.user.token }
+    })
+      .then(response => response.json())
+      .then(response => {
+        var data = response[0];
 
-  update = () => {
-    this.props.history.replace(`/manager/account/update`);
+        this.setState({
+          firstName: data.firstName,
+          lastName: data.lastName,
+          username: data.username,
+          email: data.email,
+          storeName: data.storeName,
+          storeAddress: data.storeAddress,
+          storeID: data.storeID,
+          storeAddressID: data.storeAddressID
+        });
+      });
   };
 
-  delete = () => {
-    alert('not available');
+  testEmail = email => {
+    var pattern = /\w+([-+.']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*/;
+    return pattern.test(email);
   };
 
+  save = () => {
+    if (!this.state.email) {
+      alert('enter an email');
+      return;
+    }
+
+    if (!this.testEmail(this.state.email)) {
+      alert('Please enter a valid email');
+      return;
+    }
+    fetch(`${Config.baseUrl}/manager/account/update`, {
+      method: 'POST',
+      headers: {
+        headers: { Authorization: userManager.user.token }
+      },
+      body: JSON.stringify(this.state)
+    })
+      .then(() => {
+        this.props.history.replace(`/manager/account`);
+      })
+      .catch(error => {
+        alert(error);
+      });
+  };
+
+  onEmailChange = event => {
+    this.setState({
+      email: event.target.value
+    });
+  };
+
+  onStoreIDChange = event => {
+    this.setState({
+      storeAddressID: event.target.value
+    });
+  };
   render() {
     return (
       <React.Fragment>
@@ -50,7 +107,7 @@ export default class ManagerAccountInfoPage extends React.Component {
                               name="firstName"
                               type="text"
                               style={{ backgroundColor: '#F6F6F6' }}
-                              placeholder={account.firstName}
+                              value={account.firstName}
                               disabled
                             />
                           </span>
@@ -61,7 +118,7 @@ export default class ManagerAccountInfoPage extends React.Component {
                               name="lastName"
                               type="text"
                               style={{ backgroundColor: '#F6F6F6' }}
-                              placeholder={account.lastName}
+                              value={account.lastName}
                               disabled
                             />
                           </span>
@@ -73,9 +130,8 @@ export default class ManagerAccountInfoPage extends React.Component {
                             <input
                               className="form-input"
                               name="username"
-                              type="text"
                               style={{ backgroundColor: '#F6F6F6' }}
-                              placeholder={account.username}
+                              value={account.username}
                               disabled
                             />
                           </span>
@@ -84,35 +140,44 @@ export default class ManagerAccountInfoPage extends React.Component {
                             <input
                               className="form-input"
                               name="email"
-                              type="text"
-                              placeholder={account.email}
                               value={this.state.email}
-                              onChange={this.handleChange}
+                              onChange={this.onEmailChange}
                             />
                           </span>
                         </div>
 
-                        <div className="form-row">
-                          <span style={{ float: 'left', width: '46%' }}>
+                        <div
+                          className="form-row"
+                          style={{ marginBottom: '25px' }}
+                        >
+                          <div style={{ float: 'left', width: '46%' }}>
                             <h3 className="form-input-label">Assigned Store</h3>
-                            <input
-                              className="form-input"
-                              name="storeName"
-                              type="text"
-                              placeholder={account.storeName}
+                            <FetchStores
+                              content={stores => {
+                                return (
+                                  <select
+                                    name="assignedStore"
+                                    className="select"
+                                    value={this.state.value}
+                                    onChange={this.onStoreIDChange}
+                                  >
+                                    <option
+                                      value={this.state.storeAddressID}
+                                    >{`${account.storeName} - ${
+                                      account.storeAddress
+                                    }`}</option>
+                                    {stores.map(store => {
+                                      return (
+                                        <option value={store.addressID}>{`${
+                                          store.name
+                                        } - ${store.address}`}</option>
+                                      );
+                                    })}
+                                  </select>
+                                );
+                              }}
                             />
-                          </span>
-                          <span style={{ float: 'right', width: '46%' }}>
-                            <h3 className="form-input-label">Store Address</h3>
-                            <input
-                              className="form-input"
-                              name="storeAddress"
-                              type="text"
-                              placeholder={account.storeAddress}
-                              value={this.state.email}
-                              onChange={this.handleChange}
-                            />
-                          </span>
+                          </div>
                         </div>
                       </div>
                     );
@@ -130,15 +195,8 @@ export default class ManagerAccountInfoPage extends React.Component {
           >
             <button
               className="btn"
-              style={{ marginLeft: '0px', marginRight: 'auto' }}
-              onClick={this.delete}
-            >
-              Delete Account
-            </button>
-            <button
-              className="btn"
               style={{ marginRight: '0px', marginLeft: 'auto' }}
-              onClick={this.update}
+              onClick={this.save}
             >
               Save Changes
             </button>

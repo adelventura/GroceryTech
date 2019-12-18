@@ -83,23 +83,28 @@ router.post('/register', function(req, res, next) {
   );
 });
 
-router.post('/account', function(req, res, next) {
-  var userType = 'manager';
-  var firstName = req.body.firstName;
-  var lastName = req.body.lastName;
-  var username = req.body.username;
-  var password = req.body.password;
+router.post('/account/update', function(req, res, next) {
+  var token = req.body.username;
   var email = req.body.email;
-  var store = req.body.store;
+  var storeAddressID = req.body.storeAddressID;
 
+  console.log(JSON.stringify(req.body));
   db.query(
-    `INSERT INTO Userr(username, password, user_type, email, first_name, last_name) VALUES ('${username}', '${password}', '${userType}', '${email}', '${firstName}', '${lastName}')`,
+    `UPDATE Userr SET  Userr.email = '${email}' WHERE username = '${token}'`,
     function(err, results) {
+      if (err) {
+        res.sendStatus(501);
+        console.log('error in first query');
+        console.log(err);
+        return;
+      }
       db.query(
-        `INSERT INTO manages(username, store_address) VALUES ('${username}', '${store}')`,
+        `UPDATE manages SET store_address = '${storeAddressID}' WHERE username = '${token}'`,
         function(err, results) {
           if (err) {
+            console.log(err);
             res.sendStatus(400);
+            return;
           } else {
             res.sendStatus(200);
           }
@@ -118,7 +123,9 @@ function formatAccountResult(results) {
       lastName: account.last_name,
       email: account.email,
       storeName: account.store_name,
-      storeAddress: account.StoreAddress
+      storeAddress: account.StoreAddress,
+      storeAddressID: account.address_id,
+      storeID: account.store_id
     };
   });
 }
@@ -128,7 +135,7 @@ router.get('/account', function(req, res, next) {
 
   console.log('entering get');
   db.query(
-    `SELECT username, email, first_name, last_name, store_name, concat(Address.house_number,' ',Address.street,', ',Address.city,', ',Address.state,' ',Address.zip_code) AS StoreAddress FROM Userr NATURAL JOIN manages JOIN Address ON store_address = id JOIN GroceryStore ON store_address = address_id
+    `SELECT username, email, first_name, last_name, store_name, concat(Address.house_number,' ',Address.street,', ',Address.city,', ',Address.state,' ',Address.zip_code) AS StoreAddress, address_id, store_id FROM Userr NATURAL JOIN manages JOIN Address ON store_address = id JOIN GroceryStore ON store_address = address_id
     WHERE username = '${token}'`,
     function(err, results) {
       if (err) {
@@ -173,6 +180,10 @@ router.get('/store/revenue', function(req, res, next) {
       res.sendStatus(400);
     } else {
       var revenue = results[0];
+      if (!revenue) {
+        res.json({});
+        return;
+      }
 
       res.json({
         name: revenue.store_name,
@@ -180,6 +191,24 @@ router.get('/store/revenue', function(req, res, next) {
         itemsSold: revenue.Total_Items_Sold
       });
     }
+  });
+});
+
+// DELETE ACCOUNT
+router.post('/account/delete', function(req, res, next) {
+  var token = req.headers['authorization'];
+
+  db.query(`DELETE FROM Userr WHERE username = '${token}'`, function(
+    err,
+    results
+  ) {
+    if (err) {
+      res.sendStatus(501);
+      console.log('error in query');
+      console.log(err);
+      return;
+    }
+    res.sendStatus(200);
   });
 });
 

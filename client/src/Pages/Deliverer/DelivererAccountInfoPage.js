@@ -1,7 +1,8 @@
 import React from 'react';
 import Loading from '../../Components/Loading';
 import FetchDelivererAccount from '../../Model/FetchDelivererAccount';
-import AccountInfoPage from '../Buyer/AccountInfoPage';
+import { userManager } from '../../App';
+import Config from '../../Config/Config';
 
 export default class DelivererAccountInfoPage extends React.Component {
   constructor(props) {
@@ -21,7 +22,14 @@ export default class DelivererAccountInfoPage extends React.Component {
   };
 
   delete = () => {
-    alert('not available');
+    fetch(`${Config.baseUrl}/deliverer/account/delete`, {
+      method: 'POST',
+      body: JSON.stringify(this.state),
+      headers: { Authorization: userManager.user.token }
+    }).then(() => {
+      userManager.update(null);
+      this.props.history.replace('/');
+    });
   };
 
   render() {

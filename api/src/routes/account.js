@@ -1,7 +1,6 @@
 var express = require('express');
 var router = express.Router();
 
-var orderHistory = require('../mock_data/mock_orders');
 var db = require('../db/db');
 
 function formatPaymentResult(results) {
@@ -128,19 +127,3 @@ router.get('/order_history', function(req, res, next) {
 });
 
 module.exports = router;
-
-//   db.query(
-//     `SELECT * FROM (Payments p JOIN Buyer b on p.username = b.username) WHERE b.username ='${token}'AND p.payment_name = b.default_payment`,
-//     function(err, user) {
-//       if (err) {
-//         res.sendStatus(501);
-//         console.log(err);
-//         return;
-//       }
-
-//       res.json({
-//         payments: formatPaymentResult(results),
-//         default: user[0].default_payment
-//       });
-//     }
-// }
